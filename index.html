@@ -18,7 +18,77 @@ body{
     background:#050914;
     color:#fff;
     overflow-x:hidden;
+    cursor:none;
 }
+
+/* =========================
+   ROBOT CLAW CURSOR
+========================= */
+
+.robot-cursor{
+    position:fixed;
+    width:28px;
+    height:28px;
+    pointer-events:none;
+    z-index:99999;
+    transform:translate(-50%,-50%);
+}
+
+.robot-cursor::before,
+.robot-cursor::after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:16px;
+    border:2px solid #79a9ff;
+    background:#050914;
+    top:6px;
+    box-shadow:0 0 8px rgba(121,169,255,.25);
+}
+
+.robot-cursor::before{
+    left:1px;
+    transform:rotate(35deg);
+    border-radius:4px 2px 6px 4px;
+}
+
+.robot-cursor::after{
+    right:1px;
+    transform:rotate(-35deg);
+    border-radius:2px 4px 4px 6px;
+}
+
+.robot-cursor-center{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border:2px solid #79a9ff;
+    border-radius:50%;
+    top:9px;
+    left:10px;
+    box-shadow:0 0 12px rgba(121,169,255,.8);
+    transition:.2s;
+}
+
+.robot-cursor.hover{
+    transform:translate(-50%,-50%) scale(1.25);
+}
+
+.robot-cursor.hover::before{
+    transform:rotate(18deg);
+}
+
+.robot-cursor.hover::after{
+    transform:rotate(-18deg);
+}
+
+.robot-cursor.hover .robot-cursor-center{
+    transform:scale(1.3);
+}
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav{
     position:fixed;
@@ -69,6 +139,10 @@ nav a{
 nav a:hover{
     color:#79a9ff;
 }
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
     min-height:100vh;
@@ -168,6 +242,10 @@ h1{
     color:#79a9ff;
 }
 
+/* =========================
+   SECTIONS
+========================= */
+
 section{
     padding:110px 8%;
 }
@@ -190,6 +268,10 @@ section{
     line-height:1.8;
 }
 
+/* =========================
+   ABOUT
+========================= */
+
 .about{
     background:#080e1c;
 }
@@ -206,6 +288,12 @@ section{
     border:1px solid #1c2941;
     background:#0b1221;
     border-radius:15px;
+    transition:.3s;
+}
+
+.info-card:hover{
+    transform:translateY(-5px);
+    border-color:#79a9ff;
 }
 
 .info-card h3{
@@ -217,6 +305,10 @@ section{
     color:#929db0;
     line-height:1.7;
 }
+
+/* =========================
+   AJAX
+========================= */
 
 .ajax-section{
     text-align:center;
@@ -242,6 +334,10 @@ section{
     color:#53617a;
     letter-spacing:3px;
 }
+
+/* =========================
+   PAGE LINKS
+========================= */
 
 .page-links{
     background:#080e1c;
@@ -281,6 +377,10 @@ section{
     line-height:1.7;
 }
 
+/* =========================
+   NRL
+========================= */
+
 .nrl{
     text-align:center;
 }
@@ -293,7 +393,20 @@ footer{
     font-size:13px;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:800px){
+
+    body{
+        cursor:auto;
+    }
+
+    .robot-cursor{
+        display:none;
+    }
+
     nav{
         padding:0 4%;
     }
@@ -316,7 +429,13 @@ footer{
 
 <body>
 
+<!-- ROBOT CLAW CURSOR -->
+<div class="robot-cursor">
+    <div class="robot-cursor-center"></div>
+</div>
+
 <nav>
+
     <div class="nav-logo">
         <img src="robonaara-logo.jpeg" alt="ROBONAARA Logo">
         ROBONAARA
@@ -329,6 +448,7 @@ footer{
         <li><a href="team.html">TEAM</a></li>
         <li><a href="#nrl">NRL</a></li>
     </ul>
+
 </nav>
 
 <header class="hero">
@@ -351,11 +471,22 @@ footer{
             Robotics League.
         </p>
 
-        <img class="cta-logo" src="robonaara-logo.jpeg" alt="ROBONAARA">
+        <img
+            class="cta-logo"
+            src="robonaara-logo.jpeg"
+            alt="ROBONAARA"
+        >
 
         <div class="buttons">
-            <a href="#ajax" class="btn btn-primary">MEET AJAX</a>
-            <a href="team.html" class="btn btn-secondary">MEET THE TEAM</a>
+
+            <a href="#ajax" class="btn btn-primary">
+                MEET AJAX
+            </a>
+
+            <a href="team.html" class="btn btn-secondary">
+                MEET THE TEAM
+            </a>
+
         </div>
 
     </div>
@@ -364,9 +495,13 @@ footer{
 
 <section class="about">
 
-    <div class="section-label">01 / ABOUT US</div>
+    <div class="section-label">
+        01 / ABOUT US
+    </div>
 
-    <h2 class="section-title">ROBONAARA</h2>
+    <h2 class="section-title">
+        ROBONAARA
+    </h2>
 
     <p class="section-text">
         We are a student robotics team from Orchids The International School,
@@ -407,20 +542,26 @@ footer{
 
 <section class="ajax-section" id="ajax">
 
-    <div class="section-label">02 / THE ROBOT</div>
+    <div class="section-label">
+        02 / THE ROBOT
+    </div>
 
-    <h2 class="section-title">MEET AJAX</h2>
+    <h2 class="section-title">
+        MEET AJAX
+    </h2>
 
     <p class="section-text" style="margin:auto;">
         The machine at the centre of ROBONAARA.
-        This section will eventually contain photos, specifications,
-        mechanisms and technical details about AJAX.
+        This section will eventually contain photos,
+        specifications, mechanisms and technical details about AJAX.
     </p>
 
     <div class="ajax-box">
+
         <div class="ajax-placeholder">
             AJAX PHOTO / ROBOT SHOWCASE
         </div>
+
     </div>
 
 </section>
@@ -428,31 +569,51 @@ footer{
 <section class="page-links">
 
     <a href="process.html" class="page-card">
-        <span>03 / ENGINEERING</span>
-        <h3>OUR PROCESS →</h3>
+
+        <span>
+            03 / ENGINEERING
+        </span>
+
+        <h3>
+            OUR PROCESS →
+        </h3>
+
         <p>
             Follow AJAX from the first idea and design
             through construction, electronics, programming
             and testing.
         </p>
+
     </a>
 
     <a href="team.html" class="page-card">
-        <span>04 / THE PEOPLE</span>
-        <h3>MEET THE TEAM →</h3>
+
+        <span>
+            04 / THE PEOPLE
+        </span>
+
+        <h3>
+            MEET THE TEAM →
+        </h3>
+
         <p>
             Get to know the six people behind ROBONAARA
             and the roles they play in building AJAX.
         </p>
+
     </a>
 
 </section>
 
 <section class="nrl" id="nrl">
 
-    <div class="section-label">05 / COMPETITION</div>
+    <div class="section-label">
+        05 / COMPETITION
+    </div>
 
-    <h2 class="section-title">NATIONAL ROBOTICS LEAGUE</h2>
+    <h2 class="section-title">
+        NATIONAL ROBOTICS LEAGUE
+    </h2>
 
     <p class="section-text" style="margin:auto;">
         ROBONAARA is taking on the National Robotics League.
@@ -465,6 +626,35 @@ footer{
 <footer>
     ROBONAARA © 2026 • ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
 </footer>
+
+<script>
+
+const cursor = document.querySelector(".robot-cursor");
+
+document.addEventListener("mousemove", function(e){
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+});
+
+const clickableElements = document.querySelectorAll(
+    "a, button, .btn, .page-card, .info-card"
+);
+
+clickableElements.forEach(element => {
+
+    element.addEventListener("mouseenter", function(){
+        cursor.classList.add("hover");
+    });
+
+    element.addEventListener("mouseleave", function(){
+        cursor.classList.remove("hover");
+    });
+
+});
+
+</script>
 
 </body>
 </html>
