@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ROBONAARA | Our Process</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050914;
+    color:white;
+    overflow-x:hidden;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(5,9,20,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(121,169,255,.2);
+    z-index:1000;
+}
+
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:21px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.nav-logo img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    border-radius:50%;
+}
+
+nav ul{
+    display:flex;
+    gap:32px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#79a9ff;
+}
+
+.hero{
+    min-height:65vh;
+    display:flex;
+    align-items:center;
+    padding:130px 8% 80px;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    background:#315bff;
+    filter:blur(180px);
+    opacity:.13;
+}
+
+.hero-content{
+    position:relative;
+    max-width:850px;
+}
+
+.badge{
+    color:#79a9ff;
+    border:1px solid #79a9ff;
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+h1{
+    font-size:clamp(50px,8vw,90px);
+    line-height:.95;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.hero p{
+    color:#9ba7bc;
+    max-width:700px;
+    line-height:1.8;
+    font-size:17px;
+}
+
+section{
+    padding:90px 8%;
+}
+
+.section-label{
+    color:#79a9ff;
+    font-size:12px;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-size:clamp(35px,5vw,55px);
+    margin-bottom:20px;
+}
+
+.timeline{
+    position:relative;
+    max-width:1000px;
+    margin:60px auto 0;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:#263653;
+    transform:translateX(-50%);
+}
+
+.step{
+    width:50%;
+    padding:20px 50px 50px;
+    position:relative;
+}
+
+.step:nth-child(odd){
+    margin-left:0;
+    text-align:right;
+}
+
+.step:nth-child(even){
+    margin-left:50%;
+}
+
+.step-number{
+    position:absolute;
+    top:20px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#79a9ff;
+    color:#050914;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    z-index:2;
+}
+
+.step:nth-child(odd) .step-number{
+    right:-21px;
+}
+
+.step:nth-child(even) .step-number{
+    left:-21px;
+}
+
+.step-card{
+    padding:30px;
+    border:1px solid #1c2941;
+    background:#0b1221;
+    border-radius:15px;
+}
+
+.step-card h3{
+    font-size:25px;
+    margin-bottom:12px;
+}
+
+.step-card p{
+    color:#929db0;
+    line-height:1.7;
+}
+
+.step-tag{
+    color:#79a9ff;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.quote{
+    text-align:center;
+    background:#080e1c;
+}
+
+.quote h2{
+    font-size:clamp(30px,5vw,60px);
+    letter-spacing:2px;
+}
+
+.quote p{
+    color:#657188;
+    margin-top:15px;
+}
+
+footer{
+    padding:35px 8%;
+    border-top:1px solid #172239;
+    text-align:center;
+    color:#59667d;
+    font-size:13px;
+}
+
+@media(max-width:800px){
+
+    nav{
+        padding:0 4%;
+    }
+
+    nav ul{
+        gap:12px;
+    }
+
+    nav a{
+        font-size:10px;
+    }
+
+    .timeline::before{
+        left:20px;
+    }
+
+    .step,
+    .step:nth-child(even){
+        width:100%;
+        margin-left:0;
+        padding-left:65px;
+        padding-right:0;
+        text-align:left;
+    }
+
+    .step:nth-child(odd) .step-number,
+    .step:nth-child(even) .step-number{
+        left:0;
+        right:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="nav-logo">
+        <img src="robonaara-logo.jpeg" alt="ROBONAARA Logo">
+        ROBONAARA
+    </div>
+
+    <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="index.html#ajax">AJAX</a></li>
+        <li><a href="process.html">PROCESS</a></li>
+        <li><a href="team.html">TEAM</a></li>
+        <li><a href="index.html#nrl">NRL</a></li>
+    </ul>
+
+</nav>
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            03 / ENGINEERING PROCESS
+        </div>
+
+        <h1>
+            HOW WE<br>
+            BUILT AJAX
+        </h1>
+
+        <p>
+            Every robot starts with an idea. Follow our journey from
+            brainstorming and design to construction, electronics,
+            programming and testing.
+        </p>
+
+    </div>
+
+</header>
+
+<section>
+
+    <div class="section-label">THE JOURNEY</div>
+
+    <h2 class="section-title">FROM IDEA TO ROBOT</h2>
+
+    <div class="timeline">
+
+        <div class="step">
+
+            <div class="step-number">01</div>
+
+            <div class="step-card">
+                <div class="step-tag">STARTING POINT</div>
+                <h3>The Idea</h3>
+
+                <p>
+                    We begin by understanding the challenge,
+                    brainstorming ideas and deciding what AJAX
+                    needs to accomplish.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">02</div>
+
+            <div class="step-card">
+                <div class="step-tag">PLANNING</div>
+                <h3>Design & Planning</h3>
+
+                <p>
+                    We plan the robot's layout, mechanisms and
+                    overall architecture before starting the
+                    physical build.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">03</div>
+
+            <div class="step-card">
+                <div class="step-tag">CONSTRUCTION</div>
+                <h3>Building AJAX</h3>
+
+                <p>
+                    Components come together as we construct
+                    the chassis, mechanisms and physical
+                    systems of AJAX.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">04</div>
+
+            <div class="step-card">
+                <div class="step-tag">ELECTRONICS</div>
+                <h3>Electronics</h3>
+
+                <p>
+                    Motors, controllers, wiring, sensors and
+                    power systems are connected and tested
+                    to bring the robot to life.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">05</div>
+
+            <div class="step-card">
+                <div class="step-tag">SOFTWARE</div>
+                <h3>Programming</h3>
+
+                <p>
+                    Code connects our strategy to AJAX,
+                    allowing the robot to respond to driver
+                    controls and perform its functions.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">06</div>
+
+            <div class="step-card">
+                <div class="step-tag">TESTING</div>
+                <h3>Testing & Debugging</h3>
+
+                <p>
+                    We test the robot, find problems, adjust
+                    mechanisms and improve the code until
+                    everything works reliably.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="step">
+
+            <div class="step-number">07</div>
+
+            <div class="step-card">
+                <div class="step-tag">FINAL STAGE</div>
+                <h3>Competition Ready</h3>
+
+                <p>
+                    Final checks, driver practice, strategy
+                    sessions and robot preparation get AJAX
+                    ready for competition day.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="quote">
+
+    <h2>BUILD → TEST → IMPROVE</h2>
+
+    <p>
+        Because the first version is never the final version.
+    </p>
+
+</section>
+
+<footer>
+    ROBONAARA © 2026 • ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+</footer>
+
+</body>
+</html>
