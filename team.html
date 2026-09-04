@@ -5,10 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ROBONAARA | Meet The Team</title>
 
@@ -20,17 +17,18 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-
     background: #050914;
-
     color: white;
-
     cursor: none;
 }
 
-/* CURSOR */
+/* ================= CURSOR ================= */
 
 .custom-cursor {
     position: fixed;
@@ -42,7 +40,6 @@ body {
     height: 18px;
 
     border: 2px solid #79a9ff;
-
     border-radius: 50%;
 
     pointer-events: none;
@@ -70,21 +67,18 @@ body {
         0 0 25px rgba(121,169,255,0.8);
 }
 
-/* NAV */
+/* ================= NAVIGATION ================= */
 
 nav {
     position: fixed;
 
     top: 0;
-
     width: 100%;
 
     padding: 22px 7%;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     background: rgba(5,9,20,0.88);
@@ -131,7 +125,7 @@ nav a:hover {
     color: #79a9ff;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero {
     min-height: 55vh;
@@ -139,7 +133,6 @@ nav a:hover {
     display: flex;
 
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
@@ -156,7 +149,9 @@ nav a:hover {
 }
 
 .hero h1 {
-    font-size: clamp(50px,10vw,110px);
+    font-size: clamp(50px, 10vw, 110px);
+
+    font-weight: 900;
 
     letter-spacing: 5px;
 }
@@ -173,7 +168,7 @@ nav a:hover {
     letter-spacing: 2px;
 }
 
-/* TEAM */
+/* ================= TEAM ================= */
 
 .team {
     padding: 80px 8%;
@@ -187,10 +182,12 @@ nav a:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, 1fr);
 
     gap: 25px;
 }
+
+/* ================= MEMBER CARD ================= */
 
 .member {
     background: #0a1122;
@@ -214,6 +211,8 @@ nav a:hover {
         0 10px 35px rgba(0,0,0,0.3);
 }
 
+/* ================= PHOTO ================= */
+
 .photo {
     height: 260px;
 
@@ -235,7 +234,20 @@ nav a:hover {
     font-size: 14px;
 
     letter-spacing: 2px;
+
+    overflow: hidden;
 }
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* ================= MEMBER INFO ================= */
 
 .member-info {
     padding: 25px;
@@ -267,7 +279,7 @@ nav a:hover {
     font-size: 14px;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer {
     margin-top: 80px;
@@ -282,7 +294,7 @@ footer {
         1px solid rgba(121,169,255,0.1);
 }
 
-/* MOBILE */
+/* ================= TABLET ================= */
 
 @media(max-width:850px) {
 
@@ -304,6 +316,8 @@ footer {
 
 }
 
+/* ================= MOBILE ================= */
+
 @media(max-width:550px) {
 
     nav ul {
@@ -315,6 +329,8 @@ footer {
     }
 
 }
+
+/* ================= TOUCH DEVICES ================= */
 
 @media(hover:none) {
 
@@ -334,7 +350,12 @@ footer {
 
 <body>
 
+<!-- CUSTOM CURSOR -->
+
 <div class="custom-cursor"></div>
+
+
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
 
@@ -378,6 +399,9 @@ footer {
 
 </nav>
 
+
+<!-- ================= HERO ================= -->
+
 <section class="hero">
 
     <div>
@@ -394,9 +418,13 @@ footer {
 
 </section>
 
+
+<!-- ================= TEAM ================= -->
+
 <section class="team">
 
     <div class="team-grid">
+
 
         <!-- AARADHYA -->
 
@@ -428,12 +456,18 @@ footer {
 
         </div>
 
+
         <!-- ARNAV PANDE -->
 
         <div class="member">
 
             <div class="photo">
-                PHOTO COMING SOON
+
+                <img
+                    src="arnav-pande.jpg"
+                    alt="Arnav Pande"
+                >
+
             </div>
 
             <div class="member-info">
@@ -457,6 +491,7 @@ footer {
             </div>
 
         </div>
+
 
         <!-- ARNAV BELPANDE -->
 
@@ -488,6 +523,7 @@ footer {
 
         </div>
 
+
         <!-- NIVEDITA -->
 
         <div class="member">
@@ -517,6 +553,7 @@ footer {
             </div>
 
         </div>
+
 
         <!-- RUDRANSH -->
 
@@ -548,6 +585,7 @@ footer {
 
         </div>
 
+
         <!-- JAIVARDHAN -->
 
         <div class="member">
@@ -578,17 +616,28 @@ footer {
 
         </div>
 
+
     </div>
 
 </section>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
-    ROBONAARA © 2026 | Orchids The International School, Tathawade
+
+    ROBONAARA © 2026 |
+    Orchids The International School, Tathawade
+
 </footer>
+
+
+<!-- ================= CURSOR SCRIPT ================= -->
 
 <script>
 
 const cursor = document.querySelector(".custom-cursor");
+
 
 document.addEventListener("mousemove", function(event) {
 
@@ -598,23 +647,32 @@ document.addEventListener("mousemove", function(event) {
 
 });
 
+
 const hoverElements = document.querySelectorAll(
     "a, button, .member"
 );
 
+
 hoverElements.forEach(function(element) {
 
-    element.addEventListener("mouseenter", function() {
+    element.addEventListener(
+        "mouseenter",
+        function() {
 
-        cursor.classList.add("hover");
+            cursor.classList.add("hover");
 
-    });
+        }
+    );
 
-    element.addEventListener("mouseleave", function() {
 
-        cursor.classList.remove("hover");
+    element.addEventListener(
+        "mouseleave",
+        function() {
 
-    });
+            cursor.classList.remove("hover");
+
+        }
+    );
 
 });
 
