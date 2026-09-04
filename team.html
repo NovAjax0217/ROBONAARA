@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ROBONAARA | Meet The Team</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#050914;
+    color:white;
+    overflow-x:hidden;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(5,9,20,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(121,169,255,.2);
+    z-index:1000;
+}
+
+.nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:21px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.nav-logo img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+    border-radius:50%;
+}
+
+nav ul{
+    display:flex;
+    gap:32px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#79a9ff;
+}
+
+.hero{
+    min-height:60vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:130px 8% 80px;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#315bff;
+    filter:blur(180px);
+    opacity:.12;
+}
+
+.hero-content{
+    position:relative;
+    max-width:850px;
+}
+
+.badge{
+    color:#79a9ff;
+    border:1px solid #79a9ff;
+    display:inline-block;
+    padding:9px 18px;
+    border-radius:30px;
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:25px;
+}
+
+h1{
+    font-size:clamp(50px,8vw,90px);
+    line-height:.95;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.hero p{
+    color:#9ba7bc;
+    max-width:700px;
+    margin:auto;
+    line-height:1.8;
+    font-size:17px;
+}
+
+section{
+    padding:90px 8%;
+}
+
+.section-label{
+    color:#79a9ff;
+    font-size:12px;
+    letter-spacing:3px;
+    margin-bottom:15px;
+}
+
+.section-title{
+    font-size:clamp(35px,5vw,55px);
+    margin-bottom:45px;
+}
+
+.team-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.member-card{
+    background:#0b1221;
+    border:1px solid #1c2941;
+    border-radius:18px;
+    overflow:hidden;
+    transition:.35s;
+}
+
+.member-card:hover{
+    transform:translateY(-8px);
+    border-color:#79a9ff;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.photo-placeholder{
+    height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(rgba(121,169,255,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(121,169,255,.04) 1px,transparent 1px),
+        #080f1d;
+    background-size:30px 30px;
+    color:#4e5d77;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.member-info{
+    padding:28px;
+}
+
+.member-role{
+    color:#79a9ff;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.member-info h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.member-info p{
+    color:#929db0;
+    line-height:1.7;
+}
+
+.bottom{
+    text-align:center;
+    background:#080e1c;
+}
+
+.bottom h2{
+    font-size:clamp(30px,5vw,55px);
+}
+
+.bottom p{
+    margin-top:15px;
+    color:#657188;
+}
+
+footer{
+    padding:35px 8%;
+    border-top:1px solid #172239;
+    text-align:center;
+    color:#59667d;
+    font-size:13px;
+}
+
+@media(max-width:900px){
+    .team-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    nav{
+        padding:0 4%;
+    }
+
+    nav ul{
+        gap:12px;
+    }
+
+    nav a{
+        font-size:10px;
+    }
+
+    .team-grid{
+        grid-template-columns:1fr;
+    }
+
+    .photo-placeholder{
+        height:350px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="nav-logo">
+        <img src="robonaara-logo.jpeg" alt="ROBONAARA Logo">
+        ROBONAARA
+    </div>
+
+    <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="index.html#ajax">AJAX</a></li>
+        <li><a href="process.html">PROCESS</a></li>
+        <li><a href="team.html">TEAM</a></li>
+        <li><a href="index.html#nrl">NRL</a></li>
+    </ul>
+
+</nav>
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            04 / THE PEOPLE
+        </div>
+
+        <h1>
+            MEET THE<br>
+            TEAM
+        </h1>
+
+        <p>
+            Six people. Different strengths. One robot.
+            Meet the team behind ROBONAARA and AJAX.
+        </p>
+
+    </div>
+
+</header>
+
+<section>
+
+    <div class="section-label">ROBONAARA</div>
+
+    <h2 class="section-title">THE TEAM</h2>
+
+    <div class="team-grid">
+
+        <!-- AARADHYA -->
+
+        <div class="member-card">
+
+            <div class="photo-placeholder">
+                PHOTO COMING SOON
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-role">
+                    THE ACE
+                </div>
+
+                <h3>Aaradhya Srivastava</h3>
+
+                <p>
+                    Too many ideas, one brain, and somehow a plan
+                    always comes out of it. Aaradhya brings creativity
+                    and quick thinking to the team, turning random
+                    sparks of inspiration into practical ideas that
+                    can actually move the team forward.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ARNAV PANDE -->
+
+        <div class="member-card">
+
+            <div class="photo-placeholder">
+                PHOTO COMING SOON
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-role">
+                    THE PILOT
+                </div>
+
+                <h3>Arnav Pande</h3>
+
+                <p>
+                    Hands on the controls, eyes on the field, and
+                    absolutely no room for hesitation. Arnav stays
+                    focused when the pressure is on, reading the
+                    field, making split-second decisions, and keeping
+                    AJAX exactly where the team needs it to be.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- ARNAV BELPANDE -->
+
+        <div class="member-card">
+
+            <div class="photo-placeholder">
+                PHOTO COMING SOON
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-role">
+                    THE FORGE
+                </div>
+
+                <h3>Arnav Belpande</h3>
+
+                <p>
+                    Circuits, designs, and an unhealthy amount of
+                    attention to the details. Arnav Belpande is the
+                    hands-on problem solver, turning ideas into
+                    mechanisms and making sure every connection,
+                    component, and tiny detail is ready for the field.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- NIVEDITA -->
+
+        <div class="member-card">
+
+            <div class="photo-placeholder">
+                PHOTO COMING SOON
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-role">
+                    THE OPERATOR
+                </div>
+
+                <h3>Nivedita Pillai</h3>
+
+                <p>
+                    One problem, three solutions, and probably a
+                    Plan D just in case. Nivedita keeps the team
+                    prepared for whatever the match throws at it,
+                    thinking ahead, adapting quickly, and finding
+                    a way forward when the original plan stops working.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- RUDRANSH -->
+
+        <div class="member-card">
+
+            <div class="photo-placeholder">
+                PHOTO COMING SOON
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-role">
+                    THE MENACE
+                </div>
+
+                <h3>Rudransh Dwivedi</h3>
+
+                <p>
+                    Give it a boring idea, watch it come back with
+                    a personality. Rudransh brings energy and an
+                    unconventional approach to the team, turning
+                    ordinary concepts into bold ideas and keeping
+                    the creative side of ROBONAARA moving.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- JAIVARDHAN -->
+
+        <div class="member-card">
+
+            <div class="photo-placeholder">
+                PHOTO COMING SOON
+            </div>
+
+            <div class="member-info">
+
+                <div class="member-role">
+                    THE CODER
+                </div>
+
+                <h3>Jaivardhan</h3>
+
+                <p>
+                    Turns complicated problems into clean code —
+                    and makes AJAX do exactly what the team wants.
+                    Jaivardhan is the link between the team's strategy
+                    and the robot's behavior, building and refining
+                    the code that helps AJAX respond reliably.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="bottom">
+
+    <h2>ONE TEAM. ONE ROBOT.</h2>
+
+    <p>
+        Different roles. Same mission.
+    </p>
+
+</section>
+
+<footer>
+    ROBONAARA © 2026 • ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+</footer>
+
+</body>
+</html>
