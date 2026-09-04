@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>ROBONAARA | Meet The Team</title>
 
@@ -17,82 +22,142 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+
     background: #050914;
+
     color: white;
+
     cursor: none;
 }
 
+/* CURSOR */
+
 .custom-cursor {
     position: fixed;
+
+    top: 0;
+    left: 0;
+
     width: 18px;
     height: 18px;
+
     border: 2px solid #79a9ff;
+
     border-radius: 50%;
+
     pointer-events: none;
-    z-index: 99999;
+
+    z-index: 999999;
+
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(121,169,255,.5);
-    transition: width .2s ease, height .2s ease, box-shadow .2s ease;
+
+    box-shadow:
+        0 0 8px #79a9ff,
+        0 0 18px rgba(121,169,255,0.5);
+
+    transition:
+        width 0.15s ease,
+        height 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
 .custom-cursor.hover {
-    width: 28px;
-    height: 28px;
-    box-shadow: 0 0 18px rgba(121,169,255,.8);
+    width: 30px;
+    height: 30px;
+
+    box-shadow:
+        0 0 10px #79a9ff,
+        0 0 25px rgba(121,169,255,0.8);
 }
+
+/* NAV */
 
 nav {
     position: fixed;
+
     top: 0;
+
     width: 100%;
+
     padding: 22px 7%;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
-    background: rgba(5,9,20,.88);
+
+    background: rgba(5,9,20,0.88);
+
     backdrop-filter: blur(12px);
+
     z-index: 1000;
-    border-bottom: 1px solid rgba(121,169,255,.15);
+
+    border-bottom:
+        1px solid rgba(121,169,255,0.15);
 }
 
 .logo-text {
     font-size: 25px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
+
     color: #79a9ff;
 }
 
 nav ul {
     list-style: none;
+
     display: flex;
+
     gap: 30px;
 }
 
 nav a {
     color: white;
+
     text-decoration: none;
+
     font-size: 14px;
+
     letter-spacing: 1px;
+
+    transition: 0.3s;
 }
 
 nav a:hover {
     color: #79a9ff;
 }
 
+/* HERO */
+
 .hero {
     min-height: 55vh;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     text-align: center;
+
     padding: 120px 20px 60px;
+
     background:
-        radial-gradient(circle, rgba(70,120,255,.18), transparent 50%),
+        radial-gradient(
+            circle,
+            rgba(70,120,255,0.18),
+            transparent 50%
+        ),
         #050914;
 }
 
 .hero h1 {
-    font-size: clamp(50px, 10vw, 110px);
+    font-size: clamp(50px,10vw,110px);
+
     letter-spacing: 5px;
 }
 
@@ -102,45 +167,73 @@ nav a:hover {
 
 .hero p {
     margin-top: 25px;
+
     color: #aeb8ca;
+
     letter-spacing: 2px;
 }
 
+/* TEAM */
+
 .team {
     padding: 80px 8%;
+
     max-width: 1200px;
+
     margin: auto;
 }
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap: 25px;
 }
 
 .member {
     background: #0a1122;
-    border: 1px solid rgba(121,169,255,.15);
+
+    border:
+        1px solid rgba(121,169,255,0.15);
+
     border-radius: 15px;
+
     overflow: hidden;
-    transition: .3s;
+
+    transition: 0.3s;
 }
 
 .member:hover {
     transform: translateY(-8px);
+
     border-color: #79a9ff;
-    box-shadow: 0 10px 35px rgba(0,0,0,.3);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.3);
 }
 
 .photo {
     height: 260px;
+
     background:
-        linear-gradient(135deg, #0c1529, #080d19);
+        linear-gradient(
+            135deg,
+            #0c1529,
+            #080d19
+        );
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     color: #53627a;
+
     font-size: 14px;
+
     letter-spacing: 2px;
 }
 
@@ -150,30 +243,46 @@ nav a:hover {
 
 .member-info h2 {
     font-size: 22px;
+
     margin-bottom: 8px;
 }
 
 .role {
     color: #79a9ff;
+
     font-weight: bold;
+
     font-size: 13px;
+
     letter-spacing: 2px;
+
     margin-bottom: 18px;
 }
 
 .member-info p {
     color: #aeb8ca;
+
     line-height: 1.6;
+
     font-size: 14px;
 }
 
+/* FOOTER */
+
 footer {
     margin-top: 80px;
+
     padding: 40px;
+
     text-align: center;
+
     color: #66748b;
-    border-top: 1px solid rgba(121,169,255,.1);
+
+    border-top:
+        1px solid rgba(121,169,255,0.1);
 }
+
+/* MOBILE */
 
 @media(max-width:850px) {
 
@@ -192,6 +301,7 @@ footer {
     nav a {
         font-size: 11px;
     }
+
 }
 
 @media(max-width:550px) {
@@ -203,6 +313,7 @@ footer {
     .team-grid {
         grid-template-columns: 1fr;
     }
+
 }
 
 @media(hover:none) {
@@ -214,6 +325,7 @@ footer {
     .custom-cursor {
         display: none;
     }
+
 }
 
 </style>
@@ -226,14 +338,42 @@ footer {
 
 <nav>
 
-    <div class="logo-text">ROBONAARA</div>
+    <div class="logo-text">
+        ROBONAARA
+    </div>
 
     <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="index.html#ajax">AJAX</a></li>
-        <li><a href="process.html">PROCESS</a></li>
-        <li><a href="team.html">TEAM</a></li>
-        <li><a href="index.html#nrl">NRL</a></li>
+
+        <li>
+            <a href="index.html">
+                HOME
+            </a>
+        </li>
+
+        <li>
+            <a href="index.html#ajax">
+                AJAX
+            </a>
+        </li>
+
+        <li>
+            <a href="process.html">
+                PROCESS
+            </a>
+        </li>
+
+        <li>
+            <a href="team.html">
+                TEAM
+            </a>
+        </li>
+
+        <li>
+            <a href="index.html#nrl">
+                NRL
+            </a>
+        </li>
+
     </ul>
 
 </nav>
@@ -242,7 +382,9 @@ footer {
 
     <div>
 
-        <h1>MEET THE <span>TEAM</span></h1>
+        <h1>
+            MEET THE <span>TEAM</span>
+        </h1>
 
         <p>
             SIX PEOPLE. ONE ROBOT. ONE MISSION.
@@ -256,6 +398,8 @@ footer {
 
     <div class="team-grid">
 
+        <!-- AARADHYA -->
+
         <div class="member">
 
             <div class="photo">
@@ -264,7 +408,9 @@ footer {
 
             <div class="member-info">
 
-                <h2>Aaradhya Srivastava</h2>
+                <h2>
+                    Aaradhya Srivastava
+                </h2>
 
                 <div class="role">
                     THE ACE
@@ -282,6 +428,8 @@ footer {
 
         </div>
 
+        <!-- ARNAV PANDE -->
+
         <div class="member">
 
             <div class="photo">
@@ -290,7 +438,9 @@ footer {
 
             <div class="member-info">
 
-                <h2>Arnav Pande</h2>
+                <h2>
+                    Arnav Pande
+                </h2>
 
                 <div class="role">
                     THE PILOT
@@ -308,6 +458,8 @@ footer {
 
         </div>
 
+        <!-- ARNAV BELPANDE -->
+
         <div class="member">
 
             <div class="photo">
@@ -316,7 +468,9 @@ footer {
 
             <div class="member-info">
 
-                <h2>Arnav Belpande</h2>
+                <h2>
+                    Arnav Belpande
+                </h2>
 
                 <div class="role">
                     THE FORGE
@@ -334,6 +488,8 @@ footer {
 
         </div>
 
+        <!-- NIVEDITA -->
+
         <div class="member">
 
             <div class="photo">
@@ -342,7 +498,9 @@ footer {
 
             <div class="member-info">
 
-                <h2>Nivedita Pillai</h2>
+                <h2>
+                    Nivedita Pillai
+                </h2>
 
                 <div class="role">
                     THE OPERATOR
@@ -360,6 +518,8 @@ footer {
 
         </div>
 
+        <!-- RUDRANSH -->
+
         <div class="member">
 
             <div class="photo">
@@ -368,7 +528,9 @@ footer {
 
             <div class="member-info">
 
-                <h2>Rudransh Dwivedi</h2>
+                <h2>
+                    Rudransh Dwivedi
+                </h2>
 
                 <div class="role">
                     THE MENACE
@@ -386,6 +548,8 @@ footer {
 
         </div>
 
+        <!-- JAIVARDHAN -->
+
         <div class="member">
 
             <div class="photo">
@@ -394,7 +558,9 @@ footer {
 
             <div class="member-info">
 
-                <h2>Jaivardhan</h2>
+                <h2>
+                    Jaivardhan
+                </h2>
 
                 <div class="role">
                     THE CODER
@@ -420,7 +586,40 @@ footer {
     ROBONAARA © 2026 | Orchids The International School, Tathawade
 </footer>
 
-<script src="cursor.js"></script>
+<script>
+
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", function(event) {
+
+    cursor.style.left = event.clientX + "px";
+
+    cursor.style.top = event.clientY + "px";
+
+});
+
+const hoverElements = document.querySelectorAll(
+    "a, button, .member"
+);
+
+hoverElements.forEach(function(element) {
+
+    element.addEventListener("mouseenter", function() {
+
+        cursor.classList.add("hover");
+
+    });
+
+    element.addEventListener("mouseleave", function() {
+
+        cursor.classList.remove("hover");
+
+    });
+
+});
+
+</script>
 
 </body>
+
 </html>
