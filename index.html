@@ -3,223 +3,1387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROBONAARA | National Robotics League</title>
-<style>
-:root{
-  --bg:#050608; --panel:#0b0e13; --line:#273244;
-  --blue:#79a9ff; --white:#f4f7ff; --muted:#9ba7b8;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--white);
-  overflow-x:hidden;
-}
-body:before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;
-  background-image:linear-gradient(rgba(121,169,255,.18) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(121,169,255,.18) 1px,transparent 1px);
-  background-size:55px 55px;mask-image:linear-gradient(to bottom,#000,transparent 85%);
-}
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:20;height:74px;
-  display:flex;align-items:center;justify-content:space-between;padding:0 6%;
-  background:rgba(5,6,8,.82);backdrop-filter:blur(14px);border-bottom:1px solid #18202c;
-}
-.nav-brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:2px}
-.nav-brand img{width:43px;height:43px;object-fit:contain;border-radius:50%}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:#d8e0ec;text-decoration:none;font-size:13px;letter-spacing:1px;text-transform:uppercase}
-.nav-links a:hover{color:var(--blue)}
-.menu{display:none;font-size:26px;cursor:pointer}
-.hero{
-  min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 7% 70px;
-  position:relative;
-}
-.hero-logo{width:min(520px,80vw);filter:drop-shadow(0 0 28px rgba(121,169,255,.14));animation:float 5s ease-in-out infinite}
-.cta-logo{width:150px;height:150px;object-fit:contain;display:block;margin:28px auto 20px;filter:drop-shadow(0 0 20px rgba(121,169,255,.12))}
-@keyframes float{50%{transform:translateY(-10px)}}
-.badge{
-  display:inline-block;border:1px solid #40526c;color:var(--blue);padding:8px 15px;
-  border-radius:999px;font-size:12px;letter-spacing:2px;margin:20px 0 15px;
-}
-h1{font-size:clamp(42px,7vw,88px);line-height:.95;letter-spacing:-3px}
-.hero h1 span{color:var(--blue)}
-.hero p{max-width:700px;margin:22px auto;color:var(--muted);font-size:17px;line-height:1.7}
-.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.btn{
-  display:inline-block;padding:13px 22px;border:1px solid #3c4b61;color:var(--white);
-  text-decoration:none;text-transform:uppercase;letter-spacing:1.5px;font-size:12px;
-  transition:.25s;background:#0a0d12
-}
-.btn.primary{background:var(--blue);color:#07101e;border-color:var(--blue);font-weight:800}
-.btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px rgba(121,169,255,.16)}
-section{padding:100px 7%;position:relative}
-.section-tag{color:var(--blue);font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
-.section-title{font-size:clamp(32px,5vw,58px);margin-bottom:18px}
-.section-sub{color:var(--muted);max-width:700px;line-height:1.7;margin-bottom:40px}
-.about-grid,.robot-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
-.card{
-  background:linear-gradient(145deg,rgba(16,21,29,.95),rgba(8,10,14,.95));
-  border:1px solid var(--line);padding:30px;position:relative;overflow:hidden
-}
-.card:after{
-  content:"";position:absolute;width:100px;height:100px;border:1px solid rgba(121,169,255,.25);
-  right:-55px;bottom:-55px;transform:rotate(45deg)
-}
-.big-ajax{font-size:clamp(80px,15vw,180px);font-weight:900;letter-spacing:-10px;color:#111923;
-  text-shadow:1px 1px 0 #5c79a4,-1px -1px 0 #243247;margin-bottom:10px}
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:25px}
-.stat{border:1px solid var(--line);padding:18px;text-align:center}
-.stat b{display:block;font-size:25px;color:var(--blue)}
-.stat small{color:var(--muted);font-size:10px;letter-spacing:1px}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.member{min-height:190px;display:flex;flex-direction:column;justify-content:flex-end}
-.member .num{color:#34465f;font-size:12px;letter-spacing:2px}
-.member h3{font-size:22px;margin:8px 0}
-.member .role{color:var(--blue);font-size:12px;letter-spacing:2px;text-transform:uppercase}
-.member-desc{color:#aeb9c9;font-size:13px;line-height:1.65;margin-top:14px;max-width:430px}
 
-.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.tech{padding:25px;border:1px solid var(--line);background:#080b10}
-.tech b{font-size:16px}.tech p{font-size:13px;color:var(--muted);line-height:1.6;margin-top:9px}
-.timeline{border-left:1px solid #33445b;margin-top:30px}
-.step{padding:0 0 30px 28px;position:relative}
-.step:before{content:"";position:absolute;left:-5px;top:4px;width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 16px var(--blue)}
-.step h3{margin-bottom:6px}.step p{color:var(--muted);line-height:1.6;font-size:14px}
-.cta{text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-footer{padding:35px 7%;display:flex;justify-content:space-between;gap:20px;color:#788597;font-size:12px}
-footer strong{color:#dce5f3}
-.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
-.reveal.show{opacity:1;transform:none}
-@media(max-width:800px){
-  .nav-links{display:none;position:absolute;top:74px;left:0;right:0;background:#07090d;flex-direction:column;padding:25px 7%;border-bottom:1px solid var(--line)}
-  .nav-links.open{display:flex}.menu{display:block}
-  .about-grid,.robot-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:1fr 1fr}.tech-grid{grid-template-columns:1fr 1fr}
+<title>ROBONAARA | National Robotics League</title>
+
+<style>
+:root {
+  --bg: #050608;
+  --panel: #0b0e13;
+  --line: #273244;
+  --blue: #79a9ff;
+  --white: #f4f7ff;
+  --muted: #9ba7b8;
 }
-@media(max-width:500px){
-  .team-grid,.tech-grid,.stat-row{grid-template-columns:1fr}
-  section{padding:75px 6%}.hero{padding-left:6%;padding-right:6%}
-  footer{flex-direction:column}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* Background Grid */
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.12;
+
+  background-image:
+    linear-gradient(rgba(121,169,255,.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(121,169,255,.18) 1px, transparent 1px);
+
+  background-size: 55px 55px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    #000,
+    transparent 85%
+  );
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 20;
+
+  height: 74px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 6%;
+
+  background: rgba(5,6,8,.82);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom: 1px solid #18202c;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.nav-brand img {
+  width: 43px;
+  height: 43px;
+
+  object-fit: contain;
+
+  border-radius: 50%;
+}
+
+.nav-links {
+  display: flex;
+
+  gap: 28px;
+
+  list-style: none;
+}
+
+.nav-links a {
+  color: #d8e0ec;
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+.menu {
+  display: none;
+
+  font-size: 26px;
+
+  cursor: pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  min-height: 100vh;
+
+  display: grid;
+
+  place-items: center;
+
+  text-align: center;
+
+  padding: 120px 7% 70px;
+
+  position: relative;
+}
+
+.badge {
+  display: inline-block;
+
+  border: 1px solid #40526c;
+
+  color: var(--blue);
+
+  padding: 8px 15px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  margin: 20px 0 15px;
+}
+
+h1 {
+  font-size: clamp(42px, 7vw, 88px);
+
+  line-height: .95;
+
+  letter-spacing: -3px;
+}
+
+.hero h1 span {
+  color: var(--blue);
+}
+
+.hero p {
+  max-width: 700px;
+
+  margin: 22px auto;
+
+  color: var(--muted);
+
+  font-size: 17px;
+
+  line-height: 1.7;
+}
+
+/* ================= HERO LOGO ================= */
+
+.cta-logo {
+  width: 150px;
+  height: 150px;
+
+  object-fit: contain;
+
+  display: block;
+
+  margin: 30px auto 22px;
+
+  filter: drop-shadow(
+    0 0 20px rgba(121,169,255,.12)
+  );
+}
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+
+  padding: 13px 22px;
+
+  border: 1px solid #3c4b61;
+
+  color: var(--white);
+
+  text-decoration: none;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.5px;
+
+  font-size: 12px;
+
+  transition: .25s;
+
+  background: #0a0d12;
+}
+
+.btn.primary {
+  background: var(--blue);
+
+  color: #07101e;
+
+  border-color: var(--blue);
+
+  font-weight: 800;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 35px rgba(121,169,255,.16);
+}
+
+/* ================= SECTIONS ================= */
+
+section {
+  padding: 100px 7%;
+
+  position: relative;
+}
+
+.section-tag {
+  color: var(--blue);
+
+  font-size: 11px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(32px,5vw,58px);
+
+  margin-bottom: 18px;
+}
+
+.section-sub {
+  color: var(--muted);
+
+  max-width: 700px;
+
+  line-height: 1.7;
+
+  margin-bottom: 40px;
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid,
+.robot-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 28px;
+
+  align-items: stretch;
+}
+
+.card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(16,21,29,.95),
+      rgba(8,10,14,.95)
+    );
+
+  border: 1px solid var(--line);
+
+  padding: 30px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.card:after {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  border: 1px solid rgba(121,169,255,.25);
+
+  right: -55px;
+  bottom: -55px;
+
+  transform: rotate(45deg);
+}
+
+/* ================= STATS ================= */
+
+.stat-row {
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.stat {
+  border: 1px solid var(--line);
+
+  padding: 18px;
+
+  text-align: center;
+}
+
+.stat b {
+  display: block;
+
+  font-size: 25px;
+
+  color: var(--blue);
+}
+
+.stat small {
+  color: var(--muted);
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+/* ================= AJAX ================= */
+
+.big-ajax {
+  font-size: clamp(80px,15vw,180px);
+
+  font-weight: 900;
+
+  letter-spacing: -10px;
+
+  color: #111923;
+
+  text-shadow:
+    1px 1px 0 #5c79a4,
+    -1px -1px 0 #243247;
+
+  margin-bottom: 10px;
+}
+
+/* ================= TEAM ================= */
+
+.team-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3,1fr);
+
+  gap: 16px;
+}
+
+.member {
+  min-height: 260px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+}
+
+.member .num {
+  color: #34465f;
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+}
+
+.member h3 {
+  font-size: 22px;
+
+  margin: 8px 0;
+}
+
+.member .role {
+  color: var(--blue);
+
+  font-size: 12px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.member-desc {
+  color: #aeb9c9;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  margin-top: 14px;
+
+  max-width: 430px;
+}
+
+/* ================= ENGINEERING ================= */
+
+.tech-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4,1fr);
+
+  gap: 14px;
+}
+
+.tech {
+  padding: 25px;
+
+  border: 1px solid var(--line);
+
+  background: #080b10;
+}
+
+.tech b {
+  font-size: 16px;
+}
+
+.tech p {
+  font-size: 13px;
+
+  color: var(--muted);
+
+  line-height: 1.6;
+
+  margin-top: 9px;
+}
+
+/* ================= TIMELINE ================= */
+
+.timeline {
+  border-left: 1px solid #33445b;
+
+  margin-top: 30px;
+}
+
+.step {
+  padding: 0 0 30px 28px;
+
+  position: relative;
+}
+
+.step:before {
+  content: "";
+
+  position: absolute;
+
+  left: -5px;
+
+  top: 4px;
+
+  width: 9px;
+
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: var(--blue);
+
+  box-shadow: 0 0 16px var(--blue);
+}
+
+.step h3 {
+  margin-bottom: 6px;
+}
+
+.step p {
+  color: var(--muted);
+
+  line-height: 1.6;
+
+  font-size: 14px;
+}
+
+/* ================= NRL ================= */
+
+.cta {
+  text-align: center;
+
+  border-top: 1px solid var(--line);
+
+  border-bottom: 1px solid var(--line);
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  padding: 35px 7%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: #788597;
+
+  font-size: 12px;
+}
+
+footer strong {
+  color: #dce5f3;
+}
+
+/* ================= ANIMATIONS ================= */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(24px);
+
+  transition: .7s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+
+  transform: none;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px) {
+
+  .nav-links {
+    display: none;
+
+    position: absolute;
+
+    top: 74px;
+
+    left: 0;
+
+    right: 0;
+
+    background: #07090d;
+
+    flex-direction: column;
+
+    padding: 25px 7%;
+
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  .about-grid,
+  .robot-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tech-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width:500px) {
+
+  .team-grid,
+  .tech-grid,
+  .stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 75px 6%;
+  }
+
+  .hero {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  footer {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
+
 <body>
 
+<!-- ================= NAVBAR ================= -->
+
 <nav>
-  <a href="#home" class="nav-brand" style="text-decoration:none;color:white">
-    <img src="robonaara-logo.jpeg" alt="ROBONAARA logo"><span>ROBONAARA</span>
+
+  <a href="#home"
+     class="nav-brand"
+     style="text-decoration:none;color:white">
+
+    <img
+      src="robonaara-logo.jpeg"
+      alt="ROBONAARA logo">
+
+    <span>ROBONAARA</span>
+
   </a>
-  <div class="menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</div>
+
+  <div
+    class="menu"
+    onclick="document
+      .querySelector('.nav-links')
+      .classList.toggle('open')">
+
+    ☰
+
+  </div>
+
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#ajax">AJAX</a></li>
-    <li><a href="#team">Team</a></li>
-    <li><a href="#engineering">Engineering</a></li>
-    <li><a href="#nrl">NRL</a></li>
+
+    <li>
+      <a href="#about">About</a>
+    </li>
+
+    <li>
+      <a href="#ajax">AJAX</a>
+    </li>
+
+    <li>
+      <a href="#team">Team</a>
+    </li>
+
+    <li>
+      <a href="#engineering">Engineering</a>
+    </li>
+
+    <li>
+      <a href="#nrl">NRL</a>
+    </li>
+
   </ul>
+
 </nav>
 
+
+<!-- ================= MAIN ================= -->
+
 <main>
+
+
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="home">
+
   <div>
-    <div class="badge">NATIONAL ROBOTICS LEAGUE • NRL</div>
-    <h1>BUILD. <span>INNOVATE.</span> COMPETE.</h1>
-    <p>We are <strong>ROBONAARA</strong> from Orchids The International School, Tathawade — engineering, strategy and teamwork brought together for the National Robotics League.</p>
-    <img class="cta-logo" src="robonaara-logo.jpeg" alt="ROBONAARA logo">
+
+    <div class="badge">
+      NATIONAL ROBOTICS LEAGUE • NRL
+    </div>
+
+    <h1>
+      BUILD.
+      <span>INNOVATE.</span>
+      COMPETE.
+    </h1>
+
+    <p>
+      We are <strong>ROBONAARA</strong> from
+      Orchids The International School, Tathawade —
+      engineering, strategy and teamwork brought
+      together for the National Robotics League.
+    </p>
+
+
+    <!-- LOGO DIRECTLY ABOVE BUTTONS -->
+
+    <img
+      class="cta-logo"
+      src="robonaara-logo.jpeg"
+      alt="ROBONAARA logo">
+
+
     <div class="buttons">
-      <a class="btn primary" href="#ajax">Meet AJAX</a>
-      <a class="btn" href="#team">Meet the Team</a>
+
+      <a
+        class="btn primary"
+        href="#ajax">
+
+        Meet AJAX
+
+      </a>
+
+      <a
+        class="btn"
+        href="#team">
+
+        Meet the Team
+
+      </a>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="about" class="reveal">
-  <div class="section-tag">01 / The Mission</div>
-  <h2 class="section-title">More than a robot.</h2>
+
+<!-- ================= ABOUT ================= -->
+
+<section
+  id="about"
+  class="reveal">
+
+  <div class="section-tag">
+    01 / The Mission
+  </div>
+
+  <h2 class="section-title">
+    More than a robot.
+  </h2>
+
   <div class="about-grid">
+
     <div class="card">
-      <p style="color:#cbd5e4;line-height:1.8">ROBONAARA is a student robotics team built around one idea: <strong>great robots are created by great teams.</strong> We combine design, coding, control, problem-solving and competition strategy to take AJAX onto the NRL field.</p>
+
+      <p style="color:#cbd5e4;line-height:1.8">
+
+        ROBONAARA is a student robotics team
+        built around one idea:
+
+        <strong>
+          great robots are created by great teams.
+        </strong>
+
+        We combine design, coding, control,
+        problem-solving and competition strategy
+        to take AJAX onto the NRL field.
+
+      </p>
+
+
       <div class="stat-row">
-        <div class="stat"><b>06</b><small>TEAM MEMBERS</small></div>
-        <div class="stat"><b>01</b><small>ROBOT</small></div>
-        <div class="stat"><b>NRL</b><small>LEAGUE</small></div>
+
+        <div class="stat">
+
+          <b>06</b>
+
+          <small>
+            TEAM MEMBERS
+          </small>
+
+        </div>
+
+
+        <div class="stat">
+
+          <b>01</b>
+
+          <small>
+            ROBOT
+          </small>
+
+        </div>
+
+
+        <div class="stat">
+
+          <b>NRL</b>
+
+          <small>
+            LEAGUE
+          </small>
+
+        </div>
+
       </div>
+
     </div>
+
+
     <div class="card">
-      <div class="section-tag">Home Base</div>
-      <h3 style="font-size:28px;margin-bottom:10px">Orchids The International School</h3>
-      <p style="color:var(--muted);line-height:1.7">Tathawade<br>Pune, Maharashtra</p>
+
+      <div class="section-tag">
+        Home Base
+      </div>
+
+      <h3
+        style="font-size:28px;margin-bottom:10px">
+
+        Orchids The International School
+
+      </h3>
+
+      <p
+        style="color:var(--muted);line-height:1.7">
+
+        Tathawade<br>
+        Pune, Maharashtra
+
+      </p>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="ajax" class="reveal">
-  <div class="section-tag">02 / The Machine</div>
-  <h2 class="section-title">Meet <span style="color:var(--blue)">AJAX.</span></h2>
+
+<!-- ================= AJAX ================= -->
+
+<section
+  id="ajax"
+  class="reveal">
+
+  <div class="section-tag">
+    02 / The Machine
+  </div>
+
+  <h2 class="section-title">
+
+    Meet
+    <span style="color:var(--blue)">
+      AJAX.
+    </span>
+
+  </h2>
+
+
   <div class="robot-grid">
+
+
     <div class="card">
-      <div class="big-ajax">AJAX</div>
-      <p style="color:var(--muted);line-height:1.8">The machine at the heart of ROBONAARA. Designed to turn our team's engineering decisions into performance on the NRL field.</p>
+
+      <div class="big-ajax">
+        AJAX
+      </div>
+
+      <p
+        style="color:var(--muted);line-height:1.8">
+
+        The machine at the heart of ROBONAARA.
+        Designed to turn our team's engineering
+        decisions into performance on the NRL field.
+
+      </p>
+
     </div>
+
+
     <div class="card">
-      <div class="section-tag">Design Philosophy</div>
-      <h3 style="font-size:30px;margin-bottom:14px">PRECISION × CONTROL</h3>
-      <p style="color:var(--muted);line-height:1.8">Every subsystem matters — mechanical design, electronics, code, driving and strategy all have to work as one.</p>
-      <div style="margin-top:25px;padding:18px;border-left:2px solid var(--blue);background:#080c12;color:#d7e1ef">“Design. Innovate. Inspire.”</div>
+
+      <div class="section-tag">
+        Design Philosophy
+      </div>
+
+      <h3
+        style="font-size:30px;margin-bottom:14px">
+
+        PRECISION × CONTROL
+
+      </h3>
+
+      <p
+        style="color:var(--muted);line-height:1.8">
+
+        Every subsystem matters — mechanical
+        design, electronics, code, driving and
+        strategy all have to work as one.
+
+      </p>
+
+      <div
+        style="
+        margin-top:25px;
+        padding:18px;
+        border-left:2px solid var(--blue);
+        background:#080c12;
+        color:#d7e1ef">
+
+        “Design. Innovate. Inspire.”
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="team" class="reveal">
-  <div class="section-tag">03 / The Squad</div>
-  <h2 class="section-title">Six minds. One mission.</h2>
-  <p class="section-sub">Meet the people behind ROBONAARA and AJAX.</p>
+
+<!-- ================= TEAM ================= -->
+
+<section
+  id="team"
+  class="reveal">
+
+  <div class="section-tag">
+    03 / The Squad
+  </div>
+
+  <h2 class="section-title">
+    Six minds. One mission.
+  </h2>
+
+  <p class="section-sub">
+    Meet the people behind ROBONAARA and AJAX.
+  </p>
+
+
   <div class="team-grid">
-    <div class="card member"><div class="num">01</div><h3>Aaradhya Srivastava</h3><div class="role">The Ace</div><p class="member-desc">Too many ideas, one brain, and somehow a plan always comes out of it. Aaradhya brings creativity and quick thinking to the team, turning random sparks of inspiration into practical ideas that can actually move the team forward.</p></div>
-    <div class="card member"><div class="num">02</div><h3>Arnav Pande</h3><div class="role">The Pilot</div><p class="member-desc">Hands on the controls, eyes on the field, and absolutely no room for hesitation. Arnav stays focused when the pressure is on, reading the field, making split-second decisions, and keeping AJAX exactly where the team needs it to be.</p></div>
-    <div class="card member"><div class="num">03</div><h3>Arnav Belpande</h3><div class="role">The Forge</div><p class="member-desc">Circuits, designs, and an unhealthy amount of attention to the details. Arnav Belpande is the hands-on problem solver, turning ideas into mechanisms and making sure every connection, component, and tiny detail is ready for the field.</p></div>
-    <div class="card member"><div class="num">04</div><h3>Nivedita Pillai</h3><div class="role">The Operator</div><p class="member-desc">One problem, three solutions, and probably a Plan D just in case. Nivedita keeps the team prepared for whatever the match throws at them, thinking ahead, adapting quickly, and finding a way forward when the original plan stops working.</p></div>
-    <div class="card member"><div class="num">05</div><h3>Rudransh Dwivedi</h3><div class="role">The Menace</div><p class="member-desc">Give it a boring idea, watch it come back with a personality. Rudransh brings energy and an unconventional approach to the team, turning ordinary concepts into bold ideas and keeping the creative side of ROBONAARA moving.</p></div>
-    <div class="card member"><div class="num">06</div><h3>Jaivardhan</h3><div class="role">The Coder</div><p class="member-desc">Turns complicated problems into clean code—and makes AJAX do exactly what the team wants. Jaivardhan is the link between the team's strategy and the robot's behavior, building and refining the code that helps AJAX respond reliably on the field.</p></div>
+
+
+    <!-- AARADHYA -->
+
+    <div class="card member">
+
+      <div class="num">
+        01
+      </div>
+
+      <h3>
+        Aaradhya Srivastava
+      </h3>
+
+      <div class="role">
+        The Ace
+      </div>
+
+      <p class="member-desc">
+
+        Too many ideas, one brain, and somehow
+        a plan always comes out of it. Aaradhya
+        brings creativity and quick thinking to
+        the team, turning random sparks of
+        inspiration into practical ideas that can
+        actually move the team forward.
+
+      </p>
+
+    </div>
+
+
+    <!-- ARNAV PANDE -->
+
+    <div class="card member">
+
+      <div class="num">
+        02
+      </div>
+
+      <h3>
+        Arnav Pande
+      </h3>
+
+      <div class="role">
+        The Pilot
+      </div>
+
+      <p class="member-desc">
+
+        Hands on the controls, eyes on the field,
+        and absolutely no room for hesitation.
+        Arnav stays focused when the pressure
+        is on, reading the field, making split-second
+        decisions, and keeping AJAX exactly where
+        the team needs it to be.
+
+      </p>
+
+    </div>
+
+
+    <!-- ARNAV BELPANDE -->
+
+    <div class="card member">
+
+      <div class="num">
+        03
+      </div>
+
+      <h3>
+        Arnav Belpande
+      </h3>
+
+      <div class="role">
+        The Forge
+      </div>
+
+      <p class="member-desc">
+
+        Circuits, designs, and an unhealthy amount
+        of attention to the details. Arnav Belpande
+        is the hands-on problem solver, turning
+        ideas into mechanisms and making sure
+        every connection, component, and tiny
+        detail is ready for the field.
+
+      </p>
+
+    </div>
+
+
+    <!-- NIVEDITA -->
+
+    <div class="card member">
+
+      <div class="num">
+        04
+      </div>
+
+      <h3>
+        Nivedita Pillai
+      </h3>
+
+      <div class="role">
+        The Operator
+      </div>
+
+      <p class="member-desc">
+
+        One problem, three solutions, and probably
+        a Plan D just in case. Nivedita keeps the
+        team prepared for whatever the match
+        throws at them, thinking ahead, adapting
+        quickly, and finding a way forward when
+        the original plan stops working.
+
+      </p>
+
+    </div>
+
+
+    <!-- RUDRANSH -->
+
+    <div class="card member">
+
+      <div class="num">
+        05
+      </div>
+
+      <h3>
+        Rudransh Dwivedi
+      </h3>
+
+      <div class="role">
+        The Menace
+      </div>
+
+      <p class="member-desc">
+
+        Give it a boring idea, watch it come back
+        with a personality. Rudransh brings energy
+        and an unconventional approach to the
+        team, turning ordinary concepts into bold
+        ideas and keeping the creative side of
+        ROBONAARA moving.
+
+      </p>
+
+    </div>
+
+
+    <!-- JAIVARDHAN -->
+
+    <div class="card member">
+
+      <div class="num">
+        06
+      </div>
+
+      <h3>
+        Jaivardhan
+      </h3>
+
+      <div class="role">
+        The Coder
+      </div>
+
+      <p class="member-desc">
+
+        Turns complicated problems into clean code—
+        and makes AJAX do exactly what the team
+        wants. Jaivardhan is the link between the
+        team's strategy and the robot's behavior,
+        building and refining the code that helps
+        AJAX respond reliably on the field.
+
+      </p>
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="engineering" class="reveal">
-  <div class="section-tag">04 / The Build</div>
-  <h2 class="section-title">Engineering in action.</h2>
+
+<!-- ================= ENGINEERING ================= -->
+
+<section
+  id="engineering"
+  class="reveal">
+
+  <div class="section-tag">
+    04 / The Build
+  </div>
+
+  <h2 class="section-title">
+    Engineering in action.
+  </h2>
+
+
   <div class="tech-grid">
-    <div class="tech"><b>MECHANICAL</b><p>Structure, mechanisms and physical reliability.</p></div>
-    <div class="tech"><b>CONTROL</b><p>Driver inputs translated into accurate movement.</p></div>
-    <div class="tech"><b>SOFTWARE</b><p>Code that makes AJAX responsive and repeatable.</p></div>
-    <div class="tech"><b>STRATEGY</b><p>Turning every match into a problem worth solving.</p></div>
+
+
+    <div class="tech">
+
+      <b>
+        MECHANICAL
+      </b>
+
+      <p>
+        Structure, mechanisms and physical
+        reliability.
+      </p>
+
+    </div>
+
+
+    <div class="tech">
+
+      <b>
+        CONTROL
+      </b>
+
+      <p>
+        Driver inputs translated into accurate
+        movement.
+      </p>
+
+    </div>
+
+
+    <div class="tech">
+
+      <b>
+        SOFTWARE
+      </b>
+
+      <p>
+        Code that makes AJAX responsive
+        and repeatable.
+      </p>
+
+    </div>
+
+
+    <div class="tech">
+
+      <b>
+        STRATEGY
+      </b>
+
+      <p>
+        Turning every match into a problem
+        worth solving.
+      </p>
+
+    </div>
+
   </div>
+
+
   <div class="timeline">
-    <div class="step"><h3>DESIGN</h3><p>Plan the machine around the challenge and our strategy.</p></div>
-    <div class="step"><h3>BUILD</h3><p>Prototype, assemble and improve the mechanisms.</p></div>
-    <div class="step"><h3>TEST</h3><p>Find weaknesses before the competition does.</p></div>
-    <div class="step"><h3>COMPETE</h3><p>Bring the complete system together on the NRL field.</p></div>
+
+
+    <div class="step">
+
+      <h3>
+        DESIGN
+      </h3>
+
+      <p>
+        Plan the machine around the challenge
+        and our strategy.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <h3>
+        BUILD
+      </h3>
+
+      <p>
+        Prototype, assemble and improve
+        the mechanisms.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <h3>
+        TEST
+      </h3>
+
+      <p>
+        Find weaknesses before the competition
+        does.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <h3>
+        COMPETE
+      </h3>
+
+      <p>
+        Bring the complete system together
+        on the NRL field.
+      </p>
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="nrl" class="cta reveal">
-  <div class="section-tag">05 / The Arena</div>
-  <h2 class="section-title">ROBONAARA × NRL</h2>
-  <p class="section-sub" style="margin-left:auto;margin-right:auto">National Robotics League. One team. One robot. One goal: perform when it matters.</p>
-  <a href="#home" class="btn primary">BACK TO TOP ↑</a>
+
+<!-- ================= NRL ================= -->
+
+<section
+  id="nrl"
+  class="cta reveal">
+
+  <div class="section-tag">
+    05 / The Arena
+  </div>
+
+  <h2 class="section-title">
+    ROBONAARA × NRL
+  </h2>
+
+  <p
+    class="section-sub"
+    style="margin-left:auto;margin-right:auto">
+
+    National Robotics League.
+    One team. One robot.
+    One goal: perform when it matters.
+
+  </p>
+
+  <a
+    href="#home"
+    class="btn primary">
+
+    BACK TO TOP ↑
+
+  </a>
+
 </section>
+
 </main>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
-  <div><strong>ROBONAARA</strong> • AJAX</div>
-  <div>National Robotics League • Orchids The International School, Tathawade</div>
+
+  <div>
+    <strong>
+      ROBONAARA
+    </strong>
+    • AJAX
+  </div>
+
+  <div>
+    National Robotics League •
+    Orchids The International School,
+    Tathawade
+  </div>
+
 </footer>
 
+
+<!-- ================= JAVASCRIPT ================= -->
+
 <script>
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const observer =
+  new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add("show");
+
+        }
+
+      });
+
+    },
+
+    {
+      threshold: 0.12
+    }
+
+  );
+
+
+document
+  .querySelectorAll(".reveal")
+  .forEach(element => {
+
+    observer.observe(element);
+
+  });
+
 </script>
+
 </body>
 </html>
