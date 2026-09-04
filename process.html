@@ -8,6 +8,10 @@
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -19,15 +23,18 @@ html {
 }
 
 body {
-    background:
-        radial-gradient(circle at center, #071a36 0%, #020817 45%, #00030a 100%);
-    color: white;
     font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 50% 20%, #071a36 0%, #020817 45%, #00030a 100%);
+    color: white;
     overflow-x: hidden;
     cursor: none;
 }
 
-/* ================= CURSOR ================= */
+
+/* =====================================================
+   CURSOR
+===================================================== */
 
 .custom-cursor {
     position: fixed;
@@ -39,7 +46,7 @@ body {
     z-index: 99999;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 10px rgba(121,169,255,.6);
-    transition: .2s ease;
+    transition: width .2s ease, height .2s ease;
 }
 
 .custom-cursor.hover {
@@ -49,17 +56,21 @@ body {
 }
 
 
-/* ================= NAVBAR ================= */
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 nav {
     height: 78px;
     padding: 0 4%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-    background: rgba(0,4,12,.92);
-    border-bottom: 1px solid rgba(50,150,255,.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(0,4,12,.94);
+
+    border-bottom: 1px solid rgba(60,150,255,.3);
 
     position: relative;
     z-index: 100;
@@ -93,16 +104,18 @@ nav {
     color: #48aaff;
 }
 
-.nav-links .active {
+.nav-links a.active {
     color: #48aaff;
     border-bottom: 3px solid #48aaff;
 }
 
 
-/* ================= HERO ================= */
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero {
-    height: 235px;
+    height: 250px;
 
     display: flex;
     flex-direction: column;
@@ -111,7 +124,7 @@ nav {
 
     text-align: center;
 
-    border-bottom: 1px solid rgba(50,150,255,.35);
+    border-bottom: 1px solid rgba(60,150,255,.3);
 
     position: relative;
     overflow: hidden;
@@ -122,17 +135,33 @@ nav {
 
     position: absolute;
 
-    width: 800px;
-    height: 800px;
+    width: 850px;
+    height: 850px;
 
-    border: 1px solid rgba(60,150,255,.15);
+    border: 1px solid rgba(50,150,255,.14);
+
     border-radius: 50%;
 
-    top: -620px;
+    top: -670px;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1100px;
+    height: 1100px;
+
+    border: 1px solid rgba(50,150,255,.08);
+
+    border-radius: 50%;
+
+    top: -800px;
 }
 
 .hero-small {
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 9px;
     z-index: 2;
 }
@@ -155,421 +184,412 @@ nav {
 }
 
 .hero p {
+    margin-top: 14px;
+
     color: #9eafd0;
+
+    font-size: 14px;
+
     letter-spacing: 5px;
-    font-size: 15px;
-    margin-top: 15px;
+
     z-index: 2;
 }
 
 
-/* ================= PROCESS AREA ================= */
+/* =====================================================
+   AJAX INTRO
+===================================================== */
 
-.process-section {
-    width: 100%;
-    min-height: 1050px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 80px 20px;
+.ajax-intro {
+    text-align: center;
+    padding: 70px 20px 30px;
 }
 
-.mission-map {
+.ajax-badge {
+    display: inline-flex;
 
-    /*
-       FIXED LARGE CANVAS
+    align-items: center;
+    justify-content: center;
 
-       This is what prevents the cards
-       from randomly overlapping.
-    */
+    width: 110px;
+    height: 110px;
 
-    width: 1000px;
-    height: 900px;
+    border-radius: 50%;
+
+    border: 2px solid #55aaff;
+
+    background:
+        radial-gradient(
+            circle,
+            #123a70,
+            #06162d 65%,
+            #020817
+        );
+
+    box-shadow:
+        0 0 20px #168cff,
+        0 0 55px rgba(20,130,255,.4);
+
+    font-size: 30px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 22px;
+
+    animation: pulse 3s infinite;
+}
+
+.ajax-intro h2 {
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+.ajax-intro p {
+    margin-top: 12px;
+
+    color: #8296b7;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline-section {
+    width: 100%;
+
+    padding: 60px 20px 100px;
+}
+
+.timeline {
+    width: min(1100px, 100%);
+    margin: auto;
 
     position: relative;
 }
 
 
-/* ================= ORBIT ================= */
+/* CENTRAL LINE */
 
-.orbit {
-    position: absolute;
-
-    width: 720px;
-    height: 720px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border: 2px dashed rgba(73,160,255,.7);
-
-    border-radius: 50%;
-
-    box-shadow:
-        0 0 25px rgba(40,140,255,.1),
-        inset 0 0 30px rgba(40,140,255,.05);
-}
-
-.orbit::before {
-
+.timeline::before {
     content: "";
 
     position: absolute;
 
-    width: 770px;
-    height: 770px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border: 1px solid rgba(60,150,255,.13);
-
-    border-radius: 50%;
-}
-
-
-/* ================= CENTER AJAX ================= */
-
-.ajax-core {
-
-    position: absolute;
-
-    width: 270px;
-    height: 270px;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            #12396f,
-            #071a35 45%,
-            #020817 75%
-        );
-
-    border: 2px solid #58aaff;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 20;
-
-    box-shadow:
-        0 0 20px #1585ff,
-        0 0 60px rgba(30,130,255,.6),
-        inset 0 0 40px rgba(40,140,255,.4);
-
-    animation: pulse 3s infinite;
-}
-
-.ajax-core::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 310px;
-    height: 310px;
-
-    border-radius: 50%;
-
-    border: 2px solid rgba(70,160,255,.35);
-}
-
-.ajax-core::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 350px;
-    height: 350px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(70,160,255,.18);
-}
-
-.ajax-core h2 {
-
-    font-size: 70px;
-    letter-spacing: 5px;
-
-    z-index: 2;
-
-    text-shadow:
-        0 0 20px #79baff;
-}
-
-.ajax-core p {
-
-    color: #3ca7ff;
-
-    font-size: 12px;
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    z-index: 2;
-}
-
-.robot {
-
-    font-size: 34px;
-
-    margin-top: 14px;
-
-    z-index: 2;
-}
-
-
-/* ================= CONNECTIONS ================= */
-
-.connection {
-
-    position: absolute;
-
-    width: 290px;
-    height: 2px;
-
-    left: 50%;
-    top: 50%;
-
-    transform-origin: left center;
+    width: 3px;
 
     background:
         linear-gradient(
-            90deg,
+            to bottom,
             transparent,
-            #4ca9ff,
+            #279cff 5%,
+            #279cff 95%,
             transparent
         );
 
-    box-shadow:
-        0 0 12px #198cff;
-
-    z-index: 3;
-}
-
-.c1 { transform: rotate(-90deg); }
-.c2 { transform: rotate(-38deg); }
-.c3 { transform: rotate(13deg); }
-.c4 { transform: rotate(64deg); }
-.c5 { transform: rotate(116deg); }
-.c6 { transform: rotate(167deg); }
-.c7 { transform: rotate(218deg); }
-
-
-/* ================= CARDS ================= */
-
-.step {
-
-    position: absolute;
-
-    width: 225px;
-    min-height: 190px;
-
-    padding: 30px 18px 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(8,25,50,.98),
-            rgba(2,9,22,.98)
-        );
-
-    border: 1px solid #4f9eff;
-
-    text-align: center;
-
-    z-index: 10;
-
-    clip-path: polygon(
-        12px 0,
-        calc(100% - 12px) 0,
-        100% 12px,
-        100% calc(100% - 12px),
-        calc(100% - 12px) 100%,
-        12px 100%,
-        0 calc(100% - 12px),
-        0 12px
-    );
-
-    transition: .3s ease;
-}
-
-.step:hover {
-
-    transform: scale(1.06);
-
-    box-shadow:
-        0 0 20px rgba(50,150,255,.5),
-        0 0 45px rgba(40,140,255,.2);
-}
-
-
-/* ================= NUMBER ================= */
-
-.number {
-
-    position: absolute;
-
-    width: 48px;
-    height: 48px;
+    top: 0;
+    bottom: 0;
 
     left: 50%;
-    top: -24px;
 
     transform: translateX(-50%);
 
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: #061630;
-
-    border: 2px solid #58aaff;
-
-    color: white;
-
-    font-size: 19px;
-    font-weight: bold;
-
     box-shadow:
-        0 0 15px #208cff;
-}
-
-
-/* ================= ICON ================= */
-
-.icon {
-
-    font-size: 31px;
-
-    margin-bottom: 10px;
-}
-
-
-/* ================= TEXT ================= */
-
-.step h3 {
-
-    color: #35a4ff;
-
-    font-size: 17px;
-
-    margin-bottom: 10px;
-}
-
-.step p {
-
-    color: #dce5f4;
-
-    font-size: 12.5px;
-
-    line-height: 1.55;
+        0 0 10px #178cff,
+        0 0 25px rgba(30,140,255,.5);
 }
 
 
 /* =====================================================
-   PERFECT CIRCLE POSITIONS
+   TIMELINE ITEM
+===================================================== */
 
-   CENTER = 500px / 450px
+.timeline-item {
+    width: 100%;
 
-   Cards are positioned OUTSIDE the 720px orbit.
-   ===================================================== */
+    display: flex;
 
+    position: relative;
 
-/* 01 — TOP */
+    margin-bottom: 100px;
 
-.step1 {
-
-    left: 387px;
-    top: 0;
+    min-height: 210px;
 }
 
 
-/* 02 — UPPER RIGHT */
+/* LEFT ITEMS */
 
-.step2 {
+.timeline-item.left {
+    justify-content: flex-start;
+}
 
-    left: 730px;
-    top: 115px;
+.timeline-item.left .timeline-card {
+    margin-right: calc(50% + 50px);
 }
 
 
-/* 03 — LOWER RIGHT */
+/* RIGHT ITEMS */
 
-.step3 {
+.timeline-item.right {
+    justify-content: flex-end;
+}
 
-    left: 730px;
-    top: 595px;
+.timeline-item.right .timeline-card {
+    margin-left: calc(50% + 50px);
 }
 
 
-/* 04 — BOTTOM */
+/* =====================================================
+   TIMELINE DOT
+===================================================== */
 
-.step4 {
+.timeline-dot {
+    position: absolute;
 
-    left: 387px;
-    top: 710px;
+    left: 50%;
+    top: 35px;
+
+    transform: translateX(-50%);
+
+    width: 27px;
+    height: 27px;
+
+    border-radius: 50%;
+
+    background: #06182f;
+
+    border: 3px solid #4caaff;
+
+    z-index: 10;
+
+    box-shadow:
+        0 0 10px #168cff,
+        0 0 25px rgba(30,140,255,.7);
+}
+
+.timeline-dot::after {
+    content: "";
+
+    position: absolute;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #70bdff;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    box-shadow: 0 0 10px #70bdff;
 }
 
 
-/* 05 — LOWER LEFT */
+/* =====================================================
+   CARD
+===================================================== */
 
-.step5 {
+.timeline-card {
 
-    left: 45px;
-    top: 595px;
+    width: 440px;
+
+    min-height: 200px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,26,52,.97),
+            rgba(2,9,22,.98)
+        );
+
+    border: 1px solid rgba(70,160,255,.65);
+
+    position: relative;
+
+    clip-path: polygon(
+        14px 0,
+        calc(100% - 14px) 0,
+        100% 14px,
+        100% calc(100% - 14px),
+        calc(100% - 14px) 100%,
+        14px 100%,
+        0 calc(100% - 14px),
+        0 14px
+    );
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+.timeline-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #70b9ff;
+
+    box-shadow:
+        0 0 20px rgba(40,150,255,.4),
+        0 0 50px rgba(40,150,255,.15);
 }
 
 
-/* 06 — UPPER LEFT */
+/* =====================================================
+   CARD STEP NUMBER
+===================================================== */
 
-.step6 {
+.step-number {
+    position: absolute;
 
-    left: 45px;
-    top: 115px;
+    top: 20px;
+
+    font-size: 48px;
+
+    font-weight: 900;
+
+    color: rgba(80,160,255,.12);
+
+    letter-spacing: 2px;
+}
+
+.left .step-number {
+    right: 25px;
+}
+
+.right .step-number {
+    right: 25px;
 }
 
 
-/* 07 — LEFT CENTER */
+/* =====================================================
+   CARD CONTENT
+===================================================== */
 
-.step7 {
+.step-icon {
+    font-size: 35px;
 
-    left: -5px;
-    top: 355px;
+    margin-bottom: 15px;
+}
+
+.timeline-card h3 {
+    color: #42a9ff;
+
+    font-size: 21px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 13px;
+}
+
+.timeline-card p {
+    color: #d6e0f0;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    max-width: 350px;
 }
 
 
-/* ================= MOTTO ================= */
+/* =====================================================
+   SMALL CONNECTOR
+===================================================== */
+
+.left .timeline-card::after {
+    content: "";
+
+    position: absolute;
+
+    right: -52px;
+    top: 47px;
+
+    width: 50px;
+    height: 2px;
+
+    background: #3ca6ff;
+
+    box-shadow: 0 0 10px #168cff;
+}
+
+.right .timeline-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: -52px;
+    top: 47px;
+
+    width: 50px;
+    height: 2px;
+
+    background: #3ca6ff;
+
+    box-shadow: 0 0 10px #168cff;
+}
+
+
+/* =====================================================
+   STEP LABEL
+===================================================== */
+
+.step-label {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border: 1px solid rgba(70,160,255,.5);
+
+    color: #77baff;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 13px;
+}
+
+
+/* =====================================================
+   FINAL STEP
+===================================================== */
+
+.final-step {
+    margin-bottom: 0;
+}
+
+.final-step .timeline-card {
+    border-color: #65b3ff;
+
+    box-shadow:
+        0 0 20px rgba(50,150,255,.2);
+}
+
+
+/* =====================================================
+   MOTTO
+===================================================== */
 
 .motto-section {
 
-    padding: 55px 20px;
-
-    text-align: center;
+    padding: 60px 20px;
 
     border-top: 1px solid rgba(50,150,255,.3);
     border-bottom: 1px solid rgba(50,150,255,.3);
 
     background: rgba(1,7,18,.8);
+
+    text-align: center;
 }
 
 .motto-box {
@@ -578,34 +598,33 @@ nav {
 
     margin: auto;
 
-    padding: 28px;
+    padding: 30px;
 
     border: 1px solid rgba(60,155,255,.45);
 
-    background: rgba(5,18,38,.55);
+    background: rgba(5,18,38,.5);
 }
 
 .motto {
 
-    font-size: clamp(23px, 4vw, 38px);
+    font-size: clamp(22px, 4vw, 38px);
 
     font-weight: bold;
 
     letter-spacing: 4px;
 
-    color: #b8d8ff;
+    color: #b9d8ff;
 }
 
 .motto span {
-
     color: #ff5565;
 }
 
 .motto-sub {
 
-    margin-top: 17px;
+    margin-top: 18px;
 
-    color: #8999b5;
+    color: #8b9bb5;
 
     font-size: 12px;
 
@@ -613,20 +632,23 @@ nav {
 }
 
 
-/* ================= FOOTER ================= */
+/* =====================================================
+   FOOTER
+===================================================== */
 
 footer {
 
-    min-height: 110px;
+    min-height: 120px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     gap: 22px;
 
-    color: #8d9bb5;
+    color: #8c9ab2;
 
     font-size: 12px;
 
@@ -644,41 +666,43 @@ footer {
 
     display: flex;
 
-    justify-content: center;
     align-items: center;
+
+    justify-content: center;
 
     color: #55adff;
 
     font-size: 22px;
+
     font-weight: bold;
 }
 
 
-/* ================= ANIMATION ================= */
+/* =====================================================
+   ANIMATION
+===================================================== */
 
 @keyframes pulse {
 
-    0%,100% {
-
+    0%, 100% {
         box-shadow:
-            0 0 20px #1585ff,
-            0 0 60px rgba(30,130,255,.6),
-            inset 0 0 40px rgba(40,140,255,.4);
+            0 0 20px #168cff,
+            0 0 55px rgba(20,130,255,.4);
     }
 
     50% {
-
         box-shadow:
-            0 0 30px #1585ff,
-            0 0 90px rgba(30,130,255,.75),
-            inset 0 0 50px rgba(40,140,255,.5);
+            0 0 30px #168cff,
+            0 0 85px rgba(20,130,255,.7);
     }
 }
 
 
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
-@media(max-width: 850px) {
+@media(max-width: 800px) {
 
     body {
         cursor: auto;
@@ -688,8 +712,10 @@ footer {
         display: none;
     }
 
-    nav {
 
+    /* NAV */
+
+    nav {
         height: auto;
 
         padding: 20px;
@@ -700,7 +726,6 @@ footer {
     }
 
     .nav-links {
-
         gap: 18px;
 
         flex-wrap: wrap;
@@ -709,131 +734,127 @@ footer {
     }
 
     .nav-links a {
-
         padding: 5px 0;
 
         font-size: 11px;
     }
 
-    .hero {
 
+    /* HERO */
+
+    .hero {
         height: 210px;
     }
 
     .hero-small {
-
         font-size: 13px;
-
         letter-spacing: 5px;
     }
 
     .hero h1 {
-
-        font-size: 62px;
+        font-size: 60px;
     }
 
     .hero p {
-
         font-size: 10px;
-
         letter-spacing: 2px;
     }
 
 
-    /*
-       On phones, don't force the circle.
-       This prevents ANY overlap.
-    */
+    /* TIMELINE */
 
-    .process-section {
-
-        padding: 80px 20px;
+    .timeline {
+        padding-left: 45px;
     }
 
-    .mission-map {
+    .timeline::before {
+        left: 15px;
+
+        transform: none;
+    }
+
+    .timeline-item,
+    .timeline-item.left,
+    .timeline-item.right {
+
+        justify-content: flex-start;
+
+        margin-bottom: 70px;
+    }
+
+    .timeline-card,
+    .timeline-item.left .timeline-card,
+    .timeline-item.right .timeline-card {
 
         width: 100%;
 
-        height: auto;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 60px;
+        margin: 0;
     }
 
-    .orbit,
-    .connection {
+    .timeline-dot {
+
+        left: 15px;
+
+        transform: translateX(-50%);
+
+        width: 23px;
+        height: 23px;
+    }
+
+    .left .timeline-card::after,
+    .right .timeline-card::before {
 
         display: none;
     }
 
-    .ajax-core {
-
-        position: relative;
-
-        left: auto;
-        top: auto;
-
-        transform: none;
-
-        margin-bottom: 20px;
+    .step-number {
+        font-size: 40px;
     }
 
-    .step {
 
-        position: relative;
-
-        left: auto;
-        top: auto;
-
-        width: min(350px, 90vw);
-    }
-
-    .step:hover {
-
-        transform: scale(1.03);
-    }
+    /* FOOTER */
 
     footer {
 
         flex-direction: column;
 
-        padding: 30px 15px;
+        padding: 35px 15px;
 
         line-height: 1.7;
     }
 }
 
 
-/* ================= SMALL PHONES ================= */
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
 
 @media(max-width: 450px) {
 
-    .ajax-core {
-
-        width: 220px;
-        height: 220px;
+    .ajax-badge {
+        width: 90px;
+        height: 90px;
+        font-size: 25px;
     }
 
-    .ajax-core h2 {
-
-        font-size: 55px;
+    .ajax-intro h2 {
+        font-size: 24px;
     }
 
-    .ajax-core::before {
-
-        width: 255px;
-        height: 255px;
+    .timeline-card {
+        padding: 25px 20px;
     }
 
-    .ajax-core::after {
+    .timeline-card h3 {
+        font-size: 18px;
+    }
 
-        width: 280px;
-        height: 280px;
+    .timeline-card p {
+        font-size: 12px;
+    }
+
+    .motto {
+        letter-spacing: 2px;
     }
 }
 
@@ -844,12 +865,16 @@ footer {
 <body>
 
 
-<!-- ================= CURSOR ================= -->
+<!-- =====================================================
+     CURSOR
+===================================================== -->
 
 <div class="custom-cursor"></div>
 
 
-<!-- ================= NAV ================= -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <nav>
 
@@ -884,7 +909,9 @@ footer {
 </nav>
 
 
-<!-- ================= HERO ================= -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
@@ -901,224 +928,283 @@ footer {
 </section>
 
 
-<!-- ================= PROCESS ================= -->
+<!-- =====================================================
+     AJAX INTRO
+===================================================== -->
 
-<section class="process-section">
+<section class="ajax-intro">
 
-<div class="mission-map">
-
-
-    <!-- ORBIT -->
-
-    <div class="orbit"></div>
-
-
-    <!-- CONNECTIONS -->
-
-    <div class="connection c1"></div>
-    <div class="connection c2"></div>
-    <div class="connection c3"></div>
-    <div class="connection c4"></div>
-    <div class="connection c5"></div>
-    <div class="connection c6"></div>
-    <div class="connection c7"></div>
-
-
-    <!-- ================= AJAX ================= -->
-
-    <div class="ajax-core">
-
-        <h2>AJAX</h2>
-
-        <p>
-            OUR COMPETITION ROBOT
-        </p>
-
-        <div class="robot">
-            🤖
-        </div>
-
+    <div class="ajax-badge">
+        AJAX
     </div>
+
+    <h2>
+        THE JOURNEY OF AJAX
+    </h2>
+
+    <p>
+        SEVEN STEPS. ONE ROBOT. COUNTLESS IMPROVEMENTS.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     TIMELINE
+===================================================== -->
+
+<section class="timeline-section">
+
+<div class="timeline">
 
 
     <!-- ================= 01 ================= -->
 
-    <div class="step step1">
+    <div class="timeline-item left">
 
-        <div class="number">
-            01
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div class="step-label">
+                PHASE 01
+            </div>
+
+            <div class="step-icon">
+                💡
+            </div>
+
+            <h3>
+                THE IDEA
+            </h3>
+
+            <p>
+                We start by understanding the challenge.
+                The team brainstorms ideas, studies the
+                field and decides what AJAX needs to
+                accomplish.
+            </p>
+
         </div>
-
-        <div class="icon">
-            💡
-        </div>
-
-        <h3>
-            THE IDEA
-        </h3>
-
-        <p>
-            We study the challenge,
-            brainstorm ideas and decide
-            what AJAX needs to do
-            on the field.
-        </p>
 
     </div>
 
 
     <!-- ================= 02 ================= -->
 
-    <div class="step step2">
+    <div class="timeline-item right">
 
-        <div class="number">
-            02
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div class="step-label">
+                PHASE 02
+            </div>
+
+            <div class="step-icon">
+                📐
+            </div>
+
+            <h3>
+                DESIGN & PLANNING
+            </h3>
+
+            <p>
+                Ideas become actual designs. We plan
+                AJAX's structure, mechanisms, electronics
+                and overall strategy before building
+                anything.
+            </p>
+
         </div>
-
-        <div class="icon">
-            📐
-        </div>
-
-        <h3>
-            DESIGN & PLANNING
-        </h3>
-
-        <p>
-            We turn ideas into detailed
-            designs and plan the structure,
-            mechanisms, electronics
-            and systems.
-        </p>
 
     </div>
 
 
     <!-- ================= 03 ================= -->
 
-    <div class="step step3">
+    <div class="timeline-item left">
 
-        <div class="number">
-            03
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div class="step-label">
+                PHASE 03
+            </div>
+
+            <div class="step-icon">
+                🔧
+            </div>
+
+            <h3>
+                BUILDING AJAX
+            </h3>
+
+            <p>
+                The designs finally become real.
+                We build the chassis, mechanisms and
+                systems that transform our ideas into
+                a working robot.
+            </p>
+
         </div>
-
-        <div class="icon">
-            🔧
-        </div>
-
-        <h3>
-            BUILDING AJAX
-        </h3>
-
-        <p>
-            The design becomes real.
-            We build the chassis,
-            mechanisms and systems
-            that make AJAX a robot.
-        </p>
 
     </div>
 
 
     <!-- ================= 04 ================= -->
 
-    <div class="step step4">
+    <div class="timeline-item right">
 
-        <div class="number">
-            04
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <div class="step-label">
+                PHASE 04
+            </div>
+
+            <div class="step-icon">
+                ⚡
+            </div>
+
+            <h3>
+                ELECTRONICS
+            </h3>
+
+            <p>
+                Motors, controllers, sensors and wiring
+                are connected together. The hardware
+                gives AJAX the ability to move, sense
+                and perform.
+            </p>
+
         </div>
-
-        <div class="icon">
-            ⚡
-        </div>
-
-        <h3>
-            ELECTRONICS
-        </h3>
-
-        <p>
-            Motors, controllers, sensors
-            and wiring come together
-            to give AJAX the hardware
-            it needs to perform.
-        </p>
 
     </div>
 
 
     <!-- ================= 05 ================= -->
 
-    <div class="step step5">
+    <div class="timeline-item left">
 
-        <div class="number">
-            05
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                05
+            </div>
+
+            <div class="step-label">
+                PHASE 05
+            </div>
+
+            <div class="step-icon">
+                &lt;/&gt;
+            </div>
+
+            <h3>
+                PROGRAMMING
+            </h3>
+
+            <p>
+                We turn strategy into code. AJAX learns
+                how to respond to controls, perform
+                precise movements and behave reliably
+                on the field.
+            </p>
+
         </div>
-
-        <div class="icon">
-            &lt;/&gt;
-        </div>
-
-        <h3>
-            PROGRAMMING
-        </h3>
-
-        <p>
-            We write code that turns
-            our strategy into precise
-            movements and smart
-            robot behaviour.
-        </p>
 
     </div>
 
 
     <!-- ================= 06 ================= -->
 
-    <div class="step step6">
+    <div class="timeline-item right">
 
-        <div class="number">
-            06
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                06
+            </div>
+
+            <div class="step-label">
+                PHASE 06
+            </div>
+
+            <div class="step-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                TEST & DEBUG
+            </h3>
+
+            <p>
+                Nothing works perfectly on the first try.
+                We test AJAX, find problems, fix them,
+                change things and test again.
+            </p>
+
         </div>
-
-        <div class="icon">
-            ⚙️
-        </div>
-
-        <h3>
-            TEST & DEBUG
-        </h3>
-
-        <p>
-            We test AJAX, find issues,
-            fix them and test again.
-            Every failure makes
-            us better.
-        </p>
 
     </div>
 
 
     <!-- ================= 07 ================= -->
 
-    <div class="step step7">
+    <div class="timeline-item left final-step">
 
-        <div class="number">
-            07
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-card">
+
+            <div class="step-number">
+                07
+            </div>
+
+            <div class="step-label">
+                FINAL PHASE
+            </div>
+
+            <div class="step-icon">
+                ✓
+            </div>
+
+            <h3>
+                COMPETITION READY
+            </h3>
+
+            <p>
+                After countless tests, improvements and
+                adjustments, AJAX is finally ready to
+                enter the field and compete with
+                ROBONAARA.
+            </p>
+
         </div>
-
-        <div class="icon">
-            ✓
-        </div>
-
-        <h3>
-            COMPETITION READY
-        </h3>
-
-        <p>
-            After countless tests and
-            improvements, AJAX is
-            ready to compete and
-            give it our best.
-        </p>
 
     </div>
 
@@ -1128,7 +1214,9 @@ footer {
 </section>
 
 
-<!-- ================= MOTTO ================= -->
+<!-- =====================================================
+     MOTTO
+===================================================== -->
 
 <section class="motto-section">
 
@@ -1147,7 +1235,9 @@ footer {
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
@@ -1170,7 +1260,9 @@ footer {
 </footer>
 
 
-<!-- ================= CURSOR ================= -->
+<!-- =====================================================
+     CURSOR SCRIPT
+===================================================== -->
 
 <script>
 
@@ -1185,7 +1277,7 @@ document.addEventListener("mousemove", function(e) {
 
 
 document.querySelectorAll(
-    "a, .step, .ajax-core"
+    "a, .timeline-card, .ajax-badge"
 ).forEach(element => {
 
     element.addEventListener("mouseenter", () => {
@@ -1199,7 +1291,6 @@ document.querySelectorAll(
 });
 
 </script>
-
 
 </body>
 </html>
