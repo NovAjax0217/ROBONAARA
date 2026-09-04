@@ -3,425 +3,381 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROBONAARA | NRL</title>
+<title>ROBONAARA | NRL Robotics Team</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#050914;
-    color:#fff;
-    overflow-x:hidden;
-    cursor:none;
+html {
+    scroll-behavior: smooth;
 }
 
-/* =========================
-   ROBOT CLAW CURSOR
-========================= */
-
-.robot-cursor{
-    position:fixed;
-    width:28px;
-    height:28px;
-    pointer-events:none;
-    z-index:99999;
-    transform:translate(-50%,-50%);
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050914;
+    color: white;
+    overflow-x: hidden;
+    cursor: none;
 }
 
-.robot-cursor::before,
-.robot-cursor::after{
-    content:"";
-    position:absolute;
-    width:10px;
-    height:16px;
-    border:2px solid #79a9ff;
-    background:#050914;
-    top:6px;
-    box-shadow:0 0 8px rgba(121,169,255,.25);
+/* CURSOR */
+
+.custom-cursor {
+    position: fixed;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #79a9ff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(121,169,255,.5);
+    transition: width .2s ease, height .2s ease, box-shadow .2s ease;
 }
 
-.robot-cursor::before{
-    left:1px;
-    transform:rotate(35deg);
-    border-radius:4px 2px 6px 4px;
+.custom-cursor.hover {
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 0 18px rgba(121,169,255,.8);
 }
 
-.robot-cursor::after{
-    right:1px;
-    transform:rotate(-35deg);
-    border-radius:2px 4px 4px 6px;
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,9,20,.85);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(121,169,255,.15);
 }
 
-.robot-cursor-center{
-    position:absolute;
-    width:7px;
-    height:7px;
-    border:2px solid #79a9ff;
-    border-radius:50%;
-    top:9px;
-    left:10px;
-    box-shadow:0 0 12px rgba(121,169,255,.8);
-    transition:.2s;
+.logo-text {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #79a9ff;
 }
 
-.robot-cursor.hover{
-    transform:translate(-50%,-50%) scale(1.25);
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
 
-.robot-cursor.hover::before{
-    transform:rotate(18deg);
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: .3s;
 }
 
-.robot-cursor.hover::after{
-    transform:rotate(-18deg);
+nav a:hover {
+    color: #79a9ff;
 }
 
-.robot-cursor.hover .robot-cursor-center{
-    transform:scale(1.3);
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:75px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    background:rgba(5,9,20,.9);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(121,169,255,.2);
-    z-index:1000;
-}
-
-.nav-logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:21px;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.nav-logo img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    border-radius:50%;
-}
-
-nav ul{
-    display:flex;
-    gap:32px;
-    list-style:none;
-}
-
-nav a{
-    color:#fff;
-    text-decoration:none;
-    font-size:14px;
-    letter-spacing:1px;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#79a9ff;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:120px 20px 80px;
-    position:relative;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background:#315bff;
-    filter:blur(180px);
-    opacity:.15;
-}
-
-.hero-content{
-    position:relative;
-    z-index:1;
-    max-width:900px;
-}
-
-.badge{
-    display:inline-block;
-    padding:9px 18px;
-    border:1px solid #79a9ff;
-    border-radius:30px;
-    color:#79a9ff;
-    font-size:12px;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-h1{
-    font-size:clamp(45px,8vw,90px);
-    line-height:.95;
-    letter-spacing:-3px;
-    margin-bottom:25px;
-}
-
-.hero p{
-    max-width:700px;
-    margin:auto;
-    color:#aeb8cc;
-    line-height:1.7;
-    font-size:17px;
-}
-
-.cta-logo{
-    width:150px;
-    height:150px;
-    object-fit:contain;
-    margin:35px auto 25px;
-    display:block;
-    border-radius:50%;
-}
-
-.buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    padding:14px 25px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:14px;
-    transition:.3s;
-}
-
-.btn-primary{
-    background:#79a9ff;
-    color:#050914;
-}
-
-.btn-primary:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 30px rgba(121,169,255,.25);
-}
-
-.btn-secondary{
-    border:1px solid #34415d;
-    color:white;
-}
-
-.btn-secondary:hover{
-    border-color:#79a9ff;
-    color:#79a9ff;
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-section{
-    padding:110px 8%;
-}
-
-.section-label{
-    color:#79a9ff;
-    letter-spacing:3px;
-    font-size:12px;
-    margin-bottom:15px;
-}
-
-.section-title{
-    font-size:clamp(35px,5vw,60px);
-    margin-bottom:20px;
-}
-
-.section-text{
-    color:#9ba7bc;
-    max-width:750px;
-    line-height:1.8;
-}
-
-/* =========================
-   ABOUT
-========================= */
-
-.about{
-    background:#080e1c;
-}
-
-.about-grid{
-    margin-top:50px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.info-card{
-    padding:35px;
-    border:1px solid #1c2941;
-    background:#0b1221;
-    border-radius:15px;
-    transition:.3s;
-}
-
-.info-card:hover{
-    transform:translateY(-5px);
-    border-color:#79a9ff;
-}
-
-.info-card h3{
-    margin-bottom:15px;
-    color:#79a9ff;
-}
-
-.info-card p{
-    color:#929db0;
-    line-height:1.7;
-}
-
-/* =========================
-   AJAX
-========================= */
-
-.ajax-section{
-    text-align:center;
-}
-
-.ajax-box{
-    margin:50px auto 0;
-    max-width:1000px;
-    min-height:400px;
-    border:1px solid #263653;
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 20px 60px;
     background:
-        linear-gradient(rgba(121,169,255,.03) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(121,169,255,.03) 1px,transparent 1px),
-        #080f1d;
-    background-size:40px 40px;
+        radial-gradient(circle at center, rgba(70,120,255,.18), transparent 45%),
+        #050914;
 }
 
-.ajax-placeholder{
-    color:#53617a;
-    letter-spacing:3px;
+.hero-content {
+    max-width: 900px;
 }
 
-/* =========================
-   PAGE LINKS
-========================= */
-
-.page-links{
-    background:#080e1c;
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
+.hero h1 {
+    font-size: clamp(60px, 12vw, 150px);
+    font-weight: 900;
+    letter-spacing: 8px;
+    line-height: .9;
 }
 
-.page-card{
-    border:1px solid #1c2941;
-    border-radius:18px;
-    padding:40px;
-    background:#0b1221;
-    text-decoration:none;
-    color:white;
-    transition:.3s;
+.hero h1 span {
+    color: #79a9ff;
 }
 
-.page-card:hover{
-    transform:translateY(-6px);
-    border-color:#79a9ff;
+.hero p {
+    margin-top: 30px;
+    color: #aeb8ca;
+    font-size: 18px;
+    letter-spacing: 3px;
 }
 
-.page-card span{
-    color:#79a9ff;
-    font-size:12px;
-    letter-spacing:3px;
+.hero-buttons {
+    margin-top: 45px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
-.page-card h3{
-    font-size:30px;
-    margin:15px 0;
+.btn {
+    padding: 14px 25px;
+    border: 1px solid #79a9ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: .3s;
 }
 
-.page-card p{
-    color:#8f9aaf;
-    line-height:1.7;
+.btn:hover {
+    background: #79a9ff;
+    color: #050914;
+    box-shadow: 0 0 25px rgba(121,169,255,.4);
 }
 
-/* =========================
-   NRL
-========================= */
-
-.nrl{
-    text-align:center;
+.cta-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin: 45px auto 25px;
+    display: block;
+    border-radius: 20px;
 }
 
-footer{
-    padding:35px 8%;
-    border-top:1px solid #172239;
-    text-align:center;
-    color:#59667d;
-    font-size:13px;
+section {
+    padding: 110px 8%;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.section-title {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
 
-@media(max-width:800px){
+.section-title span {
+    color: #79a9ff;
+}
 
-    body{
-        cursor:auto;
+.section-subtitle {
+    color: #8e9bb0;
+    margin-bottom: 50px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.info-card {
+    padding: 35px;
+    background: #0a1122;
+    border: 1px solid rgba(121,169,255,.15);
+    border-radius: 12px;
+    transition: .3s;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: #79a9ff;
+}
+
+.info-card h3 {
+    color: #79a9ff;
+    margin-bottom: 15px;
+    font-size: 23px;
+}
+
+.info-card p {
+    color: #b5bfd0;
+    line-height: 1.7;
+}
+
+.ajax {
+    background: #070d1b;
+}
+
+.ajax-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.ajax-box {
+    min-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(circle, rgba(121,169,255,.15), transparent 55%),
+        #050914;
+    border: 1px solid rgba(121,169,255,.25);
+    border-radius: 20px;
+}
+
+.ajax-name {
+    font-size: 100px;
+    font-weight: 900;
+    color: #79a9ff;
+    text-shadow: 0 0 30px rgba(121,169,255,.5);
+}
+
+.ajax-text h3 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.ajax-text p {
+    color: #aeb8ca;
+    line-height: 1.8;
+}
+
+.team-preview {
+    text-align: center;
+}
+
+.team-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 45px;
+}
+
+.member-card {
+    background: #0a1122;
+    padding: 30px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(121,169,255,.15);
+    transition: .3s;
+}
+
+.member-card:hover {
+    transform: translateY(-7px);
+    border-color: #79a9ff;
+}
+
+.member-card h3 {
+    margin-bottom: 8px;
+}
+
+.member-card p {
+    color: #79a9ff;
+    font-size: 14px;
+}
+
+.engineering {
+    background: #070d1b;
+}
+
+.engineering-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.eng-card {
+    padding: 35px;
+    background: #0a1122;
+    border-radius: 12px;
+    border: 1px solid rgba(121,169,255,.15);
+}
+
+.eng-card h3 {
+    color: #79a9ff;
+    margin-bottom: 15px;
+}
+
+.eng-card p {
+    color: #aeb8ca;
+    line-height: 1.6;
+}
+
+.nrl-box {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+    padding: 60px 30px;
+    border: 1px solid rgba(121,169,255,.25);
+    border-radius: 20px;
+    background: #0a1122;
+}
+
+.nrl-box h2 {
+    font-size: 50px;
+    color: #79a9ff;
+    margin-bottom: 20px;
+}
+
+.nrl-box p {
+    color: #aeb8ca;
+    line-height: 1.7;
+}
+
+footer {
+    padding: 40px 8%;
+    text-align: center;
+    color: #66748b;
+    border-top: 1px solid rgba(121,169,255,.1);
+}
+
+@media(max-width:800px) {
+
+    nav {
+        padding: 18px 5%;
     }
 
-    .robot-cursor{
-        display:none;
+    nav ul {
+        gap: 12px;
     }
 
-    nav{
-        padding:0 4%;
-    }
-
-    nav ul{
-        gap:12px;
-    }
-
-    nav a{
-        font-size:11px;
+    nav a {
+        font-size: 11px;
     }
 
     .about-grid,
-    .page-links{
-        grid-template-columns:1fr;
+    .ajax-container,
+    .engineering-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-preview-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .ajax-name {
+        font-size: 70px;
+    }
+}
+
+@media(max-width:500px) {
+
+    nav ul {
+        display: none;
+    }
+
+    .team-preview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 80px 6%;
+    }
+}
+
+@media(hover:none) {
+
+    body {
+        cursor: auto;
+    }
+
+    .custom-cursor {
+        display: none;
     }
 }
 </style>
@@ -429,17 +385,10 @@ footer{
 
 <body>
 
-<!-- ROBOT CLAW CURSOR -->
-<div class="robot-cursor">
-    <div class="robot-cursor-center"></div>
-</div>
+<div class="custom-cursor"></div>
 
 <nav>
-
-    <div class="nav-logo">
-        <img src="robonaara-logo.jpeg" alt="ROBONAARA Logo">
-        ROBONAARA
-    </div>
+    <div class="logo-text">ROBONAARA</div>
 
     <ul>
         <li><a href="index.html">HOME</a></li>
@@ -448,91 +397,58 @@ footer{
         <li><a href="team.html">TEAM</a></li>
         <li><a href="#nrl">NRL</a></li>
     </ul>
-
 </nav>
 
-<header class="hero">
+<section class="hero">
 
     <div class="hero-content">
 
-        <div class="badge">
-            NATIONAL ROBOTICS LEAGUE • NRL
-        </div>
-
-        <h1>
-            BUILD.<br>
-            INNOVATE.<br>
-            COMPETE.
-        </h1>
+        <h1>ROBO<span>NAARA</span></h1>
 
         <p>
-            Welcome to ROBONAARA — a student robotics team building,
-            designing and programming robots to take on the National
-            Robotics League.
+            BUILD. CODE. COMPETE.
         </p>
 
-        <img
-            class="cta-logo"
-            src="robonaara-logo.jpeg"
-            alt="ROBONAARA"
-        >
-
-        <div class="buttons">
-
-            <a href="#ajax" class="btn btn-primary">
-                MEET AJAX
-            </a>
-
-            <a href="team.html" class="btn btn-secondary">
-                MEET THE TEAM
-            </a>
-
+        <div class="hero-buttons">
+            <a href="process.html" class="btn">OUR PROCESS</a>
+            <a href="team.html" class="btn">MEET THE TEAM</a>
         </div>
 
+        <img src="robonaara-logo.jpeg" class="cta-logo" alt="ROBONAARA Logo">
+
     </div>
 
-</header>
+</section>
 
-<section class="about">
-
-    <div class="section-label">
-        01 / ABOUT US
-    </div>
+<section>
 
     <h2 class="section-title">
-        ROBONAARA
+        WHO <span>WE ARE</span>
     </h2>
 
-    <p class="section-text">
-        We are a student robotics team from Orchids The International School,
-        Tathawade. Our goal is to combine engineering, coding, creativity
-        and teamwork to build a robot capable of competing at the highest
-        level of the NRL.
+    <p class="section-subtitle">
+        Six minds. One robot. One team.
     </p>
 
     <div class="about-grid">
 
         <div class="info-card">
-            <h3>TEAM</h3>
+            <h3>ROBONAARA</h3>
             <p>
-                Six students. Different skills. One mission —
-                build something that works.
+                ROBONAARA is a student robotics team from
+                Orchids The International School, Tathawade.
+                We design, build and program robots while
+                constantly experimenting, testing and improving.
             </p>
         </div>
 
         <div class="info-card">
-            <h3>SCHOOL</h3>
+            <h3>OUR MISSION</h3>
             <p>
-                Orchids The International School,
-                Tathawade.
-            </p>
-        </div>
-
-        <div class="info-card">
-            <h3>MISSION</h3>
-            <p>
-                Design. Build. Code. Test. Improve.
-                Repeat until AJAX is competition ready.
+                Build a robot that doesn't just work in the lab,
+                but performs when it matters. Every failure teaches
+                us something new and every improvement brings AJAX
+                closer to competition readiness.
             </p>
         </div>
 
@@ -540,121 +456,155 @@ footer{
 
 </section>
 
-<section class="ajax-section" id="ajax">
+<section class="ajax" id="ajax">
 
-    <div class="section-label">
-        02 / THE ROBOT
-    </div>
+    <div class="ajax-container">
 
-    <h2 class="section-title">
-        MEET AJAX
-    </h2>
+        <div class="ajax-box">
+            <div class="ajax-name">AJAX</div>
+        </div>
 
-    <p class="section-text" style="margin:auto;">
-        The machine at the centre of ROBONAARA.
-        This section will eventually contain photos,
-        specifications, mechanisms and technical details about AJAX.
-    </p>
+        <div class="ajax-text">
 
-    <div class="ajax-box">
+            <h2 class="section-title">
+                MEET <span>AJAX</span>
+            </h2>
 
-        <div class="ajax-placeholder">
-            AJAX PHOTO / ROBOT SHOWCASE
+            <h3>OUR COMPETITION ROBOT</h3>
+
+            <p>
+                AJAX is the machine at the heart of ROBONAARA.
+                From mechanical design and electronics to
+                programming and driving, every part of AJAX
+                represents the work of our entire team.
+            </p>
+
         </div>
 
     </div>
 
 </section>
 
-<section class="page-links">
+<section class="team-preview">
 
-    <a href="process.html" class="page-card">
+    <h2 class="section-title">
+        MEET THE <span>TEAM</span>
+    </h2>
 
-        <span>
-            03 / ENGINEERING
-        </span>
+    <p class="section-subtitle">
+        The people behind ROBONAARA.
+    </p>
 
-        <h3>
-            OUR PROCESS →
-        </h3>
+    <div class="team-preview-grid">
 
-        <p>
-            Follow AJAX from the first idea and design
-            through construction, electronics, programming
-            and testing.
-        </p>
+        <div class="member-card">
+            <h3>Aaradhya Srivastava</h3>
+            <p>THE ACE</p>
+        </div>
 
-    </a>
+        <div class="member-card">
+            <h3>Arnav Pande</h3>
+            <p>THE PILOT</p>
+        </div>
 
-    <a href="team.html" class="page-card">
+        <div class="member-card">
+            <h3>Arnav Belpande</h3>
+            <p>THE FORGE</p>
+        </div>
 
-        <span>
-            04 / THE PEOPLE
-        </span>
+        <div class="member-card">
+            <h3>Nivedita Pillai</h3>
+            <p>THE OPERATOR</p>
+        </div>
 
-        <h3>
-            MEET THE TEAM →
-        </h3>
+        <div class="member-card">
+            <h3>Rudransh Dwivedi</h3>
+            <p>THE MENACE</p>
+        </div>
 
-        <p>
-            Get to know the six people behind ROBONAARA
-            and the roles they play in building AJAX.
-        </p>
+        <div class="member-card">
+            <h3>Jaivardhan</h3>
+            <p>THE CODER</p>
+        </div>
 
-    </a>
+    </div>
+
+    <div class="hero-buttons">
+        <a href="team.html" class="btn">FULL TEAM</a>
+    </div>
 
 </section>
 
-<section class="nrl" id="nrl">
-
-    <div class="section-label">
-        05 / COMPETITION
-    </div>
+<section class="engineering">
 
     <h2 class="section-title">
-        NATIONAL ROBOTICS LEAGUE
+        ENGINEERING <span>LAB</span>
     </h2>
 
-    <p class="section-text" style="margin:auto;">
-        ROBONAARA is taking on the National Robotics League.
-        This is where our engineering, strategy, teamwork
-        and robot control come together.
+    <p class="section-subtitle">
+        How we turn ideas into a working robot.
     </p>
+
+    <div class="engineering-grid">
+
+        <div class="eng-card">
+            <h3>MECHANICAL</h3>
+            <p>
+                Designing mechanisms, structures and systems
+                that allow AJAX to perform reliably.
+            </p>
+        </div>
+
+        <div class="eng-card">
+            <h3>ELECTRONICS</h3>
+            <p>
+                Motors, controllers, sensors and wiring all
+                working together as one system.
+            </p>
+        </div>
+
+        <div class="eng-card">
+            <h3>PROGRAMMING</h3>
+            <p>
+                Code that translates our strategy into precise
+                and repeatable robot movements.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="nrl">
+
+    <div class="nrl-box">
+
+        <h2>NRL</h2>
+
+        <p>
+            ROBONAARA is competing in the National Robotics League,
+            putting our engineering, teamwork and strategy to the test.
+        </p>
+
+        <div class="hero-buttons">
+            <a
+                href="https://nrl.theinnovationstory.com/"
+                target="_blank"
+                class="btn"
+            >
+                NRL WEBSITE
+            </a>
+        </div>
+
+    </div>
 
 </section>
 
 <footer>
-    ROBONAARA © 2026 • ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    ROBONAARA © 2026 | Orchids The International School, Tathawade
 </footer>
 
-<script>
-
-const cursor = document.querySelector(".robot-cursor");
-
-document.addEventListener("mousemove", function(e){
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-});
-
-const clickableElements = document.querySelectorAll(
-    "a, button, .btn, .page-card, .info-card"
-);
-
-clickableElements.forEach(element => {
-
-    element.addEventListener("mouseenter", function(){
-        cursor.classList.add("hover");
-    });
-
-    element.addEventListener("mouseleave", function(){
-        cursor.classList.remove("hover");
-    });
-
-});
-
-</script>
+<script src="cursor.js"></script>
 
 </body>
 </html>
