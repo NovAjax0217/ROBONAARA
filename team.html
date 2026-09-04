@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,445 +9,266 @@
 
 <style>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#050914;
-    color:white;
-    overflow-x:hidden;
-    cursor:none;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050914;
+    color: white;
+    cursor: none;
 }
 
-/* =========================
-   ROBOT CLAW CURSOR
-========================= */
-
-.robot-cursor{
-    position:fixed;
-    width:28px;
-    height:28px;
-    pointer-events:none;
-    z-index:99999;
-    transform:translate(-50%,-50%);
+.custom-cursor {
+    position: fixed;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #79a9ff;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(121,169,255,.5);
+    transition: width .2s ease, height .2s ease, box-shadow .2s ease;
 }
 
-.robot-cursor::before,
-.robot-cursor::after{
-    content:"";
-    position:absolute;
-    width:10px;
-    height:16px;
-    border:2px solid #79a9ff;
-    background:#050914;
-    top:6px;
-    box-shadow:0 0 8px rgba(121,169,255,.25);
+.custom-cursor.hover {
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 0 18px rgba(121,169,255,.8);
 }
 
-.robot-cursor::before{
-    left:1px;
-    transform:rotate(35deg);
-    border-radius:4px 2px 6px 4px;
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 22px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5,9,20,.88);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(121,169,255,.15);
 }
 
-.robot-cursor::after{
-    right:1px;
-    transform:rotate(-35deg);
-    border-radius:2px 4px 4px 6px;
+.logo-text {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #79a9ff;
 }
 
-.robot-cursor-center{
-    position:absolute;
-    width:7px;
-    height:7px;
-    border:2px solid #79a9ff;
-    border-radius:50%;
-    top:9px;
-    left:10px;
-    box-shadow:0 0 12px rgba(121,169,255,.8);
-    transition:.2s;
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
 }
 
-.robot-cursor.hover{
-    transform:translate(-50%,-50%) scale(1.25);
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
 }
 
-.robot-cursor.hover::before{
-    transform:rotate(18deg);
+nav a:hover {
+    color: #79a9ff;
 }
 
-.robot-cursor.hover::after{
-    transform:rotate(-18deg);
-}
-
-.robot-cursor.hover .robot-cursor-center{
-    transform:scale(1.3);
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:75px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    background:rgba(5,9,20,.92);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(121,169,255,.2);
-    z-index:1000;
-}
-
-.nav-logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:21px;
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.nav-logo img{
-    width:42px;
-    height:42px;
-    object-fit:contain;
-    border-radius:50%;
-}
-
-nav ul{
-    display:flex;
-    gap:32px;
-    list-style:none;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    font-size:14px;
-    letter-spacing:1px;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#79a9ff;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:60vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:130px 8% 80px;
-    position:relative;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    background:#315bff;
-    filter:blur(180px);
-    opacity:.12;
-}
-
-.hero-content{
-    position:relative;
-    max-width:850px;
-}
-
-.badge{
-    color:#79a9ff;
-    border:1px solid #79a9ff;
-    display:inline-block;
-    padding:9px 18px;
-    border-radius:30px;
-    font-size:12px;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-h1{
-    font-size:clamp(50px,8vw,90px);
-    line-height:.95;
-    letter-spacing:-3px;
-    margin-bottom:25px;
-}
-
-.hero p{
-    color:#9ba7bc;
-    max-width:700px;
-    margin:auto;
-    line-height:1.8;
-    font-size:17px;
-}
-
-/* =========================
-   TEAM
-========================= */
-
-section{
-    padding:90px 8%;
-}
-
-.section-label{
-    color:#79a9ff;
-    font-size:12px;
-    letter-spacing:3px;
-    margin-bottom:15px;
-}
-
-.section-title{
-    font-size:clamp(35px,5vw,55px);
-    margin-bottom:45px;
-}
-
-.team-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:25px;
-}
-
-.member-card{
-    background:#0b1221;
-    border:1px solid #1c2941;
-    border-radius:18px;
-    overflow:hidden;
-    transition:.35s;
-}
-
-.member-card:hover{
-    transform:translateY(-8px);
-    border-color:#79a9ff;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.photo-placeholder{
-    height:300px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
+.hero {
+    min-height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 20px 60px;
     background:
-        linear-gradient(rgba(121,169,255,.04) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(121,169,255,.04) 1px,transparent 1px),
-        #080f1d;
-
-    background-size:30px 30px;
-
-    color:#4e5d77;
-    font-size:11px;
-    letter-spacing:2px;
+        radial-gradient(circle, rgba(70,120,255,.18), transparent 50%),
+        #050914;
 }
 
-.member-info{
-    padding:28px;
+.hero h1 {
+    font-size: clamp(50px, 10vw, 110px);
+    letter-spacing: 5px;
 }
 
-.member-role{
-    color:#79a9ff;
-    font-size:11px;
-    letter-spacing:2px;
-    margin-bottom:10px;
+.hero h1 span {
+    color: #79a9ff;
 }
 
-.member-info h3{
-    font-size:24px;
-    margin-bottom:15px;
+.hero p {
+    margin-top: 25px;
+    color: #aeb8ca;
+    letter-spacing: 2px;
 }
 
-.member-info p{
-    color:#929db0;
-    line-height:1.7;
+.team {
+    padding: 80px 8%;
+    max-width: 1200px;
+    margin: auto;
 }
 
-/* =========================
-   BOTTOM
-========================= */
-
-.bottom{
-    text-align:center;
-    background:#080e1c;
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
-.bottom h2{
-    font-size:clamp(30px,5vw,55px);
+.member {
+    background: #0a1122;
+    border: 1px solid rgba(121,169,255,.15);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: .3s;
 }
 
-.bottom p{
-    margin-top:15px;
-    color:#657188;
+.member:hover {
+    transform: translateY(-8px);
+    border-color: #79a9ff;
+    box-shadow: 0 10px 35px rgba(0,0,0,.3);
 }
 
-footer{
-    padding:35px 8%;
-    border-top:1px solid #172239;
-    text-align:center;
-    color:#59667d;
-    font-size:13px;
+.photo {
+    height: 260px;
+    background:
+        linear-gradient(135deg, #0c1529, #080d19);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #53627a;
+    font-size: 14px;
+    letter-spacing: 2px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+.member-info {
+    padding: 25px;
+}
 
-@media(max-width:900px){
+.member-info h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
 
-    .team-grid{
-        grid-template-columns:repeat(2,1fr);
+.role {
+    color: #79a9ff;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.member-info p {
+    color: #aeb8ca;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+footer {
+    margin-top: 80px;
+    padding: 40px;
+    text-align: center;
+    color: #66748b;
+    border-top: 1px solid rgba(121,169,255,.1);
+}
+
+@media(max-width:850px) {
+
+    .team-grid {
+        grid-template-columns: 1fr 1fr;
     }
 
+    nav {
+        padding: 18px 5%;
+    }
+
+    nav ul {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
 }
 
-@media(max-width:650px){
+@media(max-width:550px) {
 
-    body{
-        cursor:auto;
+    nav ul {
+        display: none;
     }
 
-    .robot-cursor{
-        display:none;
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(hover:none) {
+
+    body {
+        cursor: auto;
     }
 
-    nav{
-        padding:0 4%;
+    .custom-cursor {
+        display: none;
     }
-
-    nav ul{
-        gap:12px;
-    }
-
-    nav a{
-        font-size:10px;
-    }
-
-    .team-grid{
-        grid-template-columns:1fr;
-    }
-
-    .photo-placeholder{
-        height:350px;
-    }
-
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- ROBOT CLAW CURSOR -->
-
-<div class="robot-cursor">
-    <div class="robot-cursor-center"></div>
-</div>
+<div class="custom-cursor"></div>
 
 <nav>
 
-    <div class="nav-logo">
-
-        <img
-            src="robonaara-logo.jpeg"
-            alt="ROBONAARA Logo"
-        >
-
-        ROBONAARA
-
-    </div>
+    <div class="logo-text">ROBONAARA</div>
 
     <ul>
-
-        <li>
-            <a href="index.html">HOME</a>
-        </li>
-
-        <li>
-            <a href="index.html#ajax">AJAX</a>
-        </li>
-
-        <li>
-            <a href="process.html">PROCESS</a>
-        </li>
-
-        <li>
-            <a href="team.html">TEAM</a>
-        </li>
-
-        <li>
-            <a href="index.html#nrl">NRL</a>
-        </li>
-
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="index.html#ajax">AJAX</a></li>
+        <li><a href="process.html">PROCESS</a></li>
+        <li><a href="team.html">TEAM</a></li>
+        <li><a href="index.html#nrl">NRL</a></li>
     </ul>
 
 </nav>
 
-<header class="hero">
+<section class="hero">
 
-    <div class="hero-content">
+    <div>
 
-        <div class="badge">
-            04 / THE PEOPLE
-        </div>
-
-        <h1>
-            MEET THE<br>
-            TEAM
-        </h1>
+        <h1>MEET THE <span>TEAM</span></h1>
 
         <p>
-            Six people. Different strengths. One robot.
-            Meet the team behind ROBONAARA and AJAX.
+            SIX PEOPLE. ONE ROBOT. ONE MISSION.
         </p>
 
     </div>
 
-</header>
+</section>
 
-<section>
-
-    <div class="section-label">
-        ROBONAARA
-    </div>
-
-    <h2 class="section-title">
-        THE TEAM
-    </h2>
+<section class="team">
 
     <div class="team-grid">
 
-        <!-- AARADHYA -->
+        <div class="member">
 
-        <div class="member-card">
-
-            <div class="photo-placeholder">
+            <div class="photo">
                 PHOTO COMING SOON
             </div>
 
             <div class="member-info">
 
-                <div class="member-role">
+                <h2>Aaradhya Srivastava</h2>
+
+                <div class="role">
                     THE ACE
                 </div>
-
-                <h3>
-                    Aaradhya Srivastava
-                </h3>
 
                 <p>
                     Too many ideas, one brain, and somehow a plan
@@ -460,23 +282,19 @@ footer{
 
         </div>
 
-        <!-- ARNAV PANDE -->
+        <div class="member">
 
-        <div class="member-card">
-
-            <div class="photo-placeholder">
+            <div class="photo">
                 PHOTO COMING SOON
             </div>
 
             <div class="member-info">
 
-                <div class="member-role">
+                <h2>Arnav Pande</h2>
+
+                <div class="role">
                     THE PILOT
                 </div>
-
-                <h3>
-                    Arnav Pande
-                </h3>
 
                 <p>
                     Hands on the controls, eyes on the field, and
@@ -490,23 +308,19 @@ footer{
 
         </div>
 
-        <!-- ARNAV BELPANDE -->
+        <div class="member">
 
-        <div class="member-card">
-
-            <div class="photo-placeholder">
+            <div class="photo">
                 PHOTO COMING SOON
             </div>
 
             <div class="member-info">
 
-                <div class="member-role">
+                <h2>Arnav Belpande</h2>
+
+                <div class="role">
                     THE FORGE
                 </div>
-
-                <h3>
-                    Arnav Belpande
-                </h3>
 
                 <p>
                     Circuits, designs, and an unhealthy amount of
@@ -520,23 +334,19 @@ footer{
 
         </div>
 
-        <!-- NIVEDITA -->
+        <div class="member">
 
-        <div class="member-card">
-
-            <div class="photo-placeholder">
+            <div class="photo">
                 PHOTO COMING SOON
             </div>
 
             <div class="member-info">
 
-                <div class="member-role">
+                <h2>Nivedita Pillai</h2>
+
+                <div class="role">
                     THE OPERATOR
                 </div>
-
-                <h3>
-                    Nivedita Pillai
-                </h3>
 
                 <p>
                     One problem, three solutions, and probably a
@@ -550,23 +360,19 @@ footer{
 
         </div>
 
-        <!-- RUDRANSH -->
+        <div class="member">
 
-        <div class="member-card">
-
-            <div class="photo-placeholder">
+            <div class="photo">
                 PHOTO COMING SOON
             </div>
 
             <div class="member-info">
 
-                <div class="member-role">
+                <h2>Rudransh Dwivedi</h2>
+
+                <div class="role">
                     THE MENACE
                 </div>
-
-                <h3>
-                    Rudransh Dwivedi
-                </h3>
 
                 <p>
                     Give it a boring idea, watch it come back with
@@ -580,30 +386,26 @@ footer{
 
         </div>
 
-        <!-- JAIVARDHAN -->
+        <div class="member">
 
-        <div class="member-card">
-
-            <div class="photo-placeholder">
+            <div class="photo">
                 PHOTO COMING SOON
             </div>
 
             <div class="member-info">
 
-                <div class="member-role">
+                <h2>Jaivardhan</h2>
+
+                <div class="role">
                     THE CODER
                 </div>
 
-                <h3>
-                    Jaivardhan
-                </h3>
-
                 <p>
-                    Turns complicated problems into clean code —
-                    and makes AJAX do exactly what the team wants.
+                    Turns complicated problems into clean code—and
+                    makes AJAX do exactly what the team wants.
                     Jaivardhan is the link between the team's strategy
                     and the robot's behavior, building and refining
-                    the code that helps AJAX respond reliably.
+                    the code that helps AJAX respond reliably on the field.
                 </p>
 
             </div>
@@ -614,50 +416,11 @@ footer{
 
 </section>
 
-<section class="bottom">
-
-    <h2>
-        ONE TEAM. ONE ROBOT.
-    </h2>
-
-    <p>
-        Different roles. Same mission.
-    </p>
-
-</section>
-
 <footer>
-    ROBONAARA © 2026 • ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    ROBONAARA © 2026 | Orchids The International School, Tathawade
 </footer>
 
-<script>
-
-const cursor = document.querySelector(".robot-cursor");
-
-document.addEventListener("mousemove", function(e){
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-});
-
-const clickableElements = document.querySelectorAll(
-    "a, button, .member-card"
-);
-
-clickableElements.forEach(element => {
-
-    element.addEventListener("mouseenter", function(){
-        cursor.classList.add("hover");
-    });
-
-    element.addEventListener("mouseleave", function(){
-        cursor.classList.remove("hover");
-    });
-
-});
-
-</script>
+<script src="cursor.js"></script>
 
 </body>
 </html>
