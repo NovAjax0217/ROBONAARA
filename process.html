@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ROBONAARA | How We Built AJAX</title>
+<title>ROBONAARA | Process</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -18,11 +19,10 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
     background:
-        radial-gradient(circle at center, #07152d 0%, #020711 45%, #00030a 100%);
+        radial-gradient(circle at center, #071a36 0%, #020817 45%, #00030a 100%);
     color: white;
-    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
     cursor: none;
 }
@@ -38,197 +38,225 @@ body {
     pointer-events: none;
     z-index: 99999;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(121,169,255,.5);
-    transition: width .2s ease, height .2s ease;
+    box-shadow: 0 0 10px rgba(121,169,255,.6);
+    transition: .2s ease;
 }
 
 .custom-cursor.hover {
     width: 28px;
     height: 28px;
-    box-shadow: 0 0 18px rgba(121,169,255,.8);
+    box-shadow: 0 0 20px rgba(121,169,255,.9);
 }
+
 
 /* ================= NAVBAR ================= */
 
 nav {
     height: 78px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 0 4%;
-    border-bottom: 1px solid rgba(60,150,255,.3);
-    background: rgba(1,5,14,.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(0,4,12,.92);
+    border-bottom: 1px solid rgba(50,150,255,.35);
+
     position: relative;
-    z-index: 20;
+    z-index: 100;
 }
 
 .logo {
     font-size: 25px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 2px;
-    color: #f5f8ff;
-    text-shadow: 0 0 12px rgba(121,169,255,.5);
 }
 
 .logo span {
-    color: #5da8ff;
+    color: #4da6ff;
 }
 
 .nav-links {
     display: flex;
-    gap: 42px;
+    gap: 40px;
 }
 
 .nav-links a {
     color: white;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 1px;
-    transition: .25s;
     padding: 30px 0;
+    transition: .25s;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color: #43a8ff;
+.nav-links a:hover {
+    color: #48aaff;
 }
 
-.nav-links a.active {
-    border-bottom: 3px solid #43a8ff;
+.nav-links .active {
+    color: #48aaff;
+    border-bottom: 3px solid #48aaff;
 }
+
 
 /* ================= HERO ================= */
 
 .hero {
-    min-height: 235px;
+    height: 235px;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
     text-align: center;
+
+    border-bottom: 1px solid rgba(50,150,255,.35);
+
     position: relative;
     overflow: hidden;
-    border-bottom: 1px solid rgba(60,150,255,.35);
 }
 
 .hero::before {
     content: "";
-    position: absolute;
-    width: 750px;
-    height: 750px;
-    border: 1px solid rgba(40,130,255,.18);
-    border-radius: 50%;
-    top: -520px;
-}
 
-.hero::after {
-    content: "";
     position: absolute;
-    width: 1050px;
-    height: 1050px;
-    border: 1px solid rgba(40,130,255,.1);
+
+    width: 800px;
+    height: 800px;
+
+    border: 1px solid rgba(60,150,255,.15);
     border-radius: 50%;
-    top: -670px;
+
+    top: -620px;
 }
 
 .hero-small {
     font-size: 20px;
     letter-spacing: 9px;
-    margin-bottom: 5px;
-    color: #f1f5ff;
-    position: relative;
     z-index: 2;
 }
 
 .hero h1 {
     font-size: clamp(65px, 9vw, 105px);
-    letter-spacing: 7px;
-    line-height: .9;
-    background: linear-gradient(#ffffff, #a8c7ff);
+    letter-spacing: 8px;
+
+    background: linear-gradient(
+        white,
+        #9ec7ff
+    );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 35px rgba(80,150,255,.5);
-    position: relative;
+
+    text-shadow: 0 0 35px rgba(70,150,255,.5);
+
     z-index: 2;
 }
 
 .hero p {
-    margin-top: 18px;
-    font-size: 17px;
+    color: #9eafd0;
     letter-spacing: 5px;
-    color: #9caed0;
-    position: relative;
+    font-size: 15px;
+    margin-top: 15px;
     z-index: 2;
 }
+
 
 /* ================= PROCESS AREA ================= */
 
 .process-section {
-    position: relative;
     width: 100%;
-    min-height: 980px;
-    padding: 70px 20px 100px;
+    min-height: 1050px;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding: 80px 20px;
 }
 
-/* Circular map */
-
 .mission-map {
-    width: min(950px, 95vw);
-    height: 850px;
+
+    /*
+       FIXED LARGE CANVAS
+
+       This is what prevents the cards
+       from randomly overlapping.
+    */
+
+    width: 1000px;
+    height: 900px;
+
     position: relative;
 }
 
-/* Outer circular ring */
 
-.orbit-ring {
+/* ================= ORBIT ================= */
+
+.orbit {
     position: absolute;
-    width: 680px;
-    height: 680px;
-    border: 2px dashed rgba(80,165,255,.7);
-    border-radius: 50%;
+
+    width: 720px;
+    height: 720px;
+
     left: 50%;
     top: 50%;
+
     transform: translate(-50%, -50%);
+
+    border: 2px dashed rgba(73,160,255,.7);
+
+    border-radius: 50%;
+
     box-shadow:
-        0 0 20px rgba(50,140,255,.1),
-        inset 0 0 30px rgba(50,140,255,.04);
+        0 0 25px rgba(40,140,255,.1),
+        inset 0 0 30px rgba(40,140,255,.05);
 }
 
-/* second faint ring */
+.orbit::before {
 
-.orbit-ring::before {
     content: "";
+
     position: absolute;
-    width: 730px;
-    height: 730px;
-    border: 1px solid rgba(60,150,255,.13);
-    border-radius: 50%;
+
+    width: 770px;
+    height: 770px;
+
     left: 50%;
     top: 50%;
+
     transform: translate(-50%, -50%);
+
+    border: 1px solid rgba(60,150,255,.13);
+
+    border-radius: 50%;
 }
 
-/* ================= AJAX CENTER ================= */
+
+/* ================= CENTER AJAX ================= */
 
 .ajax-core {
+
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 
     width: 270px;
     height: 270px;
 
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
     border-radius: 50%;
 
     background:
-        radial-gradient(circle,
-        #102d5d 0%,
-        #07182f 45%,
-        #020817 75%);
+        radial-gradient(
+            circle,
+            #12396f,
+            #071a35 45%,
+            #020817 75%
+        );
 
     border: 2px solid #58aaff;
 
@@ -237,101 +265,137 @@ nav {
     justify-content: center;
     align-items: center;
 
-    z-index: 10;
+    z-index: 20;
 
     box-shadow:
-        0 0 20px #187fff,
-        0 0 55px rgba(24,127,255,.55),
-        inset 0 0 35px rgba(30,130,255,.4);
+        0 0 20px #1585ff,
+        0 0 60px rgba(30,130,255,.6),
+        inset 0 0 40px rgba(40,140,255,.4);
 
-    animation: corePulse 3s infinite ease-in-out;
+    animation: pulse 3s infinite;
 }
 
 .ajax-core::before {
+
     content: "";
+
     position: absolute;
+
     width: 310px;
     height: 310px;
+
     border-radius: 50%;
-    border: 2px solid rgba(60,155,255,.3);
+
+    border: 2px solid rgba(70,160,255,.35);
 }
 
 .ajax-core::after {
+
     content: "";
+
     position: absolute;
-    width: 345px;
-    height: 345px;
+
+    width: 350px;
+    height: 350px;
+
     border-radius: 50%;
-    border: 1px solid rgba(60,155,255,.18);
+
+    border: 1px solid rgba(70,160,255,.18);
 }
 
 .ajax-core h2 {
-    font-size: 72px;
+
+    font-size: 70px;
     letter-spacing: 5px;
+
     z-index: 2;
-    text-shadow: 0 0 20px #7bbaff;
+
+    text-shadow:
+        0 0 20px #79baff;
 }
 
 .ajax-core p {
-    color: #40aaff;
-    font-size: 13px;
+
+    color: #3ca7ff;
+
+    font-size: 12px;
     font-weight: bold;
+
     letter-spacing: 2px;
+
     z-index: 2;
 }
 
-.robot-icon {
-    margin-top: 15px;
-    font-size: 35px;
+.robot {
+
+    font-size: 34px;
+
+    margin-top: 14px;
+
     z-index: 2;
 }
 
-/* ================= CONNECTING LINES ================= */
+
+/* ================= CONNECTIONS ================= */
 
 .connection {
+
     position: absolute;
+
+    width: 290px;
+    height: 2px;
+
     left: 50%;
     top: 50%;
-    width: 340px;
-    height: 2px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #54adff,
-        transparent
-    );
+
     transform-origin: left center;
-    z-index: 2;
-    box-shadow: 0 0 10px #168cff;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #4ca9ff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 12px #198cff;
+
+    z-index: 3;
 }
 
-/* 7 lines */
+.c1 { transform: rotate(-90deg); }
+.c2 { transform: rotate(-38deg); }
+.c3 { transform: rotate(13deg); }
+.c4 { transform: rotate(64deg); }
+.c5 { transform: rotate(116deg); }
+.c6 { transform: rotate(167deg); }
+.c7 { transform: rotate(218deg); }
 
-.line1 { transform: rotate(-90deg); }
-.line2 { transform: rotate(-38deg); }
-.line3 { transform: rotate(13deg); }
-.line4 { transform: rotate(64deg); }
-.line5 { transform: rotate(116deg); }
-.line6 { transform: rotate(167deg); }
-.line7 { transform: rotate(219deg); }
 
-/* ================= PROCESS CARDS ================= */
+/* ================= CARDS ================= */
 
-.process-card {
+.step {
+
     position: absolute;
-    width: 220px;
+
+    width: 225px;
     min-height: 190px;
 
-    padding: 28px 20px 20px;
+    padding: 30px 18px 20px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(9,24,48,.97),
-            rgba(2,9,22,.97)
+            rgba(8,25,50,.98),
+            rgba(2,9,22,.98)
         );
 
-    border: 1px solid rgba(91,169,255,.75);
+    border: 1px solid #4f9eff;
+
+    text-align: center;
+
+    z-index: 10;
 
     clip-path: polygon(
         12px 0,
@@ -344,196 +408,277 @@ nav {
         0 12px
     );
 
-    text-align: center;
-
-    z-index: 8;
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease,
-        border-color .3s ease;
+    transition: .3s ease;
 }
 
-.process-card:hover {
-    transform: translate(-50%, -50%) scale(1.05) !important;
-    border-color: #79baff;
+.step:hover {
+
+    transform: scale(1.06);
 
     box-shadow:
-        0 0 15px rgba(50,150,255,.5),
-        0 0 40px rgba(50,150,255,.18);
+        0 0 20px rgba(50,150,255,.5),
+        0 0 45px rgba(40,140,255,.2);
 }
 
-.step-number {
+
+/* ================= NUMBER ================= */
+
+.number {
+
     position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
 
     width: 48px;
     height: 48px;
 
+    left: 50%;
+    top: -24px;
+
+    transform: translateX(-50%);
+
     border-radius: 50%;
 
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     background: #061630;
+
     border: 2px solid #58aaff;
 
-    color: #dbeaff;
-    font-size: 20px;
+    color: white;
+
+    font-size: 19px;
     font-weight: bold;
 
     box-shadow:
-        0 0 15px #228cff,
-        inset 0 0 10px rgba(60,150,255,.3);
+        0 0 15px #208cff;
 }
 
-.process-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
+
+/* ================= ICON ================= */
+
+.icon {
+
+    font-size: 31px;
+
+    margin-bottom: 10px;
 }
 
-.process-card h3 {
-    color: #36a2ff;
-    font-size: 18px;
-    margin-bottom: 12px;
-    letter-spacing: .5px;
+
+/* ================= TEXT ================= */
+
+.step h3 {
+
+    color: #35a4ff;
+
+    font-size: 17px;
+
+    margin-bottom: 10px;
 }
 
-.process-card p {
-    color: #e1e7f2;
-    font-size: 13px;
-    line-height: 1.6;
+.step p {
+
+    color: #dce5f4;
+
+    font-size: 12.5px;
+
+    line-height: 1.55;
 }
 
-/* ================= CIRCULAR POSITIONS ================= */
 
-/*
-   Seven cards distributed around AJAX.
-   These positions are deliberately separated so
-   06 and 07 never overlap.
-*/
+/* =====================================================
+   PERFECT CIRCLE POSITIONS
+
+   CENTER = 500px / 450px
+
+   Cards are positioned OUTSIDE the 720px orbit.
+   ===================================================== */
+
+
+/* 01 — TOP */
 
 .step1 {
-    left: 50%;
+
+    left: 387px;
     top: 0;
 }
 
+
+/* 02 — UPPER RIGHT */
+
 .step2 {
-    left: 91%;
-    top: 18%;
+
+    left: 730px;
+    top: 115px;
 }
+
+
+/* 03 — LOWER RIGHT */
 
 .step3 {
-    left: 91%;
-    top: 72%;
+
+    left: 730px;
+    top: 595px;
 }
+
+
+/* 04 — BOTTOM */
 
 .step4 {
-    left: 50%;
-    top: 100%;
+
+    left: 387px;
+    top: 710px;
 }
+
+
+/* 05 — LOWER LEFT */
 
 .step5 {
-    left: 9%;
-    top: 72%;
+
+    left: 45px;
+    top: 595px;
 }
+
+
+/* 06 — UPPER LEFT */
 
 .step6 {
-    left: 9%;
-    top: 18%;
+
+    left: 45px;
+    top: 115px;
 }
+
+
+/* 07 — LEFT CENTER */
 
 .step7 {
-    left: -2%;
-    top: 50%;
+
+    left: -5px;
+    top: 355px;
 }
 
-/* ================= BOTTOM MESSAGE ================= */
+
+/* ================= MOTTO ================= */
 
 .motto-section {
-    border-top: 1px solid rgba(50,145,255,.3);
-    border-bottom: 1px solid rgba(50,145,255,.3);
+
     padding: 55px 20px;
+
     text-align: center;
-    background: rgba(1,7,18,.75);
+
+    border-top: 1px solid rgba(50,150,255,.3);
+    border-bottom: 1px solid rgba(50,150,255,.3);
+
+    background: rgba(1,7,18,.8);
 }
 
 .motto-box {
-    max-width: 850px;
+
+    max-width: 900px;
+
     margin: auto;
-    padding: 25px;
-    border: 1px solid rgba(65,155,255,.45);
-    background: rgba(5,18,38,.5);
+
+    padding: 28px;
+
+    border: 1px solid rgba(60,155,255,.45);
+
+    background: rgba(5,18,38,.55);
 }
 
 .motto {
-    font-size: clamp(24px, 4vw, 38px);
-    letter-spacing: 4px;
+
+    font-size: clamp(23px, 4vw, 38px);
+
     font-weight: bold;
-    color: #b9d8ff;
+
+    letter-spacing: 4px;
+
+    color: #b8d8ff;
 }
 
 .motto span {
+
     color: #ff5565;
 }
 
 .motto-sub {
-    margin-top: 18px;
-    color: #8d9bb5;
+
+    margin-top: 17px;
+
+    color: #8999b5;
+
+    font-size: 12px;
+
     letter-spacing: 5px;
-    font-size: 13px;
 }
+
 
 /* ================= FOOTER ================= */
 
 footer {
+
     min-height: 110px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    gap: 25px;
+
+    gap: 22px;
+
     color: #8d9bb5;
+
+    font-size: 12px;
+
     letter-spacing: 3px;
-    font-size: 13px;
+
     text-align: center;
 }
 
 .footer-logo {
-    width: 38px;
-    height: 38px;
-    border: 2px solid #259cff;
+
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid #269cff;
+
     display: flex;
-    align-items: center;
+
     justify-content: center;
-    color: #56adff;
+    align-items: center;
+
+    color: #55adff;
+
     font-size: 22px;
     font-weight: bold;
 }
 
+
 /* ================= ANIMATION ================= */
 
-@keyframes corePulse {
+@keyframes pulse {
+
     0%,100% {
+
         box-shadow:
-            0 0 20px #187fff,
-            0 0 55px rgba(24,127,255,.55),
-            inset 0 0 35px rgba(30,130,255,.4);
+            0 0 20px #1585ff,
+            0 0 60px rgba(30,130,255,.6),
+            inset 0 0 40px rgba(40,140,255,.4);
     }
 
     50% {
+
         box-shadow:
-            0 0 30px #187fff,
-            0 0 80px rgba(24,127,255,.7),
-            inset 0 0 50px rgba(30,130,255,.5);
+            0 0 30px #1585ff,
+            0 0 90px rgba(30,130,255,.75),
+            inset 0 0 50px rgba(40,140,255,.5);
     }
 }
 
+
 /* ================= MOBILE ================= */
 
-@media (max-width: 850px) {
+@media(max-width: 850px) {
 
     body {
         cursor: auto;
@@ -544,121 +689,167 @@ footer {
     }
 
     nav {
+
         height: auto;
+
         padding: 20px;
+
         flex-direction: column;
+
         gap: 20px;
     }
 
     .nav-links {
+
         gap: 18px;
+
         flex-wrap: wrap;
+
         justify-content: center;
     }
 
     .nav-links a {
+
         padding: 5px 0;
-        font-size: 12px;
+
+        font-size: 11px;
     }
 
     .hero {
-        min-height: 210px;
+
+        height: 210px;
     }
 
     .hero-small {
-        font-size: 14px;
+
+        font-size: 13px;
+
         letter-spacing: 5px;
     }
 
     .hero h1 {
-        font-size: 60px;
+
+        font-size: 62px;
     }
 
     .hero p {
-        font-size: 11px;
+
+        font-size: 10px;
+
         letter-spacing: 2px;
     }
 
+
+    /*
+       On phones, don't force the circle.
+       This prevents ANY overlap.
+    */
+
     .process-section {
-        min-height: auto;
+
         padding: 80px 20px;
     }
 
     .mission-map {
+
         width: 100%;
+
         height: auto;
 
         display: flex;
+
         flex-direction: column;
+
         align-items: center;
-        gap: 55px;
+
+        gap: 60px;
     }
 
-    .orbit-ring,
+    .orbit,
     .connection {
+
         display: none;
     }
 
     .ajax-core {
+
         position: relative;
+
         left: auto;
         top: auto;
+
         transform: none;
-        flex-shrink: 0;
-        margin-bottom: 30px;
+
+        margin-bottom: 20px;
     }
 
-    .process-card {
-        position: relative;
-        left: auto !important;
-        top: auto !important;
+    .step {
 
-        transform: none !important;
+        position: relative;
+
+        left: auto;
+        top: auto;
 
         width: min(350px, 90vw);
     }
 
-    .process-card:hover {
-        transform: scale(1.03) !important;
+    .step:hover {
+
+        transform: scale(1.03);
+    }
+
+    footer {
+
+        flex-direction: column;
+
+        padding: 30px 15px;
+
+        line-height: 1.7;
     }
 }
 
-@media (max-width: 500px) {
+
+/* ================= SMALL PHONES ================= */
+
+@media(max-width: 450px) {
 
     .ajax-core {
+
         width: 220px;
         height: 220px;
     }
 
     .ajax-core h2 {
-        font-size: 58px;
+
+        font-size: 55px;
     }
 
     .ajax-core::before {
-        width: 250px;
-        height: 250px;
+
+        width: 255px;
+        height: 255px;
     }
 
     .ajax-core::after {
+
         width: 280px;
         height: 280px;
     }
-
-    footer {
-        flex-direction: column;
-        gap: 12px;
-        padding: 30px 15px;
-        line-height: 1.7;
-    }
 }
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ================= CURSOR ================= -->
 
 <div class="custom-cursor"></div>
 
-<!-- ================= NAVBAR ================= -->
+
+<!-- ================= NAV ================= -->
 
 <nav>
 
@@ -667,11 +858,27 @@ footer {
     </div>
 
     <div class="nav-links">
-        <a href="index.html">HOME</a>
-        <a href="index.html#ajax">AJAX</a>
-        <a href="process.html" class="active">PROCESS</a>
-        <a href="team.html">TEAM</a>
-        <a href="index.html#nrl">NRL</a>
+
+        <a href="index.html">
+            HOME
+        </a>
+
+        <a href="index.html#ajax">
+            AJAX
+        </a>
+
+        <a href="process.html" class="active">
+            PROCESS
+        </a>
+
+        <a href="team.html">
+            TEAM
+        </a>
+
+        <a href="index.html#nrl">
+            NRL
+        </a>
+
     </div>
 
 </nav>
@@ -698,178 +905,225 @@ footer {
 
 <section class="process-section">
 
-    <div class="mission-map">
+<div class="mission-map">
 
-        <!-- Circular orbit -->
-        <div class="orbit-ring"></div>
 
+    <!-- ORBIT -->
 
-        <!-- Connecting lines -->
+    <div class="orbit"></div>
 
-        <div class="connection line1"></div>
-        <div class="connection line2"></div>
-        <div class="connection line3"></div>
-        <div class="connection line4"></div>
-        <div class="connection line5"></div>
-        <div class="connection line6"></div>
-        <div class="connection line7"></div>
 
+    <!-- CONNECTIONS -->
 
-        <!-- ================= AJAX CENTER ================= -->
+    <div class="connection c1"></div>
+    <div class="connection c2"></div>
+    <div class="connection c3"></div>
+    <div class="connection c4"></div>
+    <div class="connection c5"></div>
+    <div class="connection c6"></div>
+    <div class="connection c7"></div>
 
-        <div class="ajax-core">
 
-            <h2>AJAX</h2>
+    <!-- ================= AJAX ================= -->
 
-            <p>OUR COMPETITION ROBOT</p>
+    <div class="ajax-core">
 
-            <div class="robot-icon">
-                🤖
-            </div>
+        <h2>AJAX</h2>
 
-        </div>
+        <p>
+            OUR COMPETITION ROBOT
+        </p>
 
-
-        <!-- ================= STEP 1 ================= -->
-
-        <div class="process-card step1">
-
-            <div class="step-number">01</div>
-
-            <div class="process-icon">💡</div>
-
-            <h3>THE IDEA</h3>
-
-            <p>
-                We study the challenge,
-                brainstorm ideas and decide
-                what AJAX needs to do
-                on the field.
-            </p>
-
-        </div>
-
-
-        <!-- ================= STEP 2 ================= -->
-
-        <div class="process-card step2">
-
-            <div class="step-number">02</div>
-
-            <div class="process-icon">📐</div>
-
-            <h3>DESIGN & PLANNING</h3>
-
-            <p>
-                We turn ideas into detailed
-                designs and plan the structure,
-                mechanisms, electronics
-                and systems.
-            </p>
-
-        </div>
-
-
-        <!-- ================= STEP 3 ================= -->
-
-        <div class="process-card step3">
-
-            <div class="step-number">03</div>
-
-            <div class="process-icon">🔧</div>
-
-            <h3>BUILDING AJAX</h3>
-
-            <p>
-                The design becomes real.
-                We build the chassis,
-                mechanisms and systems
-                that make AJAX a robot.
-            </p>
-
-        </div>
-
-
-        <!-- ================= STEP 4 ================= -->
-
-        <div class="process-card step4">
-
-            <div class="step-number">04</div>
-
-            <div class="process-icon">⚡</div>
-
-            <h3>ELECTRONICS</h3>
-
-            <p>
-                Motors, controllers, sensors
-                and wiring come together
-                to give AJAX the hardware
-                it needs to perform.
-            </p>
-
-        </div>
-
-
-        <!-- ================= STEP 5 ================= -->
-
-        <div class="process-card step5">
-
-            <div class="step-number">05</div>
-
-            <div class="process-icon">&lt;/&gt;</div>
-
-            <h3>PROGRAMMING</h3>
-
-            <p>
-                We write code that turns
-                our strategy into precise
-                movements and smart
-                robot behaviour.
-            </p>
-
-        </div>
-
-
-        <!-- ================= STEP 6 ================= -->
-
-        <div class="process-card step6">
-
-            <div class="step-number">06</div>
-
-            <div class="process-icon">⚙️</div>
-
-            <h3>TEST & DEBUG</h3>
-
-            <p>
-                We test AJAX, find issues,
-                fix them and test again.
-                Every failure makes
-                us better.
-            </p>
-
-        </div>
-
-
-        <!-- ================= STEP 7 ================= -->
-
-        <div class="process-card step7">
-
-            <div class="step-number">07</div>
-
-            <div class="process-icon">✓</div>
-
-            <h3>COMPETITION READY</h3>
-
-            <p>
-                After countless tests and
-                improvements, AJAX is
-                ready to compete and
-                give it our best.
-            </p>
-
+        <div class="robot">
+            🤖
         </div>
 
     </div>
+
+
+    <!-- ================= 01 ================= -->
+
+    <div class="step step1">
+
+        <div class="number">
+            01
+        </div>
+
+        <div class="icon">
+            💡
+        </div>
+
+        <h3>
+            THE IDEA
+        </h3>
+
+        <p>
+            We study the challenge,
+            brainstorm ideas and decide
+            what AJAX needs to do
+            on the field.
+        </p>
+
+    </div>
+
+
+    <!-- ================= 02 ================= -->
+
+    <div class="step step2">
+
+        <div class="number">
+            02
+        </div>
+
+        <div class="icon">
+            📐
+        </div>
+
+        <h3>
+            DESIGN & PLANNING
+        </h3>
+
+        <p>
+            We turn ideas into detailed
+            designs and plan the structure,
+            mechanisms, electronics
+            and systems.
+        </p>
+
+    </div>
+
+
+    <!-- ================= 03 ================= -->
+
+    <div class="step step3">
+
+        <div class="number">
+            03
+        </div>
+
+        <div class="icon">
+            🔧
+        </div>
+
+        <h3>
+            BUILDING AJAX
+        </h3>
+
+        <p>
+            The design becomes real.
+            We build the chassis,
+            mechanisms and systems
+            that make AJAX a robot.
+        </p>
+
+    </div>
+
+
+    <!-- ================= 04 ================= -->
+
+    <div class="step step4">
+
+        <div class="number">
+            04
+        </div>
+
+        <div class="icon">
+            ⚡
+        </div>
+
+        <h3>
+            ELECTRONICS
+        </h3>
+
+        <p>
+            Motors, controllers, sensors
+            and wiring come together
+            to give AJAX the hardware
+            it needs to perform.
+        </p>
+
+    </div>
+
+
+    <!-- ================= 05 ================= -->
+
+    <div class="step step5">
+
+        <div class="number">
+            05
+        </div>
+
+        <div class="icon">
+            &lt;/&gt;
+        </div>
+
+        <h3>
+            PROGRAMMING
+        </h3>
+
+        <p>
+            We write code that turns
+            our strategy into precise
+            movements and smart
+            robot behaviour.
+        </p>
+
+    </div>
+
+
+    <!-- ================= 06 ================= -->
+
+    <div class="step step6">
+
+        <div class="number">
+            06
+        </div>
+
+        <div class="icon">
+            ⚙️
+        </div>
+
+        <h3>
+            TEST & DEBUG
+        </h3>
+
+        <p>
+            We test AJAX, find issues,
+            fix them and test again.
+            Every failure makes
+            us better.
+        </p>
+
+    </div>
+
+
+    <!-- ================= 07 ================= -->
+
+    <div class="step step7">
+
+        <div class="number">
+            07
+        </div>
+
+        <div class="icon">
+            ✓
+        </div>
+
+        <h3>
+            COMPETITION READY
+        </h3>
+
+        <p>
+            After countless tests and
+            improvements, AJAX is
+            ready to compete and
+            give it our best.
+        </p>
+
+    </div>
+
+
+</div>
 
 </section>
 
@@ -905,7 +1159,9 @@ footer {
         ROBONAARA © 2026
     </div>
 
-    <div>|</div>
+    <div>
+        |
+    </div>
 
     <div>
         ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
@@ -914,21 +1170,23 @@ footer {
 </footer>
 
 
-<!-- ================= CURSOR JS ================= -->
+<!-- ================= CURSOR ================= -->
 
 <script>
 
 const cursor = document.querySelector(".custom-cursor");
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", function(e) {
 
     cursor.style.left = e.clientX + "px";
     cursor.style.top = e.clientY + "px";
 
 });
 
-document.querySelectorAll("a, .process-card, .ajax-core")
-.forEach(element => {
+
+document.querySelectorAll(
+    "a, .step, .ajax-core"
+).forEach(element => {
 
     element.addEventListener("mouseenter", () => {
         cursor.classList.add("hover");
@@ -941,6 +1199,7 @@ document.querySelectorAll("a, .process-card, .ajax-core")
 });
 
 </script>
+
 
 </body>
 </html>
