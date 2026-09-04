@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ROBONAARA | How We Built AJAX</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -26,833 +19,521 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #050914;
+    background:
+        radial-gradient(circle at center, #07152d 0%, #020711 45%, #00030a 100%);
     color: white;
+    min-height: 100vh;
     overflow-x: hidden;
     cursor: none;
 }
 
-
-/* =====================================================
-   CUSTOM CURSOR
-===================================================== */
+/* ================= CURSOR ================= */
 
 .custom-cursor {
     position: fixed;
-
-    top: 0;
-    left: 0;
-
     width: 18px;
     height: 18px;
-
     border: 2px solid #79a9ff;
     border-radius: 50%;
-
     pointer-events: none;
-
-    z-index: 999999;
-
+    z-index: 99999;
     transform: translate(-50%, -50%);
-
-    box-shadow:
-        0 0 8px #79a9ff,
-        0 0 18px rgba(121,169,255,0.5);
-
-    transition:
-        width 0.15s ease,
-        height 0.15s ease,
-        box-shadow 0.15s ease;
+    box-shadow: 0 0 10px rgba(121,169,255,.5);
+    transition: width .2s ease, height .2s ease;
 }
 
 .custom-cursor.hover {
-    width: 30px;
-    height: 30px;
-
-    box-shadow:
-        0 0 10px #79a9ff,
-        0 0 25px rgba(121,169,255,0.8);
+    width: 28px;
+    height: 28px;
+    box-shadow: 0 0 18px rgba(121,169,255,.8);
 }
 
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* ================= NAVBAR ================= */
 
 nav {
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    padding: 22px 7%;
-
+    height: 78px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    background: rgba(5,9,20,0.88);
-
-    backdrop-filter: blur(15px);
-
-    border-bottom:
-        1px solid rgba(121,169,255,0.15);
-
-    z-index: 1000;
+    justify-content: space-between;
+    padding: 0 4%;
+    border-bottom: 1px solid rgba(60,150,255,.3);
+    background: rgba(1,5,14,.9);
+    position: relative;
+    z-index: 20;
 }
 
-.logo-text {
+.logo {
     font-size: 25px;
-
-    font-weight: 900;
-
+    font-weight: 800;
     letter-spacing: 2px;
-
-    color: #79a9ff;
+    color: #f5f8ff;
+    text-shadow: 0 0 12px rgba(121,169,255,.5);
 }
 
-nav ul {
-    list-style: none;
+.logo span {
+    color: #5da8ff;
+}
 
+.nav-links {
     display: flex;
-
-    gap: 30px;
+    gap: 42px;
 }
 
-nav a {
+.nav-links a {
     color: white;
-
     text-decoration: none;
-
     font-size: 14px;
-
     letter-spacing: 1px;
-
-    transition: 0.3s;
+    transition: .25s;
+    padding: 30px 0;
 }
 
-nav a:hover {
-    color: #79a9ff;
+.nav-links a:hover,
+.nav-links a.active {
+    color: #43a8ff;
 }
 
+.nav-links a.active {
+    border-bottom: 3px solid #43a8ff;
+}
 
-/* =====================================================
-   HERO
-===================================================== */
+/* ================= HERO ================= */
 
 .hero {
-    min-height: 65vh;
-
+    min-height: 235px;
     display: flex;
-
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-
     text-align: center;
-
-    padding: 140px 20px 70px;
-
     position: relative;
-
     overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(121,169,255,0.16),
-            transparent 35%
-        ),
-        #050914;
+    border-bottom: 1px solid rgba(60,150,255,.35);
 }
-
-
-/* futuristic background grid */
 
 .hero::before {
     content: "";
-
     position: absolute;
-
-    inset: 0;
-
-    background-image:
-        linear-gradient(
-            rgba(121,169,255,0.04) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(121,169,255,0.04) 1px,
-            transparent 1px
-        );
-
-    background-size: 50px 50px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent
-        );
+    width: 750px;
+    height: 750px;
+    border: 1px solid rgba(40,130,255,.18);
+    border-radius: 50%;
+    top: -520px;
 }
 
-.hero-content {
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 1050px;
+    height: 1050px;
+    border: 1px solid rgba(40,130,255,.1);
+    border-radius: 50%;
+    top: -670px;
+}
+
+.hero-small {
+    font-size: 20px;
+    letter-spacing: 9px;
+    margin-bottom: 5px;
+    color: #f1f5ff;
     position: relative;
     z-index: 2;
 }
 
-.hero-tag {
-    display: inline-block;
-
-    padding: 8px 16px;
-
-    border: 1px solid rgba(121,169,255,0.4);
-
-    border-radius: 50px;
-
-    color: #79a9ff;
-
-    font-size: 12px;
-
-    letter-spacing: 3px;
-
-    margin-bottom: 25px;
-}
-
 .hero h1 {
-    font-size: clamp(45px, 9vw, 105px);
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    line-height: 0.95;
-}
-
-.hero h1 span {
-    color: #79a9ff;
-
-    text-shadow:
-        0 0 30px rgba(121,169,255,0.45);
+    font-size: clamp(65px, 9vw, 105px);
+    letter-spacing: 7px;
+    line-height: .9;
+    background: linear-gradient(#ffffff, #a8c7ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 35px rgba(80,150,255,.5);
+    position: relative;
+    z-index: 2;
 }
 
 .hero p {
-    margin-top: 28px;
-
-    color: #9daabd;
-
-    letter-spacing: 3px;
-
-    font-size: 14px;
-}
-
-
-/* =====================================================
-   MISSION MAP
-===================================================== */
-
-.mission-section {
-    padding: 80px 5% 130px;
-
+    margin-top: 18px;
+    font-size: 17px;
+    letter-spacing: 5px;
+    color: #9caed0;
     position: relative;
+    z-index: 2;
 }
 
-.section-heading {
-    text-align: center;
+/* ================= PROCESS AREA ================= */
 
-    margin-bottom: 70px;
+.process-section {
+    position: relative;
+    width: 100%;
+    min-height: 980px;
+    padding: 70px 20px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.section-heading h2 {
-    font-size: 42px;
-
-    letter-spacing: 3px;
-}
-
-.section-heading h2 span {
-    color: #79a9ff;
-}
-
-.section-heading p {
-    margin-top: 15px;
-
-    color: #77869e;
-
-    letter-spacing: 1px;
-}
-
-
-/* Main map */
+/* Circular map */
 
 .mission-map {
-    width: min(1150px, 100%);
-
+    width: min(950px, 95vw);
     height: 850px;
-
-    margin: auto;
-
     position: relative;
 }
 
+/* Outer circular ring */
 
-/* =====================================================
-   CENTRAL AJAX CORE
-===================================================== */
+.orbit-ring {
+    position: absolute;
+    width: 680px;
+    height: 680px;
+    border: 2px dashed rgba(80,165,255,.7);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow:
+        0 0 20px rgba(50,140,255,.1),
+        inset 0 0 30px rgba(50,140,255,.04);
+}
+
+/* second faint ring */
+
+.orbit-ring::before {
+    content: "";
+    position: absolute;
+    width: 730px;
+    height: 730px;
+    border: 1px solid rgba(60,150,255,.13);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ================= AJAX CENTER ================= */
 
 .ajax-core {
     position: absolute;
-
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -50%);
 
-    width: 260px;
-    height: 260px;
+    width: 270px;
+    height: 270px;
 
     border-radius: 50%;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
     background:
-        radial-gradient(
-            circle,
-            rgba(121,169,255,0.25),
-            rgba(5,9,20,0.95) 65%
-        );
+        radial-gradient(circle,
+        #102d5d 0%,
+        #07182f 45%,
+        #020817 75%);
 
-    border:
-        1px solid rgba(121,169,255,0.7);
+    border: 2px solid #58aaff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
 
     box-shadow:
-        0 0 35px rgba(121,169,255,0.2),
-        inset 0 0 40px rgba(121,169,255,0.08);
+        0 0 20px #187fff,
+        0 0 55px rgba(24,127,255,.55),
+        inset 0 0 35px rgba(30,130,255,.4);
 
-    z-index: 5;
-
-    animation: corePulse 3s ease-in-out infinite;
+    animation: corePulse 3s infinite ease-in-out;
 }
 
 .ajax-core::before {
     content: "";
-
     position: absolute;
-
-    inset: -18px;
-
-    border:
-        1px dashed rgba(121,169,255,0.35);
-
+    width: 310px;
+    height: 310px;
     border-radius: 50%;
-
-    animation: rotate 15s linear infinite;
+    border: 2px solid rgba(60,155,255,.3);
 }
 
 .ajax-core::after {
     content: "";
-
     position: absolute;
-
-    inset: -35px;
-
-    border:
-        1px solid rgba(121,169,255,0.08);
-
+    width: 345px;
+    height: 345px;
     border-radius: 50%;
+    border: 1px solid rgba(60,155,255,.18);
 }
 
-.core-content {
-    position: relative;
+.ajax-core h2 {
+    font-size: 72px;
+    letter-spacing: 5px;
+    z-index: 2;
+    text-shadow: 0 0 20px #7bbaff;
+}
+
+.ajax-core p {
+    color: #40aaff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
     z-index: 2;
 }
 
-.core-small {
-    font-size: 11px;
-
-    color: #79a9ff;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 8px;
+.robot-icon {
+    margin-top: 15px;
+    font-size: 35px;
+    z-index: 2;
 }
 
-.core-title {
-    font-size: 65px;
-
-    font-weight: 900;
-
-    letter-spacing: 5px;
-
-    color: white;
-}
-
-.core-sub {
-    margin-top: 8px;
-
-    color: #8391a8;
-
-    font-size: 12px;
-
-    letter-spacing: 2px;
-}
-
-
-/* =====================================================
-   CONNECTION LINES
-===================================================== */
+/* ================= CONNECTING LINES ================= */
 
 .connection {
     position: absolute;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #79a9ff,
-            transparent
-        );
-
-    opacity: 0.35;
-
-    z-index: 1;
-}
-
-.line1 {
-    width: 300px;
-    height: 1px;
-
-    left: 115px;
-    top: 250px;
-
-    transform: rotate(18deg);
-}
-
-.line2 {
-    width: 280px;
-    height: 1px;
-
-    right: 120px;
-    top: 250px;
-
-    transform: rotate(-18deg);
-}
-
-.line3 {
-    width: 260px;
-    height: 1px;
-
-    left: 130px;
-    bottom: 245px;
-
-    transform: rotate(-18deg);
-}
-
-.line4 {
-    width: 260px;
-    height: 1px;
-
-    right: 130px;
-    bottom: 245px;
-
-    transform: rotate(18deg);
-}
-
-.line5 {
-    width: 1px;
-    height: 230px;
-
     left: 50%;
-    top: 0;
-
-    transform: translateX(-50%);
+    top: 50%;
+    width: 340px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #54adff,
+        transparent
+    );
+    transform-origin: left center;
+    z-index: 2;
+    box-shadow: 0 0 10px #168cff;
 }
 
-.line6 {
-    width: 1px;
-    height: 230px;
+/* 7 lines */
 
-    left: 50%;
-    bottom: 0;
+.line1 { transform: rotate(-90deg); }
+.line2 { transform: rotate(-38deg); }
+.line3 { transform: rotate(13deg); }
+.line4 { transform: rotate(64deg); }
+.line5 { transform: rotate(116deg); }
+.line6 { transform: rotate(167deg); }
+.line7 { transform: rotate(219deg); }
 
-    transform: translateX(-50%);
-}
-
-
-/* =====================================================
-   PROCESS CARDS
-===================================================== */
+/* ================= PROCESS CARDS ================= */
 
 .process-card {
     position: absolute;
+    width: 220px;
+    min-height: 190px;
 
-    width: 260px;
-
-    padding: 25px;
+    padding: 28px 20px 20px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(12,22,42,0.98),
-            rgba(7,13,27,0.98)
+            rgba(9,24,48,.97),
+            rgba(2,9,22,.97)
         );
 
-    border:
-        1px solid rgba(121,169,255,0.18);
+    border: 1px solid rgba(91,169,255,.75);
 
-    border-radius: 14px;
+    clip-path: polygon(
+        12px 0,
+        calc(100% - 12px) 0,
+        100% 12px,
+        100% calc(100% - 12px),
+        calc(100% - 12px) 100%,
+        12px 100%,
+        0 calc(100% - 12px),
+        0 12px
+    );
 
-    z-index: 10;
+    text-align: center;
+
+    z-index: 8;
 
     transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
 }
 
 .process-card:hover {
-    border-color: #79a9ff;
+    transform: translate(-50%, -50%) scale(1.05) !important;
+    border-color: #79baff;
 
     box-shadow:
-        0 0 30px rgba(121,169,255,0.16);
-
-    transform: translateY(-8px) scale(1.02);
+        0 0 15px rgba(50,150,255,.5),
+        0 0 40px rgba(50,150,255,.18);
 }
 
-.card-number {
-    width: 38px;
-    height: 38px;
+.step-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 48px;
+    height: 48px;
 
     border-radius: 50%;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    border:
-        1px solid #79a9ff;
+    background: #061630;
+    border: 2px solid #58aaff;
 
-    color: #79a9ff;
-
-    font-size: 13px;
-
+    color: #dbeaff;
+    font-size: 20px;
     font-weight: bold;
 
-    margin-bottom: 18px;
-
     box-shadow:
-        0 0 15px rgba(121,169,255,0.15);
+        0 0 15px #228cff,
+        inset 0 0 10px rgba(60,150,255,.3);
+}
+
+.process-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
 }
 
 .process-card h3 {
-    font-size: 21px;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 10px;
+    color: #36a2ff;
+    font-size: 18px;
+    margin-bottom: 12px;
+    letter-spacing: .5px;
 }
 
 .process-card p {
-    color: #8997ac;
-
+    color: #e1e7f2;
     font-size: 13px;
-
-    line-height: 1.65;
+    line-height: 1.6;
 }
 
-.card-label {
-    color: #79a9ff;
+/* ================= CIRCULAR POSITIONS ================= */
 
-    font-size: 10px;
+/*
+   Seven cards distributed around AJAX.
+   These positions are deliberately separated so
+   06 and 07 never overlap.
+*/
 
-    letter-spacing: 3px;
-
-    margin-bottom: 7px;
-}
-
-
-/* =====================================================
-   CARD POSITIONS
-===================================================== */
-
-/* 01 */
-
-.card-1 {
-    top: 20px;
+.step1 {
     left: 50%;
-
-    transform: translateX(-50%);
+    top: 0;
 }
 
-/* 02 */
-
-.card-2 {
-    top: 150px;
-    left: 15px;
+.step2 {
+    left: 91%;
+    top: 18%;
 }
 
-/* 03 */
-
-.card-3 {
-    top: 150px;
-    right: 15px;
+.step3 {
+    left: 91%;
+    top: 72%;
 }
 
-/* 04 */
-
-.card-4 {
-    bottom: 145px;
-    left: 15px;
-}
-
-/* 05 */
-
-.card-5 {
-    bottom: 145px;
-    right: 15px;
-}
-
-/* 06 */
-
-.card-6 {
-    bottom: 15px;
+.step4 {
     left: 50%;
-
-    transform: translateX(-50%);
+    top: 100%;
 }
 
-/* 07 */
-
-.card-7 {
-    top: 430px;
-    left: 50%;
-
-    transform:
-        translateX(-50%);
+.step5 {
+    left: 9%;
+    top: 72%;
 }
 
+.step6 {
+    left: 9%;
+    top: 18%;
+}
 
-/* =====================================================
-   FINAL MISSION
-===================================================== */
+.step7 {
+    left: -2%;
+    top: 50%;
+}
 
-.final-section {
-    padding: 100px 7% 130px;
+/* ================= BOTTOM MESSAGE ================= */
 
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(121,169,255,0.1),
-            transparent 45%
-        ),
-        #070d1b;
-
+.motto-section {
+    border-top: 1px solid rgba(50,145,255,.3);
+    border-bottom: 1px solid rgba(50,145,255,.3);
+    padding: 55px 20px;
     text-align: center;
+    background: rgba(1,7,18,.75);
 }
 
-.final-label {
-    color: #79a9ff;
-
-    font-size: 12px;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 20px;
-}
-
-.final-section h2 {
-    font-size: clamp(28px, 5vw, 55px);
-
-    letter-spacing: 3px;
-
-    margin-bottom: 25px;
-}
-
-.final-section h2 span {
-    color: #79a9ff;
-}
-
-.final-section p {
-    color: #7f8da4;
-
-    max-width: 600px;
-
+.motto-box {
+    max-width: 850px;
     margin: auto;
-
-    line-height: 1.7;
+    padding: 25px;
+    border: 1px solid rgba(65,155,255,.45);
+    background: rgba(5,18,38,.5);
 }
 
-
-/* =====================================================
-   FLOW
-===================================================== */
-
-.flow {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-
-    margin-top: 50px;
+.motto {
+    font-size: clamp(24px, 4vw, 38px);
+    letter-spacing: 4px;
+    font-weight: bold;
+    color: #b9d8ff;
 }
 
-.flow-item {
-    padding: 12px 17px;
-
-    border:
-        1px solid rgba(121,169,255,0.25);
-
-    border-radius: 6px;
-
-    color: #aeb8ca;
-
-    font-size: 12px;
-
-    letter-spacing: 1px;
-
-    transition: 0.3s;
+.motto span {
+    color: #ff5565;
 }
 
-.flow-item:hover {
-    color: #79a9ff;
-
-    border-color: #79a9ff;
-
-    box-shadow:
-        0 0 15px rgba(121,169,255,0.15);
+.motto-sub {
+    margin-top: 18px;
+    color: #8d9bb5;
+    letter-spacing: 5px;
+    font-size: 13px;
 }
 
-.arrow {
-    color: #79a9ff;
-
-    font-size: 18px;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
+/* ================= FOOTER ================= */
 
 footer {
-    padding: 40px;
-
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    color: #8d9bb5;
+    letter-spacing: 3px;
+    font-size: 13px;
     text-align: center;
-
-    color: #66748b;
-
-    border-top:
-        1px solid rgba(121,169,255,0.1);
 }
 
+.footer-logo {
+    width: 38px;
+    height: 38px;
+    border: 2px solid #259cff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #56adff;
+    font-size: 22px;
+    font-weight: bold;
+}
 
-/* =====================================================
-   ANIMATIONS
-===================================================== */
+/* ================= ANIMATION ================= */
 
 @keyframes corePulse {
-
-    0%, 100% {
+    0%,100% {
         box-shadow:
-            0 0 35px rgba(121,169,255,0.2),
-            inset 0 0 40px rgba(121,169,255,0.08);
+            0 0 20px #187fff,
+            0 0 55px rgba(24,127,255,.55),
+            inset 0 0 35px rgba(30,130,255,.4);
     }
 
     50% {
         box-shadow:
-            0 0 60px rgba(121,169,255,0.3),
-            inset 0 0 50px rgba(121,169,255,0.12);
+            0 0 30px #187fff,
+            0 0 80px rgba(24,127,255,.7),
+            inset 0 0 50px rgba(30,130,255,.5);
     }
-
 }
 
-@keyframes rotate {
+/* ================= MOBILE ================= */
 
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media(max-width:900px) {
-
-    .mission-map {
-        height: auto;
-
-        display: grid;
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 20px;
-
-        padding: 20px;
-    }
-
-    .ajax-core {
-        position: relative;
-
-        left: auto;
-        top: auto;
-
-        transform: none;
-
-        grid-column: 1 / -1;
-
-        margin: 20px auto 30px;
-    }
-
-    .process-card {
-        position: relative;
-
-        top: auto;
-        bottom: auto;
-        left: auto;
-        right: auto;
-
-        transform: none;
-
-        width: 100%;
-    }
-
-    .process-card:hover {
-        transform: translateY(-6px);
-    }
-
-    .connection {
-        display: none;
-    }
-
-    .card-7 {
-        grid-column: 1 / -1;
-    }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:600px) {
+@media (max-width: 850px) {
 
     body {
         cursor: auto;
@@ -863,454 +544,348 @@ footer {
     }
 
     nav {
-        padding: 18px 5%;
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
     }
 
-    nav ul {
-        display: none;
+    .nav-links {
+        gap: 18px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        padding: 5px 0;
+        font-size: 12px;
     }
 
     .hero {
-        min-height: 60vh;
+        min-height: 210px;
+    }
+
+    .hero-small {
+        font-size: 14px;
+        letter-spacing: 5px;
     }
 
     .hero h1 {
-        font-size: 48px;
+        font-size: 60px;
     }
 
-    .mission-section {
-        padding: 60px 5% 90px;
+    .hero p {
+        font-size: 11px;
+        letter-spacing: 2px;
     }
 
-    .section-heading h2 {
-        font-size: 30px;
+    .process-section {
+        min-height: auto;
+        padding: 80px 20px;
     }
 
     .mission-map {
-        grid-template-columns: 1fr;
+        width: 100%;
+        height: auto;
 
-        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 55px;
     }
 
-    .ajax-core {
-        grid-column: auto;
-
-        width: 210px;
-        height: 210px;
-    }
-
-    .core-title {
-        font-size: 50px;
-    }
-
-    .card-7 {
-        grid-column: auto;
-    }
-
-    .flow {
-        gap: 8px;
-    }
-
-    .arrow {
+    .orbit-ring,
+    .connection {
         display: none;
     }
 
+    .ajax-core {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        flex-shrink: 0;
+        margin-bottom: 30px;
+    }
+
+    .process-card {
+        position: relative;
+        left: auto !important;
+        top: auto !important;
+
+        transform: none !important;
+
+        width: min(350px, 90vw);
+    }
+
+    .process-card:hover {
+        transform: scale(1.03) !important;
+    }
 }
 
+@media (max-width: 500px) {
+
+    .ajax-core {
+        width: 220px;
+        height: 220px;
+    }
+
+    .ajax-core h2 {
+        font-size: 58px;
+    }
+
+    .ajax-core::before {
+        width: 250px;
+        height: 250px;
+    }
+
+    .ajax-core::after {
+        width: 280px;
+        height: 280px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 30px 15px;
+        line-height: 1.7;
+    }
+}
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     CURSOR
-===================================================== -->
-
 <div class="custom-cursor"></div>
 
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+<!-- ================= NAVBAR ================= -->
 
 <nav>
 
-    <div class="logo-text">
-        ROBONAARA
+    <div class="logo">
+        ROBON<span>AARA</span>
     </div>
 
-    <ul>
-
-        <li>
-            <a href="index.html">
-                HOME
-            </a>
-        </li>
-
-        <li>
-            <a href="index.html#ajax">
-                AJAX
-            </a>
-        </li>
-
-        <li>
-            <a href="process.html">
-                PROCESS
-            </a>
-        </li>
-
-        <li>
-            <a href="team.html">
-                TEAM
-            </a>
-        </li>
-
-        <li>
-            <a href="index.html#nrl">
-                NRL
-            </a>
-        </li>
-
-    </ul>
+    <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="index.html#ajax">AJAX</a>
+        <a href="process.html" class="active">PROCESS</a>
+        <a href="team.html">TEAM</a>
+        <a href="index.html#nrl">NRL</a>
+    </div>
 
 </nav>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-    <div class="hero-content">
-
-        <div class="hero-tag">
-            ROBONAARA ENGINEERING LOG
-        </div>
-
-        <h1>
-            HOW WE BUILT
-            <span>AJAX</span>
-        </h1>
-
-        <p>
-            FROM FIRST IDEA TO COMPETITION READY
-        </p>
-
+    <div class="hero-small">
+        HOW WE BUILT
     </div>
+
+    <h1>AJAX</h1>
+
+    <p>
+        FROM AN IDEA TO A COMPETITION ROBOT
+    </p>
 
 </section>
 
 
-<!-- =====================================================
-     MISSION MAP
-===================================================== -->
+<!-- ================= PROCESS ================= -->
 
-<section class="mission-section">
-
-    <div class="section-heading">
-
-        <h2>
-            THE <span>BUILD</span> MAP
-        </h2>
-
-        <p>
-            Every robot starts somewhere.
-            This is how AJAX came to life.
-        </p>
-
-    </div>
-
+<section class="process-section">
 
     <div class="mission-map">
 
+        <!-- Circular orbit -->
+        <div class="orbit-ring"></div>
 
-        <!-- CONNECTION LINES -->
+
+        <!-- Connecting lines -->
 
         <div class="connection line1"></div>
-
         <div class="connection line2"></div>
-
         <div class="connection line3"></div>
-
         <div class="connection line4"></div>
-
         <div class="connection line5"></div>
-
         <div class="connection line6"></div>
+        <div class="connection line7"></div>
 
 
-        <!-- CENTRAL AJAX -->
+        <!-- ================= AJAX CENTER ================= -->
 
         <div class="ajax-core">
 
-            <div class="core-content">
+            <h2>AJAX</h2>
 
-                <div class="core-small">
-                    ROBOT
-                </div>
+            <p>OUR COMPETITION ROBOT</p>
 
-                <div class="core-title">
-                    AJAX
-                </div>
-
-                <div class="core-sub">
-                    SYSTEM ONLINE
-                </div>
-
+            <div class="robot-icon">
+                🤖
             </div>
 
         </div>
 
 
-        <!-- STEP 01 -->
+        <!-- ================= STEP 1 ================= -->
 
-        <div class="process-card card-1">
+        <div class="process-card step1">
 
-            <div class="card-number">
-                01
-            </div>
+            <div class="step-number">01</div>
 
-            <div class="card-label">
-                START
-            </div>
+            <div class="process-icon">💡</div>
 
-            <h3>
-                THE IDEA
-            </h3>
+            <h3>THE IDEA</h3>
 
             <p>
-                We begin by understanding the challenge,
-                discussing strategies and deciding what
-                AJAX needs to accomplish.
-            </p>
-
-        </div>
-
-
-        <!-- STEP 02 -->
-
-        <div class="process-card card-2">
-
-            <div class="card-number">
-                02
-            </div>
-
-            <div class="card-label">
-                PLAN
-            </div>
-
-            <h3>
-                DESIGN & PLANNING
-            </h3>
-
-            <p>
-                Ideas become sketches and plans. We work
-                out the robot's structure, mechanisms,
-                electronics and control systems.
-            </p>
-
-        </div>
-
-
-        <!-- STEP 03 -->
-
-        <div class="process-card card-3">
-
-            <div class="card-number">
-                03
-            </div>
-
-            <div class="card-label">
-                BUILD
-            </div>
-
-            <h3>
-                BUILDING AJAX
-            </h3>
-
-            <p>
-                The design becomes physical. We build the
-                chassis, mechanisms and systems that make
-                AJAX a real robot.
-            </p>
-
-        </div>
-
-
-        <!-- STEP 04 -->
-
-        <div class="process-card card-4">
-
-            <div class="card-number">
-                04
-            </div>
-
-            <div class="card-label">
-                CONNECT
-            </div>
-
-            <h3>
-                ELECTRONICS
-            </h3>
-
-            <p>
-                Motors, controllers, sensors and wiring
-                are connected so every part of AJAX can
-                work together.
-            </p>
-
-        </div>
-
-
-        <!-- STEP 05 -->
-
-        <div class="process-card card-5">
-
-            <div class="card-number">
-                05
-            </div>
-
-            <div class="card-label">
-                CODE
-            </div>
-
-            <h3>
-                PROGRAMMING
-            </h3>
-
-            <p>
-                Code transforms our strategy into robot
-                behaviour, controls and precise movements
+                We study the challenge,
+                brainstorm ideas and decide
+                what AJAX needs to do
                 on the field.
             </p>
 
         </div>
 
 
-        <!-- STEP 06 -->
+        <!-- ================= STEP 2 ================= -->
 
-        <div class="process-card card-6">
+        <div class="process-card step2">
 
-            <div class="card-number">
-                06
-            </div>
+            <div class="step-number">02</div>
 
-            <div class="card-label">
-                IMPROVE
-            </div>
+            <div class="process-icon">📐</div>
 
-            <h3>
-                TEST & DEBUG
-            </h3>
+            <h3>DESIGN & PLANNING</h3>
 
             <p>
-                We test AJAX, find problems, fix them and
-                repeat until the robot becomes faster,
-                stronger and more reliable.
+                We turn ideas into detailed
+                designs and plan the structure,
+                mechanisms, electronics
+                and systems.
             </p>
 
         </div>
 
 
-        <!-- STEP 07 -->
+        <!-- ================= STEP 3 ================= -->
 
-        <div class="process-card card-7">
+        <div class="process-card step3">
 
-            <div class="card-number">
-                07
-            </div>
+            <div class="step-number">03</div>
 
-            <div class="card-label">
-                DEPLOY
-            </div>
+            <div class="process-icon">🔧</div>
 
-            <h3>
-                COMPETITION READY
-            </h3>
+            <h3>BUILDING AJAX</h3>
 
             <p>
-                After designing, building, coding and testing,
-                AJAX is ready to leave the workshop and take
-                on the competition field.
+                The design becomes real.
+                We build the chassis,
+                mechanisms and systems
+                that make AJAX a robot.
             </p>
 
         </div>
 
+
+        <!-- ================= STEP 4 ================= -->
+
+        <div class="process-card step4">
+
+            <div class="step-number">04</div>
+
+            <div class="process-icon">⚡</div>
+
+            <h3>ELECTRONICS</h3>
+
+            <p>
+                Motors, controllers, sensors
+                and wiring come together
+                to give AJAX the hardware
+                it needs to perform.
+            </p>
+
+        </div>
+
+
+        <!-- ================= STEP 5 ================= -->
+
+        <div class="process-card step5">
+
+            <div class="step-number">05</div>
+
+            <div class="process-icon">&lt;/&gt;</div>
+
+            <h3>PROGRAMMING</h3>
+
+            <p>
+                We write code that turns
+                our strategy into precise
+                movements and smart
+                robot behaviour.
+            </p>
+
+        </div>
+
+
+        <!-- ================= STEP 6 ================= -->
+
+        <div class="process-card step6">
+
+            <div class="step-number">06</div>
+
+            <div class="process-icon">⚙️</div>
+
+            <h3>TEST & DEBUG</h3>
+
+            <p>
+                We test AJAX, find issues,
+                fix them and test again.
+                Every failure makes
+                us better.
+            </p>
+
+        </div>
+
+
+        <!-- ================= STEP 7 ================= -->
+
+        <div class="process-card step7">
+
+            <div class="step-number">07</div>
+
+            <div class="process-icon">✓</div>
+
+            <h3>COMPETITION READY</h3>
+
+            <p>
+                After countless tests and
+                improvements, AJAX is
+                ready to compete and
+                give it our best.
+            </p>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     FINAL SECTION
-===================================================== -->
+<!-- ================= MOTTO ================= -->
 
-<section class="final-section">
+<section class="motto-section">
 
-    <div class="final-label">
-        ROBONAARA ENGINEERING PHILOSOPHY
-    </div>
+    <div class="motto-box">
 
-    <h2>
-        BUILD → TEST → <span>FAIL</span> → IMPROVE → REPEAT
-    </h2>
-
-    <p>
-        Robotics isn't about getting everything right on the
-        first attempt. It's about learning from every problem,
-        improving the design and coming back stronger.
-    </p>
-
-
-    <div class="flow">
-
-        <div class="flow-item">
-            IDEA
+        <div class="motto">
+            BUILD → TEST → <span>FAIL</span> → IMPROVE → REPEAT
         </div>
 
-        <div class="arrow">
-            →
-        </div>
-
-        <div class="flow-item">
-            DESIGN
-        </div>
-
-        <div class="arrow">
-            →
-        </div>
-
-        <div class="flow-item">
-            BUILD
-        </div>
-
-        <div class="arrow">
-            →
-        </div>
-
-        <div class="flow-item">
-            TEST
-        </div>
-
-        <div class="arrow">
-            →
-        </div>
-
-        <div class="flow-item">
-            IMPROVE
-        </div>
-
-        <div class="arrow">
-            →
-        </div>
-
-        <div class="flow-item">
-            COMPETE
+        <div class="motto-sub">
+            THAT'S HOW ROBONAARA BUILDS.
         </div>
 
     </div>
@@ -1318,74 +893,54 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-    ROBONAARA © 2026 |
-    Orchids The International School, Tathawade
+    <div class="footer-logo">
+        R
+    </div>
+
+    <div>
+        ROBONAARA © 2026
+    </div>
+
+    <div>|</div>
+
+    <div>
+        ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    </div>
 
 </footer>
 
 
-<!-- =====================================================
-     CURSOR SCRIPT
-===================================================== -->
+<!-- ================= CURSOR JS ================= -->
 
 <script>
 
-const cursor =
-    document.querySelector(".custom-cursor");
+const cursor = document.querySelector(".custom-cursor");
 
+document.addEventListener("mousemove", (e) => {
 
-document.addEventListener(
-    "mousemove",
-    function(event) {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
 
-        cursor.style.left =
-            event.clientX + "px";
+});
 
-        cursor.style.top =
-            event.clientY + "px";
+document.querySelectorAll("a, .process-card, .ajax-core")
+.forEach(element => {
 
-    }
-);
+    element.addEventListener("mouseenter", () => {
+        cursor.classList.add("hover");
+    });
 
-
-const hoverElements =
-    document.querySelectorAll(
-        "a, .process-card, .flow-item"
-    );
-
-
-hoverElements.forEach(function(element) {
-
-    element.addEventListener(
-        "mouseenter",
-        function() {
-
-            cursor.classList.add("hover");
-
-        }
-    );
-
-
-    element.addEventListener(
-        "mouseleave",
-        function() {
-
-            cursor.classList.remove("hover");
-
-        }
-    );
+    element.addEventListener("mouseleave", () => {
+        cursor.classList.remove("hover");
+    });
 
 });
 
 </script>
 
-
 </body>
-
 </html>
