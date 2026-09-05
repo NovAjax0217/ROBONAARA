@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ROBONAARA | Meet The Team</title>
+<title>ROBONAARA | Team</title>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 * {
     margin: 0;
@@ -23,205 +25,696 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #050914;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            #071a36 0%,
+            #020817 45%,
+            #00030a 100%
+        );
+
     color: white;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
     cursor: none;
 }
 
-/* ================= CURSOR ================= */
+
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
 
 .custom-cursor {
     position: fixed;
-
-    top: 0;
-    left: 0;
 
     width: 18px;
     height: 18px;
 
     border: 2px solid #79a9ff;
+
     border-radius: 50%;
 
     pointer-events: none;
 
-    z-index: 999999;
+    z-index: 99999;
 
     transform: translate(-50%, -50%);
 
     box-shadow:
-        0 0 8px #79a9ff,
-        0 0 18px rgba(121,169,255,0.5);
+        0 0 10px rgba(121,169,255,.6);
 
     transition:
-        width 0.15s ease,
-        height 0.15s ease,
-        box-shadow 0.15s ease;
+        width .2s ease,
+        height .2s ease,
+        box-shadow .2s ease;
 }
 
 .custom-cursor.hover {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
 
     box-shadow:
-        0 0 10px #79a9ff,
-        0 0 25px rgba(121,169,255,0.8);
+        0 0 20px rgba(121,169,255,.9);
 }
 
-/* ================= NAVIGATION ================= */
+
+/* =====================================================
+   NAVBAR
+===================================================== */
 
 nav {
-    position: fixed;
 
-    top: 0;
-    width: 100%;
+    height: 78px;
 
-    padding: 22px 7%;
+    padding: 0 4%;
 
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
 
-    background: rgba(5,9,20,0.88);
+    justify-content: space-between;
 
-    backdrop-filter: blur(12px);
-
-    z-index: 1000;
+    background: rgba(0,4,12,.94);
 
     border-bottom:
-        1px solid rgba(121,169,255,0.15);
+        1px solid rgba(60,150,255,.3);
+
+    position: relative;
+
+    z-index: 100;
 }
 
-.logo-text {
+
+/* LOGO */
+
+.logo {
+
     font-size: 25px;
 
     font-weight: 900;
 
     letter-spacing: 2px;
 
-    color: #79a9ff;
+    color: white;
+
+    text-shadow:
+        0 0 12px rgba(100,170,255,.3);
 }
 
-nav ul {
-    list-style: none;
+.logo span {
+    color: #4da6ff;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
 
     display: flex;
 
-    gap: 30px;
+    gap: 40px;
 }
 
-nav a {
+.nav-links a {
+
     color: white;
 
     text-decoration: none;
 
-    font-size: 14px;
+    font-size: 13px;
 
     letter-spacing: 1px;
 
-    transition: 0.3s;
+    padding: 30px 0;
+
+    transition: .25s;
 }
 
-nav a:hover {
-    color: #79a9ff;
+.nav-links a:hover {
+
+    color: #48aaff;
 }
 
-/* ================= HERO ================= */
+.nav-links a.active {
+
+    color: #48aaff;
+
+    border-bottom:
+        3px solid #48aaff;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
 
 .hero {
-    min-height: 55vh;
+
+    min-height: 300px;
 
     display: flex;
 
-    justify-content: center;
+    flex-direction: column;
+
     align-items: center;
+
+    justify-content: center;
 
     text-align: center;
 
-    padding: 120px 20px 60px;
+    position: relative;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(70,120,255,0.18),
-            transparent 50%
-        ),
-        #050914;
+    overflow: hidden;
+
+    border-bottom:
+        1px solid rgba(60,150,255,.3);
 }
+
+
+/* Background rings */
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    border:
+        1px solid rgba(60,150,255,.15);
+
+    border-radius: 50%;
+
+    top: -510px;
+}
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 1000px;
+    height: 1000px;
+
+    border:
+        1px solid rgba(60,150,255,.08);
+
+    border-radius: 50%;
+
+    top: -680px;
+}
+
+
+/* Small heading */
+
+.hero-small {
+
+    font-size: 18px;
+
+    letter-spacing: 9px;
+
+    color: #f2f5ff;
+
+    z-index: 2;
+
+    margin-bottom: 5px;
+}
+
+
+/* Main heading */
 
 .hero h1 {
-    font-size: clamp(50px, 10vw, 110px);
 
-    font-weight: 900;
+    font-size:
+        clamp(65px, 10vw, 110px);
 
-    letter-spacing: 5px;
+    letter-spacing: 8px;
+
+    line-height: .9;
+
+    background:
+        linear-gradient(
+            white,
+            #9fc8ff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 35px rgba(70,150,255,.5);
+
+    z-index: 2;
 }
 
-.hero h1 span {
-    color: #79a9ff;
-}
+
+/* Subtitle */
 
 .hero p {
-    margin-top: 25px;
 
-    color: #aeb8ca;
+    margin-top: 20px;
+
+    color: #9eafd0;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    z-index: 2;
+}
+
+
+/* =====================================================
+   TEAM INTRO
+===================================================== */
+
+.team-intro {
+
+    text-align: center;
+
+    padding:
+        65px 20px 40px;
+}
+
+.team-intro h2 {
+
+    font-size: 28px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+}
+
+.team-intro p {
+
+    color: #8296b7;
+
+    font-size: 13px;
 
     letter-spacing: 2px;
 }
 
-/* ================= TEAM ================= */
 
-.team {
-    padding: 80px 8%;
+/* =====================================================
+   TEAM GRID
+===================================================== */
 
-    max-width: 1200px;
+.team-section {
 
-    margin: auto;
+    width: 100%;
+
+    padding:
+        40px 6% 100px;
 }
 
 .team-grid {
+
+    max-width: 1150px;
+
+    margin: auto;
+
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 25px;
+    gap: 35px;
 }
 
-/* ================= MEMBER CARD ================= */
+
+/* =====================================================
+   MEMBER CARD
+===================================================== */
 
 .member {
-    background: #0a1122;
 
-    border:
-        1px solid rgba(121,169,255,0.15);
-
-    border-radius: 15px;
-
-    overflow: hidden;
-
-    transition: 0.3s;
-}
-
-.member:hover {
-    transform: translateY(-8px);
-
-    border-color: #79a9ff;
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,0.3);
-}
-
-/* ================= PHOTO ================= */
-
-.photo {
-    height: 260px;
+    position: relative;
 
     background:
         linear-gradient(
-            135deg,
-            #0c1529,
-            #080d19
+            145deg,
+            rgba(8,26,52,.97),
+            rgba(2,9,22,.98)
         );
+
+    border:
+        1px solid rgba(70,160,255,.55);
+
+    overflow: hidden;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+    clip-path: polygon(
+        14px 0,
+        calc(100% - 14px) 0,
+        100% 14px,
+        100% calc(100% - 14px),
+        calc(100% - 14px) 100%,
+        14px 100%,
+        0 calc(100% - 14px),
+        0 14px
+    );
+}
+
+
+/* Hover */
+
+.member:hover {
+
+    transform:
+        translateY(-10px);
+
+    border-color:
+        #62b1ff;
+
+    box-shadow:
+        0 0 20px rgba(40,150,255,.35),
+        0 0 55px rgba(40,150,255,.12);
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.photo {
+
+    width: 100%;
+
+    height: 285px;
+
+    overflow: hidden;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle,
+            #12345f,
+            #030b19
+        );
+}
+
+
+/* Image */
+
+.photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+
+/* Image hover */
+
+.member:hover .photo img {
+
+    transform: scale(1.06);
+
+    filter:
+        brightness(1.08);
+}
+
+
+/* Blue photo overlay */
+
+.photo::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 90px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(2,9,22,.95)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   PHOTO PLACEHOLDER
+===================================================== */
+
+.photo-placeholder {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #5daeff;
+
+    background:
+        radial-gradient(
+            circle,
+            #102b51,
+            #020817 70%
+        );
+}
+
+.photo-placeholder .robot-symbol {
+
+    font-size: 55px;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 20px #198cff;
+}
+
+.photo-placeholder span {
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #7086a8;
+}
+
+
+/* =====================================================
+   MEMBER INFO
+===================================================== */
+
+.member-info {
+
+    padding:
+        25px 24px 28px;
+
+    position: relative;
+}
+
+
+/* Role */
+
+.role {
+
+    display: inline-block;
+
+    padding:
+        6px 10px;
+
+    border:
+        1px solid rgba(65,160,255,.55);
+
+    color:
+        #69b5ff;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 13px;
+}
+
+
+/* Name */
+
+.member-info h2 {
+
+    font-size: 22px;
+
+    letter-spacing: .5px;
+
+    margin-bottom: 12px;
+}
+
+
+/* Description */
+
+.member-info p {
+
+    color: #b7c5d9;
+
+    font-size: 12.5px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   CARD NUMBER
+===================================================== */
+
+.card-number {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 22px;
+
+    font-size: 40px;
+
+    font-weight: 900;
+
+    color:
+        rgba(80,160,255,.1);
+}
+
+
+/* =====================================================
+   BOTTOM TEAM MESSAGE
+===================================================== */
+
+.team-message {
+
+    max-width: 900px;
+
+    margin:
+        30px auto 0;
+
+    text-align: center;
+
+    padding:
+        35px 20px;
+}
+
+.team-message h2 {
+
+    font-size: 24px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+}
+
+.team-message p {
+
+    color: #8296b7;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   MOTTO
+===================================================== */
+
+.motto-section {
+
+    padding:
+        55px 20px;
+
+    text-align: center;
+
+    border-top:
+        1px solid rgba(50,150,255,.3);
+
+    border-bottom:
+        1px solid rgba(50,150,255,.3);
+
+    background:
+        rgba(1,7,18,.8);
+}
+
+.motto-box {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 28px;
+
+    border:
+        1px solid rgba(60,155,255,.45);
+
+    background:
+        rgba(5,18,38,.5);
+}
+
+.motto {
+
+    font-size:
+        clamp(22px, 4vw, 38px);
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    color: #b9d8ff;
+}
+
+.motto span {
+
+    color: #ff5565;
+}
+
+.motto-sub {
+
+    margin-top: 18px;
+
+    color: #8b9bb5;
+
+    font-size: 12px;
+
+    letter-spacing: 5px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    min-height: 120px;
 
     display: flex;
 
@@ -229,110 +722,82 @@ nav a:hover {
 
     justify-content: center;
 
-    color: #53627a;
+    gap: 22px;
 
-    font-size: 14px;
+    color: #8c9ab2;
 
-    letter-spacing: 2px;
+    font-size: 12px;
 
-    overflow: hidden;
-}
-
-.photo img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-}
-
-/* ================= MEMBER INFO ================= */
-
-.member-info {
-    padding: 25px;
-}
-
-.member-info h2 {
-    font-size: 22px;
-
-    margin-bottom: 8px;
-}
-
-.role {
-    color: #79a9ff;
-
-    font-weight: bold;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 18px;
-}
-
-.member-info p {
-    color: #aeb8ca;
-
-    line-height: 1.6;
-
-    font-size: 14px;
-}
-
-/* ================= FOOTER ================= */
-
-footer {
-    margin-top: 80px;
-
-    padding: 40px;
+    letter-spacing: 3px;
 
     text-align: center;
-
-    color: #66748b;
-
-    border-top:
-        1px solid rgba(121,169,255,0.1);
 }
 
-/* ================= TABLET ================= */
+.footer-logo {
 
-@media(max-width:850px) {
+    width: 40px;
+
+    height: 40px;
+
+    border:
+        2px solid #269cff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #55adff;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes glow {
+
+    0%,100% {
+
+        box-shadow:
+            0 0 15px rgba(30,140,255,.3);
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 30px rgba(30,140,255,.6);
+    }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width: 950px) {
 
     .team-grid {
-        grid-template-columns: 1fr 1fr;
-    }
 
-    nav {
-        padding: 18px 5%;
-    }
+        grid-template-columns:
+            repeat(2, 1fr);
 
-    nav ul {
-        gap: 12px;
-    }
-
-    nav a {
-        font-size: 11px;
+        max-width: 750px;
     }
 
 }
 
-/* ================= MOBILE ================= */
 
-@media(max-width:550px) {
+/* =====================================================
+   MOBILE
+===================================================== */
 
-    nav ul {
-        display: none;
-    }
-
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* ================= TOUCH DEVICES ================= */
-
-@media(hover:none) {
+@media(max-width: 650px) {
 
     body {
         cursor: auto;
@@ -342,335 +807,633 @@ footer {
         display: none;
     }
 
+
+    /* NAV */
+
+    nav {
+
+        height: auto;
+
+        padding: 20px;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    .nav-links {
+
+        gap: 18px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .nav-links a {
+
+        padding: 5px 0;
+
+        font-size: 11px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+
+        min-height: 220px;
+    }
+
+    .hero-small {
+
+        font-size: 13px;
+
+        letter-spacing: 5px;
+    }
+
+    .hero h1 {
+
+        font-size: 62px;
+    }
+
+    .hero p {
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+
+
+    /* GRID */
+
+    .team-section {
+
+        padding:
+            30px 20px 70px;
+    }
+
+    .team-grid {
+
+        grid-template-columns:
+            1fr;
+
+        gap: 30px;
+    }
+
+
+    /* PHOTO */
+
+    .photo {
+
+        height: 300px;
+    }
+
+
+    /* INTRO */
+
+    .team-intro {
+
+        padding:
+            50px 20px 30px;
+    }
+
+    .team-intro h2 {
+
+        font-size: 22px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+
+        flex-direction: column;
+
+        padding:
+            35px 15px;
+
+        line-height: 1.7;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width: 400px) {
+
+    .photo {
+
+        height: 260px;
+    }
+
+    .member-info h2 {
+
+        font-size: 20px;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
-<!-- CUSTOM CURSOR -->
+
+<!-- =====================================================
+     CUSTOM CURSOR
+===================================================== -->
 
 <div class="custom-cursor"></div>
 
 
-<!-- ================= NAVIGATION ================= -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
 <nav>
 
-    <div class="logo-text">
-        ROBONAARA
+    <div class="logo">
+        ROBON<span>AARA</span>
     </div>
 
-    <ul>
 
-        <li>
-            <a href="index.html">
-                HOME
-            </a>
-        </li>
+    <div class="nav-links">
 
-        <li>
-            <a href="index.html#ajax">
-                AJAX
-            </a>
-        </li>
+        <a href="index.html">
+            HOME
+        </a>
 
-        <li>
-            <a href="process.html">
-                PROCESS
-            </a>
-        </li>
+        <a href="index.html#ajax">
+            AJAX
+        </a>
 
-        <li>
-            <a href="team.html">
-                TEAM
-            </a>
-        </li>
+        <a href="process.html">
+            PROCESS
+        </a>
 
-        <li>
-            <a href="index.html#nrl">
-                NRL
-            </a>
-        </li>
+        <a href="team.html" class="active">
+            TEAM
+        </a>
 
-    </ul>
+        <a href="index.html#nrl">
+            NRL
+        </a>
+
+    </div>
 
 </nav>
 
 
-<!-- ================= HERO ================= -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
-    <div>
+    <div class="hero-small">
+        MEET THE
+    </div>
 
-        <h1>
-            MEET THE <span>TEAM</span>
-        </h1>
+    <h1>
+        TEAM
+    </h1>
 
-        <p>
-            SIX PEOPLE. ONE ROBOT. ONE MISSION.
-        </p>
+    <p>
+        THE PEOPLE BEHIND ROBONAARA
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="team-intro">
+
+    <h2>
+        SIX MINDS. ONE ROBOT.
+    </h2>
+
+    <p>
+        DIFFERENT SKILLS • ONE TEAM • ONE MISSION
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     TEAM
+===================================================== -->
+
+<section class="team-section">
+
+<div class="team-grid">
+
+
+    <!-- =================================================
+         AARADHYA
+    ================================================== -->
+
+    <div class="member">
+
+        <div class="photo">
+
+            <div class="photo-placeholder">
+
+                <div class="robot-symbol">
+                    🤖
+                </div>
+
+                <span>
+                    PHOTO COMING SOON
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="member-info">
+
+            <div class="card-number">
+                01
+            </div>
+
+            <div class="role">
+                THE ACE
+            </div>
+
+            <h2>
+                Aaradhya Srivastava
+            </h2>
+
+            <p>
+                Too many ideas, one brain, and somehow a
+                plan always comes out of it. Aaradhya brings
+                creativity and quick thinking to the team,
+                turning random sparks of inspiration into
+                practical ideas that can actually move the
+                team forward.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ARNAV PANDE
+    ================================================== -->
+
+    <div class="member">
+
+        <div class="photo">
+
+            <img
+                src="arnav-pande.jpg"
+                alt="Arnav Pande"
+            >
+
+        </div>
+
+
+        <div class="member-info">
+
+            <div class="card-number">
+                02
+            </div>
+
+            <div class="role">
+                THE PILOT
+            </div>
+
+            <h2>
+                Arnav Pande
+            </h2>
+
+            <p>
+                Hands on the controls, eyes on the field,
+                and absolutely no room for hesitation.
+                Arnav stays focused when the pressure is on,
+                reading the field, making split-second
+                decisions, and keeping AJAX exactly where
+                the team needs it to be.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         ARNAV BELPANDE
+    ================================================== -->
+
+    <div class="member">
+
+        <div class="photo">
+
+            <img
+                src="arnav-belpande.jpg"
+                alt="Arnav Belpande"
+            >
+
+        </div>
+
+
+        <div class="member-info">
+
+            <div class="card-number">
+                03
+            </div>
+
+            <div class="role">
+                THE FORGE
+            </div>
+
+            <h2>
+                Arnav Belpande
+            </h2>
+
+            <p>
+                Circuits, designs, and an unhealthy amount
+                of attention to the details. Arnav Belpande
+                is the hands-on problem solver, turning
+                ideas into mechanisms and making sure every
+                connection, component, and tiny detail is
+                ready for the field.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         NIVEDITA
+    ================================================== -->
+
+    <div class="member">
+
+        <div class="photo">
+
+            <div class="photo-placeholder">
+
+                <div class="robot-symbol">
+                    🤖
+                </div>
+
+                <span>
+                    PHOTO COMING SOON
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="member-info">
+
+            <div class="card-number">
+                04
+            </div>
+
+            <div class="role">
+                THE OPERATOR
+            </div>
+
+            <h2>
+                Nivedita Pillai
+            </h2>
+
+            <p>
+                One problem, three solutions, and probably
+                a Plan D just in case. Nivedita keeps the
+                team prepared for whatever the match throws
+                at it, thinking ahead, adapting quickly,
+                and finding a way forward when the original
+                plan stops working.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         RUDRANSH
+    ================================================== -->
+
+    <div class="member">
+
+        <div class="photo">
+
+            <div class="photo-placeholder">
+
+                <div class="robot-symbol">
+                    🤖
+                </div>
+
+                <span>
+                    PHOTO COMING SOON
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="member-info">
+
+            <div class="card-number">
+                05
+            </div>
+
+            <div class="role">
+                THE MENACE
+            </div>
+
+            <h2>
+                Rudransh Dwivedi
+            </h2>
+
+            <p>
+                Give it a boring idea, watch it come back
+                with a personality. Rudransh brings energy
+                and an unconventional approach to the team,
+                turning ordinary concepts into bold ideas
+                and keeping the creative side of ROBONAARA
+                moving.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         JAIVARDHAN
+    ================================================== -->
+
+    <div class="member">
+
+        <div class="photo">
+
+            <div class="photo-placeholder">
+
+                <div class="robot-symbol">
+                    🤖
+                </div>
+
+                <span>
+                    PHOTO COMING SOON
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="member-info">
+
+            <div class="card-number">
+                06
+            </div>
+
+            <div class="role">
+                THE CODER
+            </div>
+
+            <h2>
+                Jaivardhan
+            </h2>
+
+            <p>
+                Turns complicated problems into clean code
+                and makes AJAX do exactly what the team
+                wants. Jaivardhan is the link between the
+                team's strategy and the robot's behavior,
+                building and refining the code that helps
+                AJAX respond reliably on the field.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     TEAM MESSAGE
+===================================================== -->
+
+<div class="team-message">
+
+    <h2>
+        ONE TEAM. ONE MACHINE.
+    </h2>
+
+    <p>
+        Every member brings something different to
+        ROBONAARA. Together, those skills become AJAX.
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MOTTO
+===================================================== -->
+
+<section class="motto-section">
+
+    <div class="motto-box">
+
+        <div class="motto">
+            BUILD → TEST → <span>FAIL</span> → IMPROVE → REPEAT
+        </div>
+
+        <div class="motto-sub">
+            THAT'S HOW ROBONAARA BUILDS.
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- ================= TEAM ================= -->
-
-<section class="team">
-
-    <div class="team-grid">
-
-
-        <!-- AARADHYA -->
-
-        <div class="member">
-
-            <div class="photo">
-                PHOTO COMING SOON
-            </div>
-
-            <div class="member-info">
-
-                <h2>
-                    Aaradhya Srivastava
-                </h2>
-
-                <div class="role">
-                    THE ACE
-                </div>
-
-                <p>
-                    Too many ideas, one brain, and somehow a plan
-                    always comes out of it. Aaradhya brings creativity
-                    and quick thinking to the team, turning random
-                    sparks of inspiration into practical ideas that
-                    can actually move the team forward.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- ARNAV PANDE -->
-
-        <div class="member">
-
-            <div class="photo">
-
-                <img
-                    src="arnav-pande.jpg"
-                    alt="Arnav Pande"
-                >
-
-            </div>
-
-            <div class="member-info">
-
-                <h2>
-                    Arnav Pande
-                </h2>
-
-                <div class="role">
-                    THE PILOT
-                </div>
-
-                <p>
-                    Hands on the controls, eyes on the field, and
-                    absolutely no room for hesitation. Arnav stays
-                    focused when the pressure is on, reading the
-                    field, making split-second decisions, and keeping
-                    AJAX exactly where the team needs it to be.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- ARNAV BELPANDE -->
-
-        <div class="member">
-
-            <div class="photo">
-                PHOTO COMING SOON
-            </div>
-
-            <div class="member-info">
-
-                <h2>
-                    Arnav Belpande
-                </h2>
-
-                <div class="role">
-                    THE FORGE
-                </div>
-
-                <p>
-                    Circuits, designs, and an unhealthy amount of
-                    attention to the details. Arnav Belpande is the
-                    hands-on problem solver, turning ideas into
-                    mechanisms and making sure every connection,
-                    component, and tiny detail is ready for the field.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- NIVEDITA -->
-
-        <div class="member">
-
-            <div class="photo">
-                PHOTO COMING SOON
-            </div>
-
-            <div class="member-info">
-
-                <h2>
-                    Nivedita Pillai
-                </h2>
-
-                <div class="role">
-                    THE OPERATOR
-                </div>
-
-                <p>
-                    One problem, three solutions, and probably a
-                    Plan D just in case. Nivedita keeps the team
-                    prepared for whatever the match throws at it,
-                    thinking ahead, adapting quickly, and finding
-                    a way forward when the original plan stops working.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- RUDRANSH -->
-
-        <div class="member">
-
-            <div class="photo">
-                PHOTO COMING SOON
-            </div>
-
-            <div class="member-info">
-
-                <h2>
-                    Rudransh Dwivedi
-                </h2>
-
-                <div class="role">
-                    THE MENACE
-                </div>
-
-                <p>
-                    Give it a boring idea, watch it come back with
-                    a personality. Rudransh brings energy and an
-                    unconventional approach to the team, turning
-                    ordinary concepts into bold ideas and keeping
-                    the creative side of ROBONAARA moving.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- JAYWARDHAN -->
-
-        <div class="member">
-
-            <div class="photo">
-                PHOTO COMING SOON
-            </div>
-
-            <div class="member-info">
-
-                <h2>
-                    Jaywardhan
-                </h2>
-
-                <div class="role">
-                    THE CODER
-                </div>
-
-                <p>
-                    Turns complicated problems into clean code—and
-                    makes AJAX do exactly what the team wants.
-                    Jaywardhan is the link between the team's strategy
-                    and the robot's behavior, building and refining
-                    the code that helps AJAX respond reliably on the field.
-                </p>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-    ROBONAARA © 2026 |
-    Orchids The International School, Tathawade
+    <div class="footer-logo">
+        R
+    </div>
+
+    <div>
+        ROBONAARA © 2026
+    </div>
+
+    <div>
+        |
+    </div>
+
+    <div>
+        ORCHIDS THE INTERNATIONAL SCHOOL, TATHAWADE
+    </div>
 
 </footer>
 
 
-<!-- ================= CURSOR SCRIPT ================= -->
+<!-- =====================================================
+     CURSOR SCRIPT
+===================================================== -->
 
 <script>
 
-const cursor = document.querySelector(".custom-cursor");
+const cursor =
+    document.querySelector(".custom-cursor");
 
 
-document.addEventListener("mousemove", function(event) {
+document.addEventListener("mousemove", function(e) {
 
-    cursor.style.left = event.clientX + "px";
+    cursor.style.left =
+        e.clientX + "px";
 
-    cursor.style.top = event.clientY + "px";
+    cursor.style.top =
+        e.clientY + "px";
 
 });
 
 
-const hoverElements = document.querySelectorAll(
-    "a, button, .member"
-);
-
-
-hoverElements.forEach(function(element) {
+document.querySelectorAll(
+    "a, .member, .photo, .role"
+).forEach(element => {
 
     element.addEventListener(
         "mouseenter",
-        function() {
-
+        () => {
             cursor.classList.add("hover");
-
         }
     );
 
-
     element.addEventListener(
         "mouseleave",
-        function() {
-
+        () => {
             cursor.classList.remove("hover");
-
         }
     );
 
@@ -678,6 +1441,6 @@ hoverElements.forEach(function(element) {
 
 </script>
 
-</body>
 
+</body>
 </html>
